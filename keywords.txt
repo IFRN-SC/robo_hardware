@@ -1,0 +1,33 @@
+#######################################
+# Syntax Coloring Map robo_hardware Library
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+##robo	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+lerSensorFimDeCurso	KEYWORD2
+lerSensorDeLinha	KEYWORD2
+lerSensorLinhaEsq	KEYWORD2
+lerSensorLinhaDir	KEYWORD2
+acionarMotores	KEYWORD2
+acionarServoGarra1	KEYWORD2
+acionarServoGarra2	KEYWORD2
+getHSVEsquerdo	KEYWORD2
+getRGBEsquerdo	KEYWORD2
+getHSVDireito	KEYWORD2
+getRGBDireito	KEYWORD2
+configurar	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+robo_hardware	LITERAL1
+
