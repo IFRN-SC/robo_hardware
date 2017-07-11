@@ -17,8 +17,8 @@ void setup(){
 }
 
 void loop(){
-	valor_sensor_dir = robo.lerSensorLinhaEsq(); //le um valor do sensor. O sensor retornar um valor de 0 100
-	valor_sensor_esq = robo.lerSensorLinhaDir(); //le um valor do sensor. O sensor retornar um valor de 0 100
+	valor_sensor_esq = robo.lerSensorLinhaEsq(); //le um valor do sensor. O sensor retornar um valor de 0 100
+	valor_sensor_dir = robo.lerSensorLinhaDir(); //le um valor do sensor. O sensor retornar um valor de 0 100
 
 	Serial.print("Valor do sensor direito é: ");
 	Serial.println(valor_sensor_dir); //Imprime o valor do sensor pela porta serial
