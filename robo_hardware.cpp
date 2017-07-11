@@ -6,7 +6,9 @@ Servo robo_hardware::servoGarra2;
 
 
 robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,SENSOR_COR_DIR_OUT),
-																corEsquerda	(SENSOR_COR_ESQ_S2,SENSOR_COR_ESQ_S3,SENSOR_COR_ESQ_OUT)
+																corEsquerda	(SENSOR_COR_ESQ_S2,SENSOR_COR_ESQ_S3,SENSOR_COR_ESQ_OUT),
+																sonarFrontal(SONAR_TRIGGER_FRONTAL, SONAR_ECHO_FRONTAL),
+																sonarLateral(SONAR_TRIGGER_LATERAL, SONAR_ECHO_LATERAL)
 {
 
 }
@@ -71,6 +73,16 @@ void robo_hardware::acionarMotores(float motor1, float motor2){
     tensao(motor2,PWM_RODA_DIREITA);  
   }
     
+}
+
+float robo_hardware::lerSensorSonarFrontal(){
+	long microsec = sonarFrontal.timing();
+	return sonarFrontal.convert(microsec, Ultrasonic::CM);  //retorna a distância do sensor ao obstáculo em cm.
+}
+
+float robo_hardware::lerSensorSonarLateral(){
+	long microsec = sonarLateral.timing();
+	return sonarLateral.convert(microsec, Ultrasonic::CM);  //retorna a distância do sensor ao obstáculo em cm.
 }
 
 void robo_hardware::acionarServoGarra1(float angulo){

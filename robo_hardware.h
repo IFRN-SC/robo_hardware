@@ -9,6 +9,8 @@
 
 #include "cor.h"
 #include "pinagem.h"
+#include "Ultrasonic.h"
+
 class robo_hardware:private pinagem{
 private:
 
@@ -33,6 +35,9 @@ public:
 	//funcao para acionar os servomotores
   void acionarServoGarra1(float angulo);
   void acionarServoGarra2(float angulo);
+
+	float lerSensorSonarFrontal();
+	float lerSensorSonarLateral();
   
   
 	//funcoes para trabalhar com os sensores de Cor
@@ -49,7 +54,9 @@ private:
   //SensorCor cor_direita(s2,s3, out);  
   SensorCor corDireita;
   SensorCor corEsquerda;
-  
+
+	Ultrasonic sonarFrontal;
+	Ultrasonic sonarLateral;  
 
 };
 

@@ -12,8 +12,8 @@ class pinagem{
   #define SENTIDO_RODA_DIREITA 	8		//Define o pino que ligara o motor direito para mudar o sentido de rotacao
 
 	//A presente biblioteca pode controlar dois servomotores  
-  #define SERVO_GARRA_1 				13	//Define o pino para "controlar" o servo motor 1
-  #define SERVO_GARRA_2 				12	//Define o pino para "controlar" o servo motor 2
+  #define SERVO_GARRA_1 				10	//Define o pino para "controlar" o servo motor 1
+  #define SERVO_GARRA_2 				9		//Define o pino para "controlar" o servo motor 2
 
 	//A presente biblioteca pode utilizar um botao para comunicao
   #define BOTAO 								45
@@ -31,6 +31,14 @@ class pinagem{
 	#define SENSOR_COR_DIR_S2			19
 	#define SENSOR_COR_DIR_S3			20
 	#define SENSOR_COR_DIR_OUT		21
+
+	//A biblioteca possui dois sensores de distancia (Sonares)
+	#define SONAR_TRIGGER_FRONTAL	4
+	#define SONAR_ECHO_FRONTAL		3
+
+	#define SONAR_TRIGGER_LATERAL	13
+	#define SONAR_ECHO_LATERAL		12
+	
  
 
 };
