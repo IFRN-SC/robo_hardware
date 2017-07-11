@@ -15,6 +15,7 @@ class robo_hardware:private pinagem{
 private:
 
   #define AJUSTE_MOTOR 0.65
+	#define MAX_10_BITS 1023.0	//Maior valor que um numero de 10 bits pode obter
 public: 
 
 
@@ -24,8 +25,8 @@ public:
 
 	//As funcoes retornam o valor lido do sensor refletancia
   int lerSensorDeLinha(int sensor); //recebe um pino analogico (A0, A1, A2 e etc) e retorna um valor de 0 a 1023 
-	inline float lerSensorLinhaEsq(){return 100.0 * (lerSensorDeLinha(SENSOR_LINHA_ESQUERDO))	/1013.0;} //retorna um valor de 0 a 100 
-	inline float lerSensorLinhaDir(){return 100.0 * (lerSensorDeLinha(SENSOR_LINHA_DIREITO))	/1023.0;} //retorna um valor de 0 a 100
+	inline float lerSensorLinhaEsq(){return (100 - 100.0 * (lerSensorDeLinha(SENSOR_LINHA_ESQUERDO))/1013.0);} //retorna um valor de 0 a 100 
+	inline float lerSensorLinhaDir(){return (100 - 100.0 * (lerSensorDeLinha(SENSOR_LINHA_DIREITO) )/1023.0);} //retorna um valor de 0 a 100
 
 	//A funcao para acionar os motores de locomocao do robo
 	//A funcao recebe um percentual de tensao do motor esquerdo e direito
