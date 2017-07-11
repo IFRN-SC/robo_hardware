@@ -14,7 +14,7 @@ robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,
 }
 
 void robo_hardware::tensao(float valor_por_cento,int pino){
-  float k = 255/100;
+  float k = 255/100.0;
   float valor_ate_255 = valor_por_cento * k;
   analogWrite(pino, abs(valor_ate_255)); 
 }
