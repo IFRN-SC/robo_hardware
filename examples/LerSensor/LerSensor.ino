@@ -8,8 +8,6 @@
 //
 //*********PINOS PARA SENSORES REFLETANCIA*********//
 
-#define CINZA 50
-
 float valor_sensor_dir;
 float valor_sensor_esq;
 
@@ -19,27 +17,14 @@ void setup(){
 }
 
 void loop(){
-	valor_sensor_dir = robo.lerSensorLinhaEsq();
-	valor_sensor_esq = robo.lerSensorLinhaDir();
+	valor_sensor_dir = robo.lerSensorLinhaEsq(); //le um valor do sensor. O sensor retornar um valor de 0 100
+	valor_sensor_esq = robo.lerSensorLinhaDir(); //le um valor do sensor. O sensor retornar um valor de 0 100
 
-	Serial.print("Valor do sensor é: ");
-	Serial.println(valor_sensor_dir);
-	if(valor_sensor_dir > CINZA ){
-		Serial.println("Sensor direito é Preto");
-	}
-	else{
-		Serial.println("Sensor direito é Branco");
-	}
+	Serial.print("Valor do sensor direito é: ");
+	Serial.println(valor_sensor_dir); //Imprime o valor do sensor pela porta serial
 
-	Serial.print("Valor do sensor é: ");
-	Serial.println(valor_sensor_esq);
-	if(valor_sensor_esq > CINZA ){
-		Serial.println("Sensor esquerdo é Preto");
-	}
-	else{
-		Serial.println("Sensor esquerdo é Branco");
-	}
-
+	Serial.print("Valor do sensor esquerdo é: ");
+	Serial.println(valor_sensor_esq); //Imprime o valor do sensor pela porta serial
 
 }
 
