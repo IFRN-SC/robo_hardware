@@ -26,5 +26,7 @@ void loop(){
 	Serial.print("Valor do sensor esquerdo é: ");
 	Serial.println(valor_sensor_esq); //Imprime o valor do sensor pela porta serial
 
+	delay(1000);
+
 }
 
