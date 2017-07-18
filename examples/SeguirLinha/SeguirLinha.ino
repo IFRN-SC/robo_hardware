@@ -4,10 +4,10 @@
 //*************PINOS PARA LIGAR MOTORES*************//
 //   Motor direito:
 //pino1 PWM_RODA_DIREITA	6
-//pino2 SENTIDO_RODA_DIREITA	8
+//pino2 SENTIDO_RODA_DIREITA	7
 //   Motor esquerdo:
 //pino1 PWM_RODA_ESQUERDA	5
-//pino2 SENTIDO_RODA_ESQUERDA	7
+//pino2 SENTIDO_RODA_ESQUERDA	4
 //*********PINOS PARA LIGAR MOTORES*********//
 
 //********PINOS PARA SENSORES REFLETANCIA***********//
