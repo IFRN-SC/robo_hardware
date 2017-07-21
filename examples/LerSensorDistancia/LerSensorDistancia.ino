@@ -22,10 +22,9 @@ void loop(){
 	valor_sensor_frontal = robo.lerSensorSonarFrontal(); //FUNCAO PARA LER VALOR DO SENSOR FRONTAL
 
         Serial.print("Valor do sensor frontal: ");
-        Serial.println(valor_sensor_frontal);
-        Serial.println();
+        Serial.print(valor_sensor_frontal);
         
-        Serial.print("Valor do sensor lateral: ");
+        Serial.print("  lateral: ");
         Serial.println(valor_sensor_lateral);
         Serial.println();
         
