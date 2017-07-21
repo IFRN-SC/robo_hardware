@@ -21,6 +21,11 @@ void robo_hardware::tensao(float valor_por_cento,int pino){
 
 void robo_hardware::configurar(bool habilitar_garra){
   Serial.begin(9600);
+
+	//Com essas funcoes os sonares sao calibrados 
+	//Quanto maior o valor de CALIBRACAO_SONAR menor a inclinacao da curva de calibracao 
+	sonarFrontal.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);  
+	sonarLateral.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);
   
 	if(habilitar_garra){
   	servoGarra1.attach(SERVO_GARRA_1);

@@ -15,7 +15,9 @@ class robo_hardware:private pinagem{
 private:
 
   #define AJUSTE_MOTOR 0.65
-	#define MAX_10_BITS 1023.0	//Maior valor que um numero de 10 bits pode obter
+	#define MAX_10_BITS 1023.0				//Maior valor que um numero de 10 bits pode obter
+	
+	#define CALIBRACAO_SONAR  40.4	//Valor para calibrar os sonares. Quanto maior esse valor menor a inclinação da reta de calibracao
 public: 
 
 
