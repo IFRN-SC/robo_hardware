@@ -4,8 +4,8 @@
 /*
 Arduino UNO pinout
 
-13-									SENSOR_TRIGGER_LATERAL
-12-									SENSOR_ECHO_LATERAL
+13-									SONAR_TRIGGER_LATERAL
+12-									SONAR_ECHO_LATERAL
 11-	PWM (Timer 2)
 10-	PWM	(Timer 1)		SERVO_GARRA_1
 09-	PWM	(Timer 1)		SERVO_GARRA_2
