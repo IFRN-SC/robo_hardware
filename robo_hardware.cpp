@@ -39,13 +39,7 @@ void robo_hardware::configurar(bool habilitar_garra){
   	servoGarra1.attach(SERVO_GARRA_1);
   	servoGarra2.attach(SERVO_GARRA_2);
 	}
-/* 
-  pinMode(2, OUTPUT);  
-  digitalWrite(2, HIGH);
-  
-  pinMode(3, OUTPUT);  
-  digitalWrite(3, HIGH);
-*/
+
   pinMode(PWM_RODA_ESQUERDA, OUTPUT); 
   pinMode(PWM_RODA_DIREITA, OUTPUT); 
   pinMode(SENTIDO_RODA_ESQUERDA, OUTPUT); 
