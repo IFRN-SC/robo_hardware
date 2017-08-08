@@ -113,3 +113,11 @@ RGB robo_hardware::getRGBEsquerdo(){
 RGB robo_hardware::getRGBDireito(){
   return corDireita.getRGB();
 }
+
+void  robo_hardware::salvarCalibracao(calibracao_dados calibraca_val){
+	EEPROM.put(ENDERECO_EEPROM, calibraca_val);
+}
+
+void robo_hardware::lerCalibracao(calibracao_dados &cal){
+	EEPROM.get(ENDERECO_EEPROM, cal);
+}

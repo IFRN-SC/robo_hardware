@@ -11,6 +11,22 @@
 #include "pinagem.h"
 #include "Ultrasonic.h"
 
+#include "EEPROM2.h"
+
+struct calibracao_dados{
+	HSV branco;
+	HSV preto;
+	HSV verde;
+	HSV cinza;
+
+	int refletancia_dir;
+	int refletancia_mais_dir;
+	int refletancia_esq;
+	int refletancia_mais_esq;
+	
+
+};
+
 class robo_hardware:private pinagem{
 private:
 
@@ -18,6 +34,8 @@ private:
 	#define MAX_10_BITS 1023.0				//Maior valor que um numero de 10 bits pode obter
 	
 	#define CALIBRACAO_SONAR  40.4	//Valor para calibrar os sonares. Quanto maior esse valor menor a inclinação da reta de calibracao
+
+	#define ENDERECO_EEPROM 0
 public: 
 
 
@@ -48,9 +66,13 @@ public:
   RGB getRGBEsquerdo(); //realiza a leitura do sensor de cor esquerdo e retorna uma estrutura RGB. Ver cor.h
   HSV getHSVDireito(); 	//realiza a leitura do sensor de cor direito e retorna uma estrutura HSV. Ver cor.h
   RGB getRGBDireito(); 	//realiza a leitura do sensor de cor direito e retorna uma estrutura RGB. Ver cor.h
-  
+
+	void salvarCalibracao(calibracao_dados cal);  
+	void lerCalibracao(calibracao_dados &cal);
 
 private:
+
+
   static Servo servoGarra1;
   static Servo servoGarra2;
   void tensao(float valor_por_cento,int pino);
