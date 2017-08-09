@@ -22,16 +22,16 @@ void setup(){
 }
 
 void loop(){
-  leituraSensorCor = robo.getRGBEsquerdo(); //FUNCAO PARA LER VALOR DO SENSOR LATERAL
+  leituraSensorCor = robo.getHSVEsquerdo(); //FUNCAO PARA LER VALOR DO SENSOR LATERAL
 
 
   //imprime os 3 valores retornardos pelo sensor cor
   Serial.print("Valor do sensor de cor: ");
-  Serial.print(leituraSensorCor.vermelho);
+  Serial.print(leituraSensorCor.h);
   Serial.print(", ");
-  Serial.print(leituraSensorCor.verde);
+  Serial.print(leituraSensorCor.s);
   Serial.print(", ");
-  Serial.print(leituraSensorCor.azul);
+  Serial.print(leituraSensorCor.v);
   
   Serial.println();
   
