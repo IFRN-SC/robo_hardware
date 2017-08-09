@@ -1,6 +1,6 @@
 //exemplo para ler valores de calibracao que estao salvos na memoria persistente do arduino a eeprom
 
-#include <robo_hardware.h>
+#include <robo_hardware2.h>
 #include <Servo.h>
 
 calibracao_dados val; //dados de calibracao para sensores de cor e sensores de refletancia

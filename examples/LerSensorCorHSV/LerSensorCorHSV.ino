@@ -1,4 +1,4 @@
-#include <robo_hardware.h> 
+#include <robo_hardware2.h> 
 #include <Servo.h>
 
 //********PINOS PARA SENSORES DE COR***********//
