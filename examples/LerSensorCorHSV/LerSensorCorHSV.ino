@@ -2,11 +2,18 @@
 #include <Servo.h>
 
 //********PINOS PARA SENSORES DE COR***********//
-//  S0	GND
-//  S1  VCC
+//********SENSOR DIREITO***********************//
+//  S0	5V  nivel logico baixo
+//  S1  0V  nivel logico alto
+//  S2  2
+//  S3  3  
+//  OUT 8 
+//********SENSOR ESQUERDO**********************//
+//  S0	5V  nivel logico baixo
+//  S1  0V  nivel logico alto
 //  S2  11
-//  S3  16  A2
-//  OUT 17  A3
+//  S3  12  
+//  OUT 13  
 //*********PINOS PARA SENSORES DE COR*********//
 
 
