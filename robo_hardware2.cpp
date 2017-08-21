@@ -9,6 +9,12 @@ robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,
 																corEsquerda	(SENSOR_COR_ESQ_S2,SENSOR_COR_ESQ_S3,SENSOR_COR_ESQ_OUT),
 																sonarFrontal(SONAR_TRIGGER_FRONTAL, SONAR_ECHO_FRONTAL),
 																sonarLateral(SONAR_TRIGGER_LATERAL, SONAR_ECHO_LATERAL)
+#if defined(__AVR_ATmega2560__)
+																,encoderDir(ENCODER1_INTERRUPCAO, ENCODER1_DIRECAO),
+																encoderEsq(ENCODER2_INTERRUPCAO, ENCODER2_DIRECAO),
+																motorEsq(encoderEsq),
+																motorDir(encoderDir)
+#endif
 {
 
 }
@@ -79,20 +85,28 @@ void robo_hardware::acionarMotores(float motor1, float motor2){
 }
 
 void robo_hardware::acionarMotoresVel(float velMotorEsquerdo, float velMotorDireito){
-	
+	float tensaoEsq=0,	tensaoDir=0;
+
+	#if defined(__AVR_ATmega2560__)
+
+		motorEsq.executa();
+	  motorDir.executa();
+
+		tensaoEsq = motorEsq.getOutput();
+		tensaoEsq = motorDir.getOutput();
+	#endif
+
+	acionarMotores(tensaoEsq,  tensaoDir);
 }
 
 void robo_hardware::acionarMotoresPos(float angEsquerdoRef, float angDireitoRef){
-float tensaoEsq=0, tensaoDir=0;
+	float tensaoEsq=0,	tensaoDir=0;
 
-//ler sensor
+	#if defined(__AVR_ATmega2560__)
 
-//calcular erro
-
-//chamar funcao de calculo do controle
-
-//acionar motores
-acionarMotores(tensaoEsq,  tensaoDir);
+	#endif
+	//acionar motores
+	acionarMotores(tensaoEsq,  tensaoDir);
 
 }
 
