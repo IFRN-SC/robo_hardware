@@ -57,6 +57,7 @@ public:
 	//A funcao so recebe valores que variem de 100 ate -100
   void acionarMotores(float percetualMotorEsquerdo, float percetualMotorDireito);
   void acionarMotoresVel(float velMotorEsquerdo, float velMotorDireito);
+	void acionarMotoresPos(float angMotorEsquerdo, float angMotorDireito);
 
 	//funcao para acionar os servomotores
   void acionarServoGarra1(float angulo);
