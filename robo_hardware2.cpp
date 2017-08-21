@@ -82,6 +82,20 @@ void robo_hardware::acionarMotoresVel(float velMotorEsquerdo, float velMotorDire
 	
 }
 
+void robo_hardware::acionarMotoresPos(float angEsquerdoRef, float angDireitoRef){
+float tensaoEsq=0, tensaoDir=0;
+
+//ler sensor
+
+//calcular erro
+
+//chamar funcao de calculo do controle
+
+//acionar motores
+acionarMotores(tensaoEsq,  tensaoDir);
+
+}
+
 float robo_hardware::lerSensorSonarFrontal(){
 	long microsec = sonarFrontal.timing();
 	return sonarFrontal.convert(microsec, Ultrasonic::CM);  //retorna a distância do sensor ao obstáculo em cm.
