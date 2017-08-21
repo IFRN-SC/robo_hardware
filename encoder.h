@@ -1,6 +1,7 @@
+#ifndef ENCODER_H
+#define ENCODER_H
+
 #include <Arduino.h>
-
-
 
 class Encoder{
   #define VEL_MAX_ENCODER_POR_MILI_SEGUNDOS 1.9
@@ -44,3 +45,5 @@ class Encoder{
   void calculaVelocidade();
 
 };
+
+#endif
