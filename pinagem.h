@@ -68,7 +68,14 @@ class pinagem{
 
 	#define SONAR_TRIGGER_LATERAL	13
 	#define SONAR_ECHO_LATERAL		12
-	
+
+
+	#if defined(__AVR_ATmega2560__)
+		#define ENCODER1_INTERRUPCAO 	18
+    #define ENCODER2_INTERRUPCAO 	19
+		#define ENCODER1_DIRECAO			17
+		#define ENCODER2_DIRECAO			16
+	#endif
  
 
 };
