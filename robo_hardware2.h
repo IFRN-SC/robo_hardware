@@ -11,6 +11,7 @@
 #include "pinagem.h"
 #include "Ultrasonic.h"
 
+#include "encoder.h"
 #include "EEPROM2.h"
 
 struct calibracao_dados{
@@ -52,6 +53,7 @@ public:
 	//A funcao recebe um percentual de tensao do motor esquerdo e direito
 	//A funcao so recebe valores que variem de 100 ate -100
   void acionarMotores(float percetualMotorEsquerdo, float percetualMotorDireito);
+  void acionarMotoresVel(float velMotorEsquerdo, float velMotorDireito);
 
 	//funcao para acionar os servomotores
   void acionarServoGarra1(float angulo);
