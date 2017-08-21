@@ -9,6 +9,10 @@ robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,
 																corEsquerda	(SENSOR_COR_ESQ_S2,SENSOR_COR_ESQ_S3,SENSOR_COR_ESQ_OUT),
 																sonarFrontal(SONAR_TRIGGER_FRONTAL, SONAR_ECHO_FRONTAL),
 																sonarLateral(SONAR_TRIGGER_LATERAL, SONAR_ECHO_LATERAL)
+#if defined(__AVR_ATmega2560__)
+																,encoderDir(ENCODER1_INTERRUPCAO, ENCODER1_DIRECAO),
+																encoderEsq(ENCODER2_INTERRUPCAO, ENCODER2_DIRECAO)
+#endif
 {
 
 }
@@ -84,13 +88,18 @@ void robo_hardware::acionarMotoresVel(float velMotorEsquerdo, float velMotorDire
 
 void robo_hardware::acionarMotoresPos(float angEsquerdoRef, float angDireitoRef){
 float tensaoEsq=0, tensaoDir=0;
+float sensorDir=0; float sensorEsq=0;
+
+#if defined(__AVR_ATmega2560__)
 
 //ler sensor
-
+sensorDir = encoderDir.getAnguloAbsoluto();
 //calcular erro
 
 //chamar funcao de calculo do controle
 
+
+#endif
 //acionar motores
 acionarMotores(tensaoEsq,  tensaoDir);
 

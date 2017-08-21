@@ -86,6 +86,8 @@ private:
 	Ultrasonic sonarFrontal;
 	Ultrasonic sonarLateral;  
 
+	Encoder encoderDir, encoderEsq;
+
 };
 
 static robo_hardware robo;
