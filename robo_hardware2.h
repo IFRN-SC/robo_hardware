@@ -14,6 +14,9 @@
 #include "Log.h"
 #include "encoder.h"
 #include "contr_motor.h"
+
+#include "Log.h"
+
 #include "EEPROM2.h"
 
 struct calibracao_dados{
@@ -100,6 +103,10 @@ private:
 		Encoder encoderDir, encoderEsq;
 		contr_motor motorEsq, motorDir;
 	#endif
+
+
+	Log log;
+
 };
 
 static robo_hardware robo;
