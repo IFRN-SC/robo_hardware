@@ -93,9 +93,13 @@ private:
 	Ultrasonic sonarFrontal;
 	Ultrasonic sonarLateral;  
 
+
 	Log log;
 
-	contr_motor motorEsq, motorDir;
+	#if defined(__AVR_ATmega2560__)
+		Encoder encoderDir, encoderEsq;
+		contr_motor motorEsq, motorDir;
+	#endif
 };
 
 static robo_hardware robo;
