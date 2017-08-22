@@ -10,7 +10,7 @@
 #include "cor.h"
 #include "pinagem.h"
 #include "Ultrasonic.h"
-
+#include "Log.h"
 #include "EEPROM2.h"
 
 struct calibracao_dados{
@@ -36,6 +36,8 @@ private:
 	#define CALIBRACAO_SONAR  40.4	//Valor para calibrar os sonares. Quanto maior esse valor menor a inclinação da reta de calibracao
 
 	#define ENDERECO_EEPROM 0
+
+	#define ENDERECO_EEPROM_LOG 100
 public: 
 
 
@@ -70,6 +72,9 @@ public:
 	void salvarCalibracao(calibracao_dados cal);  
 	void lerCalibracao(calibracao_dados &cal);
 
+	void salvarLog();
+	void lerLog();
+
 private:
 
 
@@ -82,6 +87,8 @@ private:
 
 	Ultrasonic sonarFrontal;
 	Ultrasonic sonarLateral;  
+
+	Log log;
 
 };
 
