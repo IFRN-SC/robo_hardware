@@ -31,3 +31,14 @@ void Log::adicionarDados(const DadosLog &entrada){
 		posicaoParaAdicionar=0;
 }
 
+const String& Log::printDados(){
+	for (int i=0; i<tamanhoVetorDados; i++){
+		saida += String(dados[i].tempo) + " "; 
+		//saida += String(dados[i].motorEsq);// + " " + String(dados[i].motorDir) + " ";	
+		//saida += dados[i].reflet.esq + " " + dados[i].reflet.dir;
+		saida += "\n";
+	}
+
+
+
+}

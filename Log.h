@@ -12,10 +12,12 @@ struct Refletancia{
 
 struct DadosLog{
 	Refletancia reflet;
-	HSV	hsvDir;
-	HSV hsvEsq;
+//	HSV	hsvDir;
+//	HSV hsvEsq;
 	int estado;
 	long tempo;
+	float motorEsq;
+	float motorDir;
 };
 
 class Log{
@@ -23,13 +25,15 @@ class Log{
 	DadosLog dados[MAX_TAMANHO_LOG];
 	unsigned int posicaoParaAdicionar;
 	unsigned int tamanhoVetorDados;
+	String saida;
 
 	public:
 	Log();
 	Log(const Log &l);
 	void configurar();
-
+	
 	void adicionarDados(const DadosLog &entrada);
+	const String& printDados();
 
 };
 
