@@ -153,12 +153,3 @@ void  robo_hardware::salvarCalibracao(calibracao_dados calibraca_val){
 void robo_hardware::lerCalibracao(calibracao_dados &cal){
 	EEPROM.get(ENDERECO_EEPROM, cal);
 }
-
-void robo_hardware::salvarLog(){
-	EEPROM.put(ENDERECO_EEPROM_LOG, log);
-}
-
-void robo_hardware::lerLog(){
-	EEPROM.get(ENDERECO_EEPROM_LOG, log);
-}
-

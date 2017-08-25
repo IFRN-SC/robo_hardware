@@ -31,14 +31,18 @@ void Log::adicionarDados(const DadosLog &entrada){
 		posicaoParaAdicionar=0;
 }
 
-const String& Log::printDados(){
+void Log::printDados(){
 	for (int i=0; i<tamanhoVetorDados; i++){
-		saida += String(dados[i].tempo) + " "; 
-		//saida += String(dados[i].motorEsq);// + " " + String(dados[i].motorDir) + " ";	
-		//saida += dados[i].reflet.esq + " " + dados[i].reflet.dir;
-		saida += "\n";
+		
 	}
 
-
-
 }
+
+void Log::salvarLog(){
+	EEPROM.put(ENDERECO_EEPROM_LOG, *this);
+}
+
+void Log::lerLog(){
+	EEPROM.get(ENDERECO_EEPROM_LOG, *this);
+}
+

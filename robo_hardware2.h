@@ -43,7 +43,6 @@ private:
 
 	#define ENDERECO_EEPROM 0
 
-	#define ENDERECO_EEPROM_LOG 100
 public: 
 
 
@@ -80,8 +79,6 @@ public:
 	void salvarCalibracao(calibracao_dados cal);  
 	void lerCalibracao(calibracao_dados &cal);
 
-	void salvarLog();
-	void lerLog();
 
 private:
 
