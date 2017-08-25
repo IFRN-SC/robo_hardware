@@ -33,7 +33,7 @@ void Log::adicionarDados(const DadosLog &entrada){
 
 void Log::printDados(){
 	for (int i=0; i<tamanhoVetorDados; i++){
-		
+		dados[i].print();
 	}
 
 }
