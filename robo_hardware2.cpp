@@ -102,6 +102,13 @@ void robo_hardware::acionarMotoresPos(float angEsquerdoRef, float angDireitoRef)
 	float tensaoEsq=0,	tensaoDir=0;
 
 	#if defined(__AVR_ATmega2560__)
+		//encoderEsq.calculaVelocidade();
+		contrPosEsq.executa(encoderEsq.getAnguloAbsoluto(), angEsquerdoRef);
+		//encoderDir.calculaVelocidade();
+	  contrPosDir.executa(encoderDir.getAnguloAbsoluto(), angDireitoRef);
+
+		tensaoEsq = contrVeloEsq.getOutput();
+		tensaoDir = contrVeloDir.getOutput();
 	#endif
 	//acionar motores
 	acionarMotores(tensaoEsq,  tensaoDir);

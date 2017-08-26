@@ -89,6 +89,7 @@ private:
 	#if defined(__AVR_ATmega2560__)
 		Encoder encoderDir, encoderEsq;
 		contr_motor contrVeloEsq, contrVeloDir;
+		contr_motor contrPosEsq, contrPosDir;
 	#endif
 };
 
