@@ -88,7 +88,7 @@ private:
 	Ultrasonic sonarLateral;  
 	#if defined(__AVR_ATmega2560__)
 		Encoder encoderDir, encoderEsq;
-		contr_motor motorEsq, motorDir;
+		contr_motor contrVeloEsq, contrVeloDir;
 	#endif
 };
 

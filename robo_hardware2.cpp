@@ -11,9 +11,7 @@ robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,
 																sonarLateral(SONAR_TRIGGER_LATERAL, SONAR_ECHO_LATERAL)
 #if defined(__AVR_ATmega2560__)
 																,encoderDir(ENCODER1_INTERRUPCAO, ENCODER1_DIRECAO),
-																encoderEsq(ENCODER2_INTERRUPCAO, ENCODER2_DIRECAO),
-																motorEsq(encoderEsq),
-																motorDir(encoderDir)
+																encoderEsq(ENCODER2_INTERRUPCAO, ENCODER2_DIRECAO)
 #endif
 {
 
@@ -105,7 +103,6 @@ void robo_hardware::acionarMotoresPos(float angEsquerdoRef, float angDireitoRef)
 	float tensaoEsq=0,	tensaoDir=0;
 
 	#if defined(__AVR_ATmega2560__)
-
 	#endif
 	//acionar motores
 	acionarMotores(tensaoEsq,  tensaoDir);
