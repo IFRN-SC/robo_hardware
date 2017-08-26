@@ -86,14 +86,13 @@ void robo_hardware::acionarMotoresVel(float velMotorEsquerdo, float velMotorDire
 	float tensaoEsq=0,	tensaoDir=0;
 
 	#if defined(__AVR_ATmega2560__)
-		motorEsq.setSetPoint(velMotorEsquerdo);
-		motorDir.setSetPoint(velMotorDireito);
+		encoderEsq.calculaVelocidade();
+		contrVeloEsq.executa(encoderEsq.getVelocidade(), velMotorEsquerdo);
+		encoderDir.calculaVelocidade();
+	  contrVeloDir.executa(encoderDir.getVelocidade(), velMotorDireito);
 
-		motorEsq.executa();
-	  motorDir.executa();
-
-		tensaoEsq = motorEsq.getOutput();
-		tensaoDir = motorDir.getOutput();
+		tensaoEsq = contrVeloEsq.getOutput();
+		tensaoDir = contrVeloDir.getOutput();
 	#endif
 
 	acionarMotores(tensaoEsq,  tensaoDir);
