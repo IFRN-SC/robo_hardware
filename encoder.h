@@ -5,7 +5,7 @@
 
 class Encoder{
   #define VEL_MAX_ENCODER_POR_MILI_SEGUNDOS 1.9
-  #define NUM_MAX_PULSOS_POR_ROTACAO 3000.0
+  #define NUM_MAX_PULSOS_POR_ROTACAO 341.2
   #define _360_GRAUS 360
   
   const byte pino_interrupcao;
@@ -26,7 +26,7 @@ class Encoder{
   
   
   public:
-  inline void config(){pinMode(pino2, INPUT);}
+  void configurar();
   Encoder(byte pino_interrupcao, byte pino2);
   void calculaPulso();
   

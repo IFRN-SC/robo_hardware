@@ -12,6 +12,11 @@ pino2(pino_c2), amostragem_vel(10)
 	angulo_relativo=0;
 }
 
+void Encoder::configurar(){
+	pinMode(pino2, INPUT);
+	pinMode(pino_interrupcao, INPUT);
+}
+
 void Encoder::calculaPulso(){
   int Lstate = digitalRead(pino_interrupcao);
   if ((Encoder_C1Last == LOW) && Lstate == HIGH){
