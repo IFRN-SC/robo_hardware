@@ -17,8 +17,8 @@ struct DadosLog{
 	Refletancia reflet;
 //	HSV	hsvDir;
 //	HSV hsvEsq;
-	int estado;
-	long tempo;
+//	int estado;
+	unsigned long tempo;
 	float motorEsq;
 	float motorDir;
 
