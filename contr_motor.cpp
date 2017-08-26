@@ -6,15 +6,17 @@
 #define GO_AHEAD 0
 #define GO_BACK  1
 
-contr_motor::contr_motor(Encoder& e):
-myPID(&Input, &Output, &Setpoint,Kp,Ki,Kd, DIRECT),
-encoder(e)
+contr_motor::contr_motor():
+
+myPID(&Input, &Output, &Setpoint,Kp,Ki,Kd, DIRECT)
+//,encoder(e)
 {
   Setpoint=10;
+	Kp= 0.5; Ki=0; Kd=0;
 }
 
 void contr_motor::config(){
-  encoder.config();    
+//  encoder.config();    
   
   
   myPID.SetOutputLimits(-100, 100);
@@ -23,10 +25,16 @@ void contr_motor::config(){
 }
 
 void contr_motor::executa(){
-  Input = ler_entrada();
-  Setpoint = ler_setPoint();
+  //Input = ler_entrada();
+  //Setpoint = ler_setPoint();
   myPID.Compute(); // Run the PID loop
   //escr_analogico(outputPin, Output);  
+}
+
+void contr_motor::executa(double in, double sp){
+	setSetPoint(sp);
+	setInput(in);
+	executa();
 }
 
 void contr_motor::escr_analogico(int pino, double valor){

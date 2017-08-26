@@ -2,7 +2,7 @@
 #define CONTR_MOTOR_H
 #include <Arduino.h>
 #include "PID.h"
-#include "encoder.h"
+//#include "encoder.h"
 
 class contr_motor{
 
@@ -17,25 +17,26 @@ class contr_motor{
   
   
   // Tuning parameters
-  float Kp=0.5; //Initial Proportional Gain 
-  float Ki=0.0; //Initial Integral Gain 
-  float Kd=0; //Initial Differential Gain 
+  float Kp; //Proportional Gain 
+  float Ki; //Integral Gain 
+  float Kd; //Differential Gain 
   
   // Specify the links and initial tuning parameters
   PID myPID;
-  Encoder encoder;
+  //Encoder encoder;
   
   const int sampleRate = 1; // Variable that determines how fast our PID loop runs
   
   public:
-  contr_motor(Encoder& e);
+  contr_motor();
   void config();
   void executa();
+	void executa(double in, double sp);
   
-  inline double ler_entrada(){
-    encoder.calculaVelocidade(); 
-    return encoder.getVelocidade();
-  }
+//  inline double ler_entrada(){
+//    encoder.calculaVelocidade(); 
+//    return encoder.getVelocidade();
+//  }
   inline double ler_setPoint(){return Setpoint;}
   inline double ler_analogico(const int pino){return 100*(analogRead(pino)/1023.0);}
   void escr_analogico(int pino, double valor);
@@ -50,12 +51,13 @@ class contr_motor{
   inline int getDirectionPID(){myPID.GetDirection();}
   
   inline void setSetPoint(double sp){Setpoint = sp;}
-  inline void setOutput(double op){Output = op;}  
+  inline void setOutput(double op){Output = op;}
+	inline void setInput(double in){Input = in;}  
   inline double getSetPoint(){return Setpoint;}
   inline double getOutput(){return Output;}
   inline double getInput(){return Input;}
   
-  inline void calculapulso(){encoder.calculaPulso();}
+//  inline void calculapulso(){encoder.calculaPulso();}
   void setPinos(int pwm_setpoint, int direcao_setpoint, int pwm_output, int direcao_output);
 };
 
