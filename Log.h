@@ -32,7 +32,7 @@ struct DadosLog{
 		Serial.print(reflet.esq);
 		Serial.print(SEPARADOR_CSV);
  		Serial.print(reflet.dir);
-		Serial.println(SEPARADOR_CSV);
+		Serial.println("");
 	}
 };
 
