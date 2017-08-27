@@ -39,7 +39,7 @@ void Motor::tensao(float valor_por_cento,int pino){
   analogWrite(pino, abs(valor_ate_255)); 
 }
 
-void Motor::acionarMotores(float motor1){
+void Motor::acionarMotor(float motor1){
  
   if(motor1 < 0){
     digitalWrite(PINO_DIRECAO, false);//Define aqui o sentido de rotacao
@@ -51,7 +51,7 @@ void Motor::acionarMotores(float motor1){
   }    
 }
 
-void Motor::acionarMotoresVel(float velMotor){
+void Motor::acionarMotorVel(float velMotor){
 	float tensao=0;
 
 	if(encoder_habilitado){
@@ -60,10 +60,10 @@ void Motor::acionarMotoresVel(float velMotor){
 		tensao = contrVel.getOutput();
 	}
 
-	acionarMotores(tensao);
+	acionarMotor(tensao);
 }
 
-void Motor::acionarMotoresPos(float anguloRef){
+void Motor::acionarMotorPos(float anguloRef){
 	float tensao=0;
 
 	if(encoder_habilitado){
@@ -71,7 +71,7 @@ void Motor::acionarMotoresPos(float anguloRef){
 		tensao = contrPos.getOutput();
 	}
 	//acionar motor
-	acionarMotores(tensao);
+	acionarMotor(tensao);
 
 }
 

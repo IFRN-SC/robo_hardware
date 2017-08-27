@@ -49,18 +49,18 @@ int robo_hardware::lerSensorDeLinha(int sensor){
 }
 
 void robo_hardware::acionarMotores(float percentualMotorEsq, float percentualMotorDir){
-	motorEsq.acionarMotores(percentualMotorEsq);
-	motorDir.acionarMotores(percentualMotorDir);
+	motorEsq.acionarMotor(percentualMotorEsq);
+	motorDir.acionarMotor(percentualMotorDir);
 }
 
 void robo_hardware::acionarMotoresVel(float velMotorEsquerdo, float velMotorDireito){
-	motorEsq.acionarMotoresVel(velMotorEsquerdo);
-	motorDir.acionarMotoresVel(velMotorDireito);
+	motorEsq.acionarMotorVel(velMotorEsquerdo);
+	motorDir.acionarMotorVel(velMotorDireito);
 }
 
 void robo_hardware::acionarMotoresPos(float angEsquerdoRef, float angDireitoRef){
-	motorEsq.acionarMotoresPos(angEsquerdoRef);
-	motorDir.acionarMotoresPos(angDireitoRef);
+	motorEsq.acionarMotorPos(angEsquerdoRef);
+	motorDir.acionarMotorPos(angDireitoRef);
 
 }
 

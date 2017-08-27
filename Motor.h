@@ -13,9 +13,9 @@ class Motor{
 
 	void configurar();
 	
-	void acionarMotores(float percetualMotor);
-  void acionarMotoresVel(float velMotor);
-	void acionarMotoresPos(float angMotor);
+	void acionarMotor(float percetualMotor);
+  void acionarMotorVel(float velMotor);
+	void acionarMotorPos(float angMotor);
 
 	void calculaPulso();
 	
