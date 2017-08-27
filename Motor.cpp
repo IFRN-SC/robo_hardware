@@ -80,3 +80,11 @@ void Motor::calculaPulso(){
 		encoder.calculaPulso();
 }
 
+const long Motor::getTempoAmostragemContr()const
+{
+	if(contrVel.getTempoAmostragem() < contrPos.getTempoAmostragem()){
+		return contrVel.getTempoAmostragem();
+	}
+	return contrPos.getTempoAmostragem();
+}
+
