@@ -44,7 +44,9 @@ void robo_hardware::configurar(bool habilitar_garra){
 
   pinMode(BOTAO, INPUT_PULLUP);
 
-	MsTimer2::set(50, loopControle);
+	long tempoAmostragem = motorEsq.getTempoAmostragemContr();
+	MsTimer2::set(tempoAmostragem, loopControle);
+	MsTimer2::start();
 }
 
 boolean robo_hardware::lerSensorFimDeCurso(){
