@@ -5,9 +5,6 @@ Servo robo_hardware::servoGarra1;
 Servo robo_hardware::servoGarra2;
 
 //#if defined(__AVR_ATmega2560__)
-	Encoder robo_hardware::encoderEsq(ENCODER_ESQ_INTERRUPCAO, ENCODER_ESQ_DIRECAO);
-	Encoder robo_hardware::encoderDir(ENCODER_DIR_INTERRUPCAO, ENCODER_DIR_DIRECAO);
-
 	Motor robo_hardware::motorEsq(PWM_RODA_ESQUERDA, SENTIDO_RODA_ESQUERDA, Encoder(ENCODER_ESQ_INTERRUPCAO, ENCODER_ESQ_DIRECAO) );
 	Motor robo_hardware::motorDir(PWM_RODA_DIREITA , SENTIDO_RODA_DIREITA , Encoder(ENCODER_DIR_INTERRUPCAO, ENCODER_DIR_DIRECAO) );
 //#endif
@@ -28,9 +25,7 @@ void robo_hardware::configurar(bool habilitar_garra){
 	sonarFrontal.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);  
 	sonarLateral.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);
 
-	contrPosEsq.configurar();
-	contrPosDir.configurar();
-
+	//Chamda de configuracao dos motores
 	motorEsq.configurar();
 	motorDir.configurar();
 
