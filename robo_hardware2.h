@@ -14,6 +14,7 @@
 #include "encoder.h"
 #include "contr_motor.h"
 #include "EEPROM2.h"
+#include "MsTimer2.h"
 #include "Motor.h"
 
 struct calibracao_dados{
@@ -76,12 +77,13 @@ public:
 	void lerCalibracao(calibracao_dados &cal);
 
 private:
+	static void loopControle();
 	static void calculaPulsoEsq(){motorEsq.calculaPulso();}
 	static void calculaPulsoDir(){motorDir.calculaPulso();}
 
   static Servo servoGarra1;
   static Servo servoGarra2;
-  void tensao(float valor_por_cento,int pino);
+  
   //SensorCor cor_direita(s2,s3, out);  
   SensorCor corDireita;
   SensorCor corEsquerda;
