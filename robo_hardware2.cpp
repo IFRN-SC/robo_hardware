@@ -4,15 +4,15 @@
 Servo robo_hardware::servoGarra1;
 Servo robo_hardware::servoGarra2;
 
+//#if defined(__AVR_ATmega2560__)
+	Encoder robo_hardware::encoderEsq(ENCODER_ESQ_INTERRUPCAO, ENCODER_ESQ_DIRECAO);
+	Encoder robo_hardware::encoderDir(ENCODER_DIR_INTERRUPCAO, ENCODER_DIR_DIRECAO);
+//#endif
 
 robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,SENSOR_COR_DIR_OUT),
 																corEsquerda	(SENSOR_COR_ESQ_S2,SENSOR_COR_ESQ_S3,SENSOR_COR_ESQ_OUT),
 																sonarFrontal(SONAR_TRIGGER_FRONTAL, SONAR_ECHO_FRONTAL),
 																sonarLateral(SONAR_TRIGGER_LATERAL, SONAR_ECHO_LATERAL)
-#if defined(__AVR_ATmega2560__)
-																,encoderDir(ENCODER1_INTERRUPCAO, ENCODER1_DIRECAO),
-																encoderEsq(ENCODER2_INTERRUPCAO, ENCODER2_DIRECAO)
-#endif
 {
 
 }
@@ -38,6 +38,12 @@ void robo_hardware::configurar(bool habilitar_garra){
 	//Quanto maior o valor de CALIBRACAO_SONAR menor a inclinacao da curva de calibracao 
 	sonarFrontal.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);  
 	sonarLateral.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);
+
+	contrPosEsq.configurar();
+	contrPosDir.configurar();
+
+	//attachInterrupt(0,calculaPulsoEsq, CHANGE);
+	attachInterrupt(0,calculaPulsoDir, CHANGE);
   
 	if(habilitar_garra){
   	servoGarra1.attach(SERVO_GARRA_1);
@@ -101,15 +107,15 @@ void robo_hardware::acionarMotoresVel(float velMotorEsquerdo, float velMotorDire
 void robo_hardware::acionarMotoresPos(float angEsquerdoRef, float angDireitoRef){
 	float tensaoEsq=0,	tensaoDir=0;
 
-	#if defined(__AVR_ATmega2560__)
+//	#if defined(__AVR_ATmega2560__)
 		//encoderEsq.calculaVelocidade();
 		contrPosEsq.executa(encoderEsq.getAnguloAbsoluto(), angEsquerdoRef);
 		//encoderDir.calculaVelocidade();
 	  contrPosDir.executa(encoderDir.getAnguloAbsoluto(), angDireitoRef);
 
-		tensaoEsq = contrVeloEsq.getOutput();
-		tensaoDir = contrVeloDir.getOutput();
-	#endif
+		tensaoEsq = contrPosEsq.getOutput();
+		tensaoDir = contrPosDir.getOutput();
+//	#endif
 	//acionar motores
 	acionarMotores(tensaoEsq,  tensaoDir);
 

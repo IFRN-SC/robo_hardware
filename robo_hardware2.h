@@ -75,7 +75,8 @@ public:
 	void lerCalibracao(calibracao_dados &cal);
 
 private:
-
+	static void calculaPulsoEsq(){encoderEsq.calculaPulso();}
+	static void calculaPulsoDir(){encoderDir.calculaPulso();}
 
   static Servo servoGarra1;
   static Servo servoGarra2;
@@ -86,11 +87,11 @@ private:
 
 	Ultrasonic sonarFrontal;
 	Ultrasonic sonarLateral;  
-	#if defined(__AVR_ATmega2560__)
-		Encoder encoderDir, encoderEsq;
+//	#if defined(__AVR_ATmega2560__)
+		static Encoder encoderDir, encoderEsq;
 		contr_motor contrVeloEsq, contrVeloDir;
 		contr_motor contrPosEsq, contrPosDir;
-	#endif
+//	#endif
 };
 
 static robo_hardware robo;
