@@ -5,7 +5,7 @@ encoder(0,0),
 PINO_PWM(pino_pwm), 
 PINO_DIRECAO(pino_direcao)
 {
-	controlador_habilitado=false;
+	encoder_habilitado=false;
 }
 
 Motor::Motor(byte pino_pwm, byte pino_direcao, Encoder e):
@@ -13,11 +13,15 @@ encoder(e),
 PINO_PWM(pino_pwm), 
 PINO_DIRECAO(pino_direcao)
 {
-	controlador_habilitado=true;
+	encoder_habilitado=true;
 }
 
 void Motor::configurar(){
-	encoder.configurar();
+	if(encoder_habilitado){
+		encoder.configurar();
+		contrPos.configurar();
+		contrVel.configurar();
+	}
 	pinMode(PINO_PWM, OUTPUT); 
   pinMode(PINO_DIRECAO, OUTPUT);
 }
@@ -50,12 +54,11 @@ void Motor::acionarMotores(float motor1){
 void Motor::acionarMotoresVel(float velMotor){
 	float tensao=0;
 
-//	#if defined(__AVR_ATmega2560__)
+	if(encoder_habilitado){
 		encoder.calculaVelocidade();
-		contrVelo.executa(encoder.getVelocidade(), velMotor);
-
-		tensao = contrVelo.getOutput();
-//	#endif
+		contrVel.executa(encoder.getVelocidade(), velMotor);
+		tensao = contrVel.getOutput();
+	}
 
 	acionarMotores(tensao);
 }
@@ -63,13 +66,17 @@ void Motor::acionarMotoresVel(float velMotor){
 void Motor::acionarMotoresPos(float anguloRef){
 	float tensao=0;
 
-//	#if defined(__AVR_ATmega2560__)
+	if(encoder_habilitado){
 		contrPos.executa(encoder.getAnguloAbsoluto(), anguloRef);
-
 		tensao = contrPos.getOutput();
-//	#endif
+	}
 	//acionar motor
 	acionarMotores(tensao);
 
+}
+
+void Motor::calculaPulso(){
+	if(encoder_habilitado)
+		encoder.calculaPulso();
 }
 

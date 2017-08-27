@@ -16,14 +16,16 @@ class Motor{
 	void acionarMotores(float percetualMotor);
   void acionarMotoresVel(float velMotor);
 	void acionarMotoresPos(float angMotor);
+
+	void calculaPulso();
 	
 	private:
 
 	void tensao(float valor_por_cento, int pino);
 
 	Encoder encoder;
-	contr_motor contrVelo, contrPos;
-	bool controlador_habilitado;
+	contr_motor contrVel, contrPos;
+	bool encoder_habilitado;
 	const byte PINO_PWM, PINO_DIRECAO;
 };
 
