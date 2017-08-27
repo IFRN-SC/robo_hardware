@@ -58,24 +58,24 @@ class pinagem{
 	#define SENSOR_COR_ESQ_S3			A2	//Pino analogico A2
 	#define SENSOR_COR_ESQ_OUT		A3	//Pino analogico A3
 
-	#define SENSOR_COR_DIR_S2			2
+	#define SENSOR_COR_DIR_S2			A4
 	#define SENSOR_COR_DIR_S3			1
 	#define SENSOR_COR_DIR_OUT		0
 
 	//A biblioteca possui dois sensores de distancia (Sonares)
-	#define SONAR_TRIGGER_FRONTAL	2
-	#define SONAR_ECHO_FRONTAL		3
+	#define SONAR_TRIGGER_FRONTAL	A4
+	#define SONAR_ECHO_FRONTAL		A5
 
 	#define SONAR_TRIGGER_LATERAL	13
 	#define SONAR_ECHO_LATERAL		12
 
 
-	#if defined(__AVR_ATmega2560__)
-		#define ENCODER1_INTERRUPCAO 	18
-    #define ENCODER2_INTERRUPCAO 	19
-		#define ENCODER1_DIRECAO			17
-		#define ENCODER2_DIRECAO			16
-	#endif
+//	#if defined(__AVR_ATmega2560__)
+		#define ENCODER_ESQ_INTERRUPCAO 	18
+    #define ENCODER_DIR_INTERRUPCAO 	2
+		#define ENCODER_ESQ_DIRECAO			17
+		#define ENCODER_DIR_DIRECAO			3
+//	#endif
  
 
 };

@@ -5,8 +5,13 @@ Servo robo_hardware::servoGarra1;
 Servo robo_hardware::servoGarra2;
 
 //#if defined(__AVR_ATmega2560__)
+	#define CONTROLE_MOTOR_HABILITADO true
 	Motor robo_hardware::motorEsq(PWM_RODA_ESQUERDA, SENTIDO_RODA_ESQUERDA, Encoder(ENCODER_ESQ_INTERRUPCAO, ENCODER_ESQ_DIRECAO) );
 	Motor robo_hardware::motorDir(PWM_RODA_DIREITA , SENTIDO_RODA_DIREITA , Encoder(ENCODER_DIR_INTERRUPCAO, ENCODER_DIR_DIRECAO) );
+//#else
+//	#define CONTROLE_MOTOR_HABILITADO false
+//	Motor robo_hardware::motorEsq(PWM_RODA_ESQUERDA, SENTIDO_RODA_ESQUERDA );
+//	Motor robo_hardware::motorDir(PWM_RODA_DIREITA , SENTIDO_RODA_DIREITA  );
 //#endif
 
 robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,SENSOR_COR_DIR_OUT),
@@ -29,7 +34,7 @@ void robo_hardware::configurar(bool habilitar_garra){
 	motorEsq.configurar();
 	motorDir.configurar();
 
-	//attachInterrupt(0,calculaPulsoEsq, CHANGE);
+	attachInterrupt(0,calculaPulsoEsq, CHANGE);
 	attachInterrupt(0,calculaPulsoDir, CHANGE);
   
 	if(habilitar_garra){
@@ -38,6 +43,8 @@ void robo_hardware::configurar(bool habilitar_garra){
 	}
 
   pinMode(BOTAO, INPUT_PULLUP);
+
+	MsTimer2::set(50, loopControle);
 }
 
 boolean robo_hardware::lerSensorFimDeCurso(){
@@ -104,4 +111,8 @@ void  robo_hardware::salvarCalibracao(calibracao_dados calibraca_val){
 
 void robo_hardware::lerCalibracao(calibracao_dados &cal){
 	EEPROM.get(ENDERECO_EEPROM, cal);
+}
+
+void robo_hardware::loopControle(){
+	Serial.println("teste");
 }
