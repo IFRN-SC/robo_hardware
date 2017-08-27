@@ -14,6 +14,7 @@
 #include "encoder.h"
 #include "contr_motor.h"
 #include "EEPROM2.h"
+#include "Motor.h"
 
 struct calibracao_dados{
 	HSV branco;
@@ -91,6 +92,7 @@ private:
 		static Encoder encoderDir, encoderEsq;
 		contr_motor contrVeloEsq, contrVeloDir;
 		contr_motor contrPosEsq, contrPosDir;
+		static Motor motorEsq;
 //	#endif
 };
 
