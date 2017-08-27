@@ -5,7 +5,7 @@
 
 class Encoder{
   #define VEL_MAX_ENCODER_POR_MILI_SEGUNDOS 1.9
-  #define NUM_MAX_PULSOS_POR_ROTACAO 341.2
+  #define NUM_MAX_PULSOS_POR_ROTACAO 482.0
   #define _360_GRAUS 360
   
   const byte pino_interrupcao;
