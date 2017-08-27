@@ -8,7 +8,8 @@ Servo robo_hardware::servoGarra2;
 	Encoder robo_hardware::encoderEsq(ENCODER_ESQ_INTERRUPCAO, ENCODER_ESQ_DIRECAO);
 	Encoder robo_hardware::encoderDir(ENCODER_DIR_INTERRUPCAO, ENCODER_DIR_DIRECAO);
 
-	Motor robo_hardware::motorEsq(PWM_RODA_ESQUERDA,SENTIDO_RODA_ESQUERDA, Encoder(ENCODER_ESQ_INTERRUPCAO, ENCODER_ESQ_DIRECAO) );
+	Motor robo_hardware::motorEsq(PWM_RODA_ESQUERDA, SENTIDO_RODA_ESQUERDA, Encoder(ENCODER_ESQ_INTERRUPCAO, ENCODER_ESQ_DIRECAO) );
+	Motor robo_hardware::motorDir(PWM_RODA_DIREITA , SENTIDO_RODA_DIREITA , Encoder(ENCODER_DIR_INTERRUPCAO, ENCODER_DIR_DIRECAO) );
 //#endif
 
 robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,SENSOR_COR_DIR_OUT),
@@ -43,6 +44,9 @@ void robo_hardware::configurar(bool habilitar_garra){
 
 	contrPosEsq.configurar();
 	contrPosDir.configurar();
+
+	motorEsq.configurar();
+	motorDir.configurar();
 
 	//attachInterrupt(0,calculaPulsoEsq, CHANGE);
 	attachInterrupt(0,calculaPulsoDir, CHANGE);

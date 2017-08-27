@@ -92,7 +92,7 @@ private:
 		static Encoder encoderDir, encoderEsq;
 		contr_motor contrVeloEsq, contrVeloDir;
 		contr_motor contrPosEsq, contrPosDir;
-		static Motor motorEsq;
+		static Motor motorEsq, motorDir;
 //	#endif
 };
 
