@@ -20,20 +20,6 @@ robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,
 
 }
 
-void robo_hardware::tensao(float valor_por_cento,int pino){
-  float k = 255/100.0;
-
-  if(valor_por_cento < -100) 
-    valor_por_cento = -100;	//se o valor passado em valor_por_cento for menor que -100 obriga-se o mmotor a ficar em -100
-  if(valor_por_cento >  100) 
-    valor_por_cento =  100;	//se o valor passado em valor_por_cento for maior que 100 obriga-se o mmotor a ficar em 100
-
-  float valor_ate_255 = valor_por_cento * k;
-  
-  analogWrite(pino, abs(valor_ate_255)); 
-}
-
-
 void robo_hardware::configurar(bool habilitar_garra){
   Serial.begin(9600);
 
@@ -56,11 +42,6 @@ void robo_hardware::configurar(bool habilitar_garra){
   	servoGarra2.attach(SERVO_GARRA_2);
 	}
 
-  pinMode(PWM_RODA_ESQUERDA, OUTPUT); 
-  pinMode(PWM_RODA_DIREITA, OUTPUT); 
-  pinMode(SENTIDO_RODA_ESQUERDA, OUTPUT); 
-  pinMode(SENTIDO_RODA_DIREITA, OUTPUT);
-
   pinMode(BOTAO, INPUT_PULLUP);
 }
 
@@ -72,58 +53,19 @@ int robo_hardware::lerSensorDeLinha(int sensor){
   return analogRead(sensor);
 }
 
-void robo_hardware::acionarMotores(float motor1, float motor2){
- 
-  if(motor1 < 0){
-    digitalWrite(SENTIDO_RODA_ESQUERDA, false);
-    tensao(motor1,PWM_RODA_ESQUERDA);  
-  }else{
-    digitalWrite(SENTIDO_RODA_ESQUERDA, true);
-    motor1 = 100 - motor1;
-    tensao(motor1,PWM_RODA_ESQUERDA);  
-  }
-  
-  if(motor2 < 0){
-    digitalWrite(SENTIDO_RODA_DIREITA, false);
-    tensao(motor2,PWM_RODA_DIREITA);  
-  }else{
-    digitalWrite(SENTIDO_RODA_DIREITA, true);
-    motor2 = 100 - motor2;
-    tensao(motor2,PWM_RODA_DIREITA);  
-  }
-    
+void robo_hardware::acionarMotores(float percentualMotorEsq, float percentualMotorDir){
+	motorEsq.acionarMotores(percentualMotorEsq);
+	motorDir.acionarMotores(percentualMotorDir);
 }
 
 void robo_hardware::acionarMotoresVel(float velMotorEsquerdo, float velMotorDireito){
-	float tensaoEsq=0,	tensaoDir=0;
-
-	#if defined(__AVR_ATmega2560__)
-		encoderEsq.calculaVelocidade();
-		contrVeloEsq.executa(encoderEsq.getVelocidade(), velMotorEsquerdo);
-		encoderDir.calculaVelocidade();
-	  contrVeloDir.executa(encoderDir.getVelocidade(), velMotorDireito);
-
-		tensaoEsq = contrVeloEsq.getOutput();
-		tensaoDir = contrVeloDir.getOutput();
-	#endif
-
-	acionarMotores(tensaoEsq,  tensaoDir);
+	motorEsq.acionarMotoresVel(velMotorEsquerdo);
+	motorDir.acionarMotoresVel(velMotorDireito);
 }
 
 void robo_hardware::acionarMotoresPos(float angEsquerdoRef, float angDireitoRef){
-	float tensaoEsq=0,	tensaoDir=0;
-
-//	#if defined(__AVR_ATmega2560__)
-		//encoderEsq.calculaVelocidade();
-		contrPosEsq.executa(encoderEsq.getAnguloAbsoluto(), angEsquerdoRef);
-		//encoderDir.calculaVelocidade();
-	  contrPosDir.executa(encoderDir.getAnguloAbsoluto(), angDireitoRef);
-
-		tensaoEsq = contrPosEsq.getOutput();
-		tensaoDir = contrPosDir.getOutput();
-//	#endif
-	//acionar motores
-	acionarMotores(tensaoEsq,  tensaoDir);
+	motorEsq.acionarMotoresPos(angEsquerdoRef);
+	motorDir.acionarMotoresPos(angDireitoRef);
 
 }
 
