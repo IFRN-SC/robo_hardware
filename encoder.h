@@ -14,7 +14,7 @@ class Encoder{
    //Variaveis modificadas na interrupcao 
    //Volatile indica ao compilador que o mesmo nao pode fazer otimizacoes nessa variavel que atrapalhariam a interrupcao 
   volatile long numPulsos;
-  volatile boolean Direcao;
+  volatile boolean direcao;
   
   double velocidade; //velocidade em pusos/segundo
   unsigned long tempo_ant;
@@ -31,15 +31,13 @@ class Encoder{
 	Encoder(const Encoder &e);
   void calculaPulso();
   
-  inline void resetNumPulsos(){numPulsos=0;}
-  inline long getNumPulsos()const{return numPulsos;}
-  inline boolean getDirecao()const{return Direcao;}
+  void resetNumPulsos();
+  const long getNumPulsos()const;
+  const boolean getDirecao()const;
   //inline void setAmostragemVel(int amostragem){amostragem_vel = amostragem;}
   inline int getPinoInterrupcao()const{return pino_interrupcao;}
   
-  inline float getAnguloAbsoluto()const {return (numPulsos/NUM_MAX_PULSOS_POR_ROTACAO) * _360_GRAUS; }
-  float getAnguloRelativo();
-  void CalculaAnguloRelativo();
+  inline float getAnguloAbsoluto()const {return (getNumPulsos()/NUM_MAX_PULSOS_POR_ROTACAO) * _360_GRAUS; }
   
   inline double getVelocidade()const{return velocidade;}
   
