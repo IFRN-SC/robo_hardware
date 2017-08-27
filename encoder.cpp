@@ -12,6 +12,18 @@ pino2(pino_c2), amostragem_vel(10)
 	angulo_relativo=0;
 }
 
+Encoder::Encoder(const Encoder &e):
+pino_interrupcao(e.pino_interrupcao),
+pino2(e.pino2), amostragem_vel(e.amostragem_vel)
+{
+  numPulsos=e.numPulsos;
+	velocidade=e.velocidade;
+	tempo_ant=e.tempo_ant;
+	numPulsos_ant=e.numPulsos_ant;
+	angulo_absoluto_anterior=e.angulo_absoluto_anterior;
+	angulo_relativo=e.angulo_relativo;
+}
+
 void Encoder::configurar(){
 	pinMode(pino2, INPUT);
 	pinMode(pino_interrupcao, INPUT);

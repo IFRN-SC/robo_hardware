@@ -28,6 +28,7 @@ class Encoder{
   public:
   void configurar();
   Encoder(byte pino_interrupcao, byte pino2);
+	Encoder(const Encoder &e);
   void calculaPulso();
   
   inline void resetNumPulsos(){numPulsos=0;}
