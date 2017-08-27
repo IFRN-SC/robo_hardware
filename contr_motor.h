@@ -25,7 +25,7 @@ class contr_motor{
   PID myPID;
   //Encoder encoder;
   
-  const int sampleRate = 1; // Variable that determines how fast our PID loop runs
+  const int sampleRate; // Variable that determines how fast our PID loop runs
   
   public:
   contr_motor();
@@ -56,6 +56,7 @@ class contr_motor{
   inline double getSetPoint(){return Setpoint;}
   inline double getOutput(){return Output;}
   inline double getInput(){return Input;}
+	inline const long getTempoAmostragem()const{return sampleRate;}
   
 //  inline void calculapulso(){encoder.calculaPulso();}
   void setPinos(int pwm_setpoint, int direcao_setpoint, int pwm_output, int direcao_output);

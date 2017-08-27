@@ -6,8 +6,11 @@
 #define GO_AHEAD 0
 #define GO_BACK  1
 
+// O tempo entre a execucao de dois lacos de controle
+#define TEMPO_AMOSTRAGEM_CONTR 50 //o tempo em milisegundos
+
 contr_motor::contr_motor():
-Kp(5.0), Ki(50.0), Kd(0),
+Kp(5.0), Ki(50.0), Kd(0), sampleRate(TEMPO_AMOSTRAGEM_CONTR),
 myPID(&Input, &Output, &Setpoint,Kp,Ki,Kd, DIRECT)
 //,encoder(e)
 {
