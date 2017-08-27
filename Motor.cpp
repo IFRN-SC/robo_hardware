@@ -70,6 +70,10 @@ void Motor::acionarMotorPos(float anguloRef){
 		contrPos.executa(encoder.getAnguloAbsoluto(), anguloRef);
 		tensao = contrPos.getOutput();
 	}
+	Serial.print("\t Angulo: ");
+	Serial.print(encoder.getAnguloAbsoluto());
+	Serial.print("\t Tensão: ");
+	Serial.print(tensao);
 	//acionar motor
 	acionarMotor(tensao);
 
