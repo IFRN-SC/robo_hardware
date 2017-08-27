@@ -29,7 +29,7 @@ class contr_motor{
   
   public:
   contr_motor();
-  void config();
+  void configurar();
   void executa();
 	void executa(double in, double sp);
   

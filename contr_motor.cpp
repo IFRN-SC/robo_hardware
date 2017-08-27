@@ -7,15 +7,14 @@
 #define GO_BACK  1
 
 contr_motor::contr_motor():
-
+Kp(5.0), Ki(50.0), Kd(0),
 myPID(&Input, &Output, &Setpoint,Kp,Ki,Kd, DIRECT)
 //,encoder(e)
 {
-  Setpoint=10;
-	Kp= 0.5; Ki=0; Kd=0;
+  Setpoint=0;
 }
 
-void contr_motor::config(){
+void contr_motor::configurar(){
 //  encoder.config();    
   
   
