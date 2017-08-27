@@ -18,6 +18,8 @@ class Motor{
 	void acionarMotorPos(float angMotor);
 
 	void calculaPulso();
+
+	const long getTempoAmostragemContr()const;
 	
 	private:
 
@@ -27,7 +29,7 @@ class Motor{
 	contr_motor contrVel, contrPos;
 	bool encoder_habilitado;
 	const byte PINO_PWM, PINO_DIRECAO;
-	const long getTempoAmostragemContr()const;
+	
 };
 
 #endif
