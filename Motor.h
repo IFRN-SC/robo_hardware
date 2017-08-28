@@ -5,6 +5,7 @@
 #include "contr_motor.h"
 #include "pinagem.h"
 
+
 class Motor{
 	public:
 	
@@ -22,6 +23,11 @@ class Motor{
 	const long getTempoAmostragemContr()const;
 
 	void loopControle();
+
+	const double getTensaoContr()const  {return ( (contrPosHabilitado==true)? contrPos.getOutput():contrVel.getOutput() ); }
+	const double getInputContr ()const  {return ( (contrPosHabilitado==true)? contrPos.getInput():contrVel.getInput() ); }
+	const double getSetPointContr()const{return ( (contrPosHabilitado==true)? contrPos.getSetPoint():contrVel.getSetPoint() ); }
+
 	
 	private:
 
