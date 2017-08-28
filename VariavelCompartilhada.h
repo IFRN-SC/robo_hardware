@@ -32,7 +32,7 @@ template <class T> class VarCompartilhada{
 		}
 	}
 
-	T get(){
+	T get()const{
 		T v;
 		//obriga que tudo que estiver dentro do block seja executado de forma atomica
 		//ou seja, desabilita a interrupcao enquanto estiver dentro desse bloco
@@ -65,12 +65,16 @@ template <class T> class VarCompartilhada{
 		return *this;
 	}
 
-	bool operator == (T v){
+	bool operator == (T v)const{
 		return (get() == v);
 	}
 
-	bool operator != (T v){
+	bool operator != (T v)const{
 		return (get() != v);
+	}
+
+	T operator * (T v)const{
+		return (get() * v);
 	}
 };
 
