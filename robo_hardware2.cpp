@@ -116,5 +116,8 @@ void robo_hardware::lerCalibracao(calibracao_dados &cal){
 }
 
 void robo_hardware::loopControle(){
-	Serial.println("teste");
+	//Serial.println("teste");
+
+	motorEsq.loopControle();
+	motorDir.loopControle();
 }

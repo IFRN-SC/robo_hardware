@@ -77,9 +77,9 @@ public:
 	void lerCalibracao(calibracao_dados &cal);
 
 private:
-	static void loopControle();
-	static void calculaPulsoEsq(){motorEsq.calculaPulso();}
-	static void calculaPulsoDir(){motorDir.calculaPulso();}
+	static void loopControle();//funcao que sera chamadaa pela interrupcao interna timer2
+	static void calculaPulsoEsq(){motorEsq.calculaPulso();} //funcao que sera chamada pela interrupcao externa
+	static void calculaPulsoDir(){motorDir.calculaPulso();} //funcao que sera chamada pela interrupcao externa
 
   static Servo servoGarra1;
   static Servo servoGarra2;
