@@ -53,9 +53,9 @@ class contr_motor{
   inline void setSetPoint(double sp){Setpoint = sp;}
   inline void setOutput(double op){Output = op;}
 	inline void setInput(double in){Input = in;}  
-  inline double getSetPoint(){return Setpoint;}
-  inline double getOutput(){return Output;}
-  inline double getInput(){return Input;}
+  inline double getSetPoint()const{return Setpoint;}
+  inline double getOutput()const{return Output;}
+  inline double getInput()const{return Input;}
 	inline const long getTempoAmostragem()const{return sampleRate;}
   
 //  inline void calculapulso(){encoder.calculaPulso();}
