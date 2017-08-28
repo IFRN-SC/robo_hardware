@@ -129,6 +129,11 @@ void Motor::loopControle(){
 			//chama a execucao do controle de posicao
 			contrPos.executa(encoder.getAnguloAbsoluto(), angulo.get());
 			tensao = contrPos.getOutput();
+			Serial.print("\t Angulo: ");
+			Serial.print(encoder.getAnguloAbsoluto());
+			Serial.print("\t Tensão: ");
+			Serial.print(tensao);
+
 			//acionar motor
 			acionarMotor(tensao);		
 		}
