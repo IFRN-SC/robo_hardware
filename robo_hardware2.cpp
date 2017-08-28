@@ -68,11 +68,8 @@ void robo_hardware::acionarMotoresVel(float velMotorEsquerdo, float velMotorDire
 }
 
 void robo_hardware::acionarMotoresPos(float angEsquerdoRef, float angDireitoRef){
-	Serial.print("Motor Esquerdo: ");
 	motorEsq.acionarMotorPos(angEsquerdoRef);
-	Serial.print("\tMotor Direito: ");
 	motorDir.acionarMotorPos(angDireitoRef);
-	Serial.println("");
 }
 
 float robo_hardware::lerSensorSonarFrontal(){
@@ -118,8 +115,10 @@ void robo_hardware::lerCalibracao(calibracao_dados &cal){
 }
 
 void robo_hardware::loopControle(){
-	static bool ligar=true;
-	
-	ligar? digitalWrite(13,HIGH): digitalWrite(13,LOW);
-	ligar = !ligar; 
+	//Serial.println("teste");
+	Serial.print("Motor Esquerdo: ");
+	motorEsq.loopControle();
+	Serial.print("\tMotor Direito: ");	
+	motorDir.loopControle();
+	Serial.println("");
 }
