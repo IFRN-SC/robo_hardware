@@ -3,21 +3,29 @@
 Motor::Motor(byte pino_pwm, byte pino_direcao):
 encoder(0,0),
 PINO_PWM(pino_pwm), 
-PINO_DIRECAO(pino_direcao)
+PINO_DIRECAO(pino_direcao),
+ENCODER_HABILITADO(false)
 {
-	encoder_habilitado=false;
+	contrPosHabilitado=false;
+	contrVelHabilitado=false;
+	angulo=0;
+	velocidade=0;
 }
 
 Motor::Motor(byte pino_pwm, byte pino_direcao, Encoder e):
 encoder(e),
 PINO_PWM(pino_pwm), 
-PINO_DIRECAO(pino_direcao)
+PINO_DIRECAO(pino_direcao),
+ENCODER_HABILITADO(true)
 {
-	encoder_habilitado=true;
+	contrPosHabilitado=false;
+	contrVelHabilitado=false;
+	angulo=0;
+	velocidade=0;
 }
 
 void Motor::configurar(){
-	if(encoder_habilitado){
+	if(ENCODER_HABILITADO == true){
 		encoder.configurar();
 		contrPos.configurar();
 		contrVel.configurar();
@@ -51,10 +59,27 @@ void Motor::acionarMotor(float motor1){
   }    
 }
 
+void Motor::habilitaControlePosicao(){
+		//Para habilitar o controle de posicao e necessario desabilitar o controle de velocidade
+		contrVelHabilitado=false;
+		contrPosHabilitado=true;	
+}
+
+void Motor::habilitaControleVelocidade(){
+		//Para habilitar o controle de velocidade e necessario desabilitar o controle de posicao
+		contrVelHabilitado=true;
+		contrPosHabilitado=false;	
+}
+
+void Motor::desabilitaControle(){
+		contrVelHabilitado=false;
+		contrPosHabilitado=false;	
+}
+
 void Motor::acionarMotorVel(float velMotor){
 	float tensao=0;
 
-	if(encoder_habilitado){
+	if(ENCODER_HABILITADO == true){
 		encoder.calculaVelocidade();
 		contrVel.executa(encoder.getVelocidade(), velMotor);
 		tensao = contrVel.getOutput();
@@ -64,19 +89,18 @@ void Motor::acionarMotorVel(float velMotor){
 }
 
 void Motor::acionarMotorPos(float anguloRef){
-	float tensao=0;
-
-	if(encoder_habilitado){
-		contrPos.executa(encoder.getAnguloAbsoluto(), anguloRef);
-		tensao = contrPos.getOutput();
+	if(ENCODER_HABILITADO == true){
+		angulo=anguloRef;	//Atualiza o angulo que sera usado no controlador
+		habilitaControlePosicao(); //habilita o controle de posicao
 	}
-	//acionar motor
-	acionarMotor(tensao);
-
+	else{//Quando o encoder nao esta configurado desabilita-se o controle e desliga-se o motor
+		desabilitaControle();
+		acionarMotor(0); //Desliga o motor
+	}
 }
 
 void Motor::calculaPulso(){
-	if(encoder_habilitado)
+	if(ENCODER_HABILITADO == true)
 		encoder.calculaPulso();
 }
 
@@ -88,3 +112,26 @@ const long Motor::getTempoAmostragemContr()const
 	return contrPos.getTempoAmostragem();
 }
 
+//Essa funcao sera chamada somente pela thread de controle
+void Motor::loopControle(){
+	float tensao=0;
+	
+	//Somente existe laco de controle se existe encoder
+	if(ENCODER_HABILITADO == true){
+		//Ao chamar a função acionarMotorVel habilita-se o encoder para funcionar
+		//O laco so chamara o controle habilitado
+		if(contrVelHabilitado == true){
+		
+		}
+		//Ao chamar a função acionarMotorPos habilita-se o encoder para funcionar
+		//O laco so chamara o controle habilitado
+		else if (contrPosHabilitado == true) {
+			//chama a execucao do controle de posicao
+			contrPos.executa(encoder.getAnguloAbsoluto(), angulo.get());
+			tensao = contrPos.getOutput();
+			//acionar motor
+			acionarMotor(tensao);		
+		}
+	}
+
+}

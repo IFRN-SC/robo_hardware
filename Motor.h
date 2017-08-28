@@ -20,14 +20,23 @@ class Motor{
 	void calculaPulso();
 
 	const long getTempoAmostragemContr()const;
+
+	void loopControle();
 	
 	private:
 
 	void tensao(float valor_por_cento, int pino);
+	void habilitaControlePosicao();
+	void habilitaControleVelocidade();
+	void desabilitaControle();
 
 	Encoder encoder;
 	contr_motor contrVel, contrPos;
-	bool encoder_habilitado;
+	const bool ENCODER_HABILITADO;
+	VarCompartilhada <bool> contrPosHabilitado;
+	VarCompartilhada <bool> contrVelHabilitado;
+	VarCompartilhada <double> angulo;
+	VarCompartilhada <double> velocidade;
 	const byte PINO_PWM, PINO_DIRECAO;
 	
 };
