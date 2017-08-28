@@ -38,18 +38,18 @@ void Encoder::calculaPulso(){
     
     int val = digitalRead(pino2);
 //    Serial.println(val);
-    if (val == LOW && direcao)    {
+    if (val == LOW && direcao == true)    {
       direcao = false; //Reverse
       
     }
-    else if (val == HIGH && !direcao)    {
+    else if (val == HIGH && direcao == false)    {
            
       direcao = true;  //Forward
     }
   }
   Encoder_C1Last = Lstate;
  
-  if (!direcao)  numPulsos--;
+  if (direcao == false)  numPulsos--;
   else  numPulsos++;
 }
 
@@ -61,7 +61,7 @@ void Encoder::calculaVelocidade(){
 
   if(timeChange>=amostragem_vel){
     velocidade = (numPulsosLocal - numPulsos_ant)/((double)(timeChange));
-    velocidade = 100*velocidade/VEL_MAX_ENCODER_POR_MILI_SEGUNDOS;
+    velocidade = velocidade*100.0/VEL_MAX_ENCODER_POR_MILI_SEGUNDOS;
     numPulsos_ant = numPulsosLocal;
     tempo_ant = tempo_atual;
 
@@ -76,25 +76,4 @@ void Encoder::resetNumPulsos(){
 	ATOMIC_BLOCK(ATOMIC_RESTORESTATE){ //chamada de um macro
 		numPulsos=0;
 	}
-}
-
-//esta função le uma variavel alterada em uma interrupcao
-const long Encoder::getNumPulsos()const{
-	long pulsos;
-	//obriga que tudo que estiver dentro do block seja executado de forma atomica
-	//ou seja, desabilita a interrupcao enquanto estiver dentro desse bloco
-	ATOMIC_BLOCK(ATOMIC_RESTORESTATE){ //chamada de um macro
-		pulsos = numPulsos;
-	}
-	return pulsos;
-}
-
-const boolean Encoder::getDirecao()const{
-	bool direcao_temp;
-	//obriga que tudo que estiver dentro do block seja executado de forma atomica
-	//ou seja, desabilita a interrupcao enquanto estiver dentro desse bloco
-	ATOMIC_BLOCK(ATOMIC_RESTORESTATE){ //chamada de um macro
-		direcao_temp = direcao;
-	}
-	return direcao_temp;
 }
