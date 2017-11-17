@@ -15,16 +15,20 @@ struct Refletancia{
 };
 
 struct DadosLog{
+	private:
+	unsigned long microSegundos; 	//4 bytes
+	double segundos;				//8 bytes
+
+	public:
 	Refletancia reflet; 	//8 bytes
 	HSV	hsvDir;						//12 bytes
 	HSV hsvEsq;						//12 bytes
 	short estado;					//2 bytes
-	unsigned long tempo; 	//4 bytes
 	float motorEsq;				//4 bytes
 	float motorDir;				//4 bytes
 
 	void print(){
-		Serial.print(tempo); 
+		Serial.print(microSegundos); 
 		Serial.print(SEPARADOR_CSV);
 		Serial.print(motorEsq);
 		Serial.print(SEPARADOR_CSV);
@@ -35,6 +39,14 @@ struct DadosLog{
  		Serial.print(reflet.dir);
 		Serial.println("");
 	}
+
+	void salvarTempo(){ 
+		microSegundos = micros();
+		segundos = microSegundos/1000000.0;
+	}
+	unsigned long getMicroSegundos(){return microSegundos;}
+	double getSegundos(){return segundos;}
+
 };
 
 class Log{
@@ -51,14 +63,14 @@ class Log{
 	public:
 	Log();
 	Log(const Log &l);
-	void configurar();
+	bool configurar();
 	
 	void adicionarDados(const DadosLog &entrada);
 	void printDados();
 
 	void salvarLog();
 	void lerLog();
-	void write();
+//	void write();
 
 };
 

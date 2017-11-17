@@ -14,15 +14,19 @@ Log::Log(const Log &l){
 	}
 }
 
-void Log::configurar(){
-	SD.begin(10);
+bool Log::configurar(){
+	SD.begin(48);
 	file = SD.open("WR_TEST2.TXT", O_CREAT | O_WRITE);
+	if(file)
+		return true;
+
+	return false;
 }
 
 
 void Log::adicionarDados(const DadosLog &entrada){
 	dados[posicaoParaAdicionar] = entrada;
-	dados[posicaoParaAdicionar].tempo = millis();
+	dados[posicaoParaAdicionar].salvarTempo();
 	posicaoParaAdicionar++;	
 
 	if(tamanhoVetorDados < MAX_TAMANHO_LOG)
@@ -39,24 +43,27 @@ void Log::printDados(){
 
 }
 
-void Log::salvarLog(){
-	EEPROM.put(ENDERECO_EEPROM_LOG, *this);
-}
+//void Log::salvarLog(){
+//	EEPROM.put(ENDERECO_EEPROM_LOG, *this);
+//}
 
 void Log::lerLog(){
-	EEPROM.get(ENDERECO_EEPROM_LOG, *this);
+//	EEPROM.get(ENDERECO_EEPROM_LOG, *this);
 }
 
-void Log::write(){
+void Log::salvarLog(){
 	tempo_gravacao= micros();
+
+	file.print(dados[0].getMicroSegundos());
+	file.print(SEPARADOR_CSV);
+	file.print(dados[0].getSegundos());
+	file.print(SEPARADOR_CSV);		
 	file.print(dados[0].reflet.esq);
 	file.print(SEPARADOR_CSV);
 	file.print(dados[0].reflet.dir);
 	file.print(SEPARADOR_CSV);
 	file.print(dados[0].estado);
 	file.print(SEPARADOR_CSV);
-	file.print(dados[0].tempo);
-	file.print(SEPARADOR_CSV);	
 	file.print(dados[0].motorEsq);
 	file.print(SEPARADOR_CSV);
 	file.print(dados[0].motorDir);
