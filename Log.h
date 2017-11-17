@@ -3,10 +3,11 @@
 
 #include "cor.h"
 #include "EEPROM2.h"
+#include <SD.h>
 
-#define MAX_TAMANHO_LOG 100
+#define MAX_TAMANHO_LOG 1
 
-#define SEPARADOR_CSV ';'
+#define SEPARADOR_CSV ";"
 
 struct Refletancia{
 	float esq;
@@ -14,13 +15,13 @@ struct Refletancia{
 };
 
 struct DadosLog{
-	Refletancia reflet;
-//	HSV	hsvDir;
-//	HSV hsvEsq;
-//	int estado;
-	unsigned long tempo;
-	float motorEsq;
-	float motorDir;
+	Refletancia reflet; 	//8 bytes
+	HSV	hsvDir;						//12 bytes
+	HSV hsvEsq;						//12 bytes
+	short estado;					//2 bytes
+	unsigned long tempo; 	//4 bytes
+	float motorEsq;				//4 bytes
+	float motorDir;				//4 bytes
 
 	void print(){
 		Serial.print(tempo); 
@@ -42,6 +43,8 @@ class Log{
 	unsigned int posicaoParaAdicionar;
 	unsigned int tamanhoVetorDados;
 	String saida;
+	File file;
+	int tempo_gravacao;
 
 	#define ENDERECO_EEPROM_LOG 100
 
@@ -55,7 +58,7 @@ class Log{
 
 	void salvarLog();
 	void lerLog();
-
+	void write();
 
 };
 
