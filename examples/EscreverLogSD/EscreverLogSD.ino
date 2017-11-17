@@ -14,13 +14,13 @@ void setup(){
     dl.reflet.esq=1*i;
     dl.reflet.dir=2*i;
     dl.estado = 3*i;
-    dl.tempo = 4*i;
+    dl.salvarTempo();
     dl.motorEsq = 5*i;
     dl.motorDir = 6*i;
     
     l.adicionarDados(dl);
     
-    l.write();
+    l.salvarLog();
   }
 }
 
