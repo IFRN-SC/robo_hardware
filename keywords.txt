@@ -16,13 +16,17 @@ lerSensorFimDeCurso	KEYWORD2
 lerSensorDeLinha	KEYWORD2
 lerSensorLinhaEsq	KEYWORD2
 lerSensorLinhaDir	KEYWORD2
+lerSensorLinhaEsq2	KEYWORD2
+lerSensorLinhaDir2	KEYWORD2
+lerSensorSonarFrontal KEYWORD2
+lerSensorSonarLateral KEYWORD2
 acionarMotores	KEYWORD2
 acionarServoGarra1	KEYWORD2
 acionarServoGarra2	KEYWORD2
-getHSVEsquerdo	KEYWORD2
-getRGBEsquerdo	KEYWORD2
-getHSVDireito	KEYWORD2
-getRGBDireito	KEYWORD2
+getHSV_Esquerdo	KEYWORD2
+getRGB_Esquerdo	KEYWORD2
+getHSV_Direito	KEYWORD2
+getRGB_Direito	KEYWORD2
 configurar	KEYWORD2
 
 #######################################

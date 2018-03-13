@@ -1,33 +1,65 @@
 #include "cor.h"
 
-SensorCor::SensorCor(int s2_dado, int s3_dado, int out_dado){
-  s2 = s2_dado;
-  s3 = s3_dado;
-  out = out_dado;
 
-  pinMode(s2, OUTPUT);  
-  pinMode(s3, OUTPUT);  
-  pinMode(out, INPUT);   
-  	 
+SensorCor::SensorCor(int pino_sensor_cor_esquerdo, int pino_sensor_cor_direito):PINO_SENSOR_COR_ESQUERDO(pino_sensor_cor_esquerdo), PINO_SENSOR_COR_DIREITO(pino_sensor_cor_direito){ 
+
+  tcs = Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_4X);
+  pinMode(pino_sensor_cor_esquerdo, OUTPUT);  
+  pinMode(pino_sensor_cor_direito, OUTPUT);    
+  
+}
+void SensorCor::ligar_sensor1 (){
+  
+  digitalWrite(PINO_SENSOR_COR_ESQUERDO, LOW);
+  digitalWrite(PINO_SENSOR_COR_DIREITO, HIGH);
+  delay(4);
+  tcs.begin(); 
+  
 }
 
-void SensorCor::atualizarRGB(){
-  digitalWrite(s2, LOW);  
-  digitalWrite(s3, LOW);  
-  rgb.vermelho = pulseIn(out, digitalRead(out) == HIGH ? LOW : HIGH);  
+void SensorCor::ligar_sensor2 (){
+  digitalWrite(PINO_SENSOR_COR_DIREITO, LOW);
+  digitalWrite(PINO_SENSOR_COR_ESQUERDO, HIGH);
+  delay(4);
+  tcs.begin();  
+}
 
-  digitalWrite(s3, HIGH);  
-  rgb.azul = pulseIn(out, digitalRead(out) == HIGH ? LOW : HIGH);  
+void SensorCor::ler_sensor (){
+  
+  delay(60);  
+  tcs.getRawData(&red, &green, &blue, &clear);
+  
+}
 
 
-  digitalWrite(s2, HIGH);    
-  rgb.verde = pulseIn(out, digitalRead(out) == HIGH ? LOW : HIGH); 
+void SensorCor::atualizarRGB_esquerdo(){
+  ligar_sensor1();
+  ler_sensor();
+  
+  rgb_esquerdo.vermelho = red; 
+  rgb_esquerdo.verde = green;
+  rgb_esquerdo.azul = blue;
 
 }
 
-RGB SensorCor::getRGB(){
-  atualizarRGB();
-  return rgb;
+void SensorCor::atualizarRGB_direito(){
+  ligar_sensor2();
+  ler_sensor();
+  
+  rgb_direito.vermelho = red; 
+  rgb_direito.verde = green;
+  rgb_direito.azul = blue;
+
+}
+
+RGB SensorCor::getRGB_esquerdo(){
+  atualizarRGB_esquerdo();
+ return rgb_esquerdo;
+}
+
+RGB SensorCor::getRGB_direito(){
+  atualizarRGB_direito();
+  return rgb_direito;
 }
 
 int SensorCor::calculeMaximo(int vermelho, int verde, int azul){
@@ -54,10 +86,25 @@ int SensorCor::calculeMinimo(int vermelho, int verde, int azul){
   return Minimo;
 }
 
-HSV SensorCor::getHSV(){
-  atualizarRGB();
-  float Maximo = 0;
-  float Minimo = 0;
+HSV SensorCor::getHSV_esquerdo(){
+	atualizarRGB_esquerdo();
+	return getHSV(rgb_esquerdo);
+	
+}
+
+HSV SensorCor::getHSV_direito(){
+	atualizarRGB_direito();
+	return getHSV(rgb_direito);
+	
+	
+} 
+
+HSV SensorCor::getHSV(RGB rgb){
+	
+  HSV hsv;
+		
+  double Maximo = 0;
+  double Minimo = 0;
   
   int vermelho =  rgb.vermelho;
   int azul = rgb.azul;
@@ -82,14 +129,25 @@ HSV SensorCor::getHSV(){
   return hsv;
 }
 
-int SensorCor::getVerde(){
-  return rgb.verde;
+int SensorCor::getVerde_esquerdo(){
+  return rgb_esquerdo.verde;
 }
 
-int SensorCor::getVermelho(){
-  return rgb.vermelho;
+int SensorCor::getAzul_esquerdo(){
+  return rgb_esquerdo.azul;
+}
+int SensorCor::getVermelho_esquerdo(){	
+  return rgb_esquerdo.vermelho;
 }
 
-int SensorCor::getAzul(){
-  return rgb.azul;
+int SensorCor::getVerde_direito(){
+  return rgb_direito.verde;
+}
+
+int SensorCor::getAzul_direito(){
+  return rgb_direito.azul;
+}
+
+int SensorCor::getVermelho_direito(){
+  return rgb_direito.vermelho;
 }

@@ -14,15 +14,20 @@
 #include "EEPROM2.h"
 
 struct calibracao_dados{
-	HSV branco;
-	HSV preto;
-	HSV verde;
-	HSV cinza;
+	HSV brancoEsq;
+	HSV pretoEsq;
+	HSV verdeEsq;
+	HSV cinzaEsq;
 
-	int refletancia_dir;
-	int refletancia_mais_dir;
-	int refletancia_esq;
-	int refletancia_mais_esq;
+	HSV brancoDir;
+	HSV pretoDir;
+	HSV verdeDir;
+	HSV cinzaDir;
+	
+	float refletancia_dir;
+	float refletancia_mais_dir;
+	float refletancia_esq;
+	float refletancia_mais_esq;
 	
 
 };
@@ -47,7 +52,8 @@ public:
   int lerSensorDeLinha(int sensor); //recebe um pino analogico (A0, A1, A2 e etc) e retorna um valor de 0 a 1023 
 	inline float lerSensorLinhaEsq(){return (100 - 100.0 * (lerSensorDeLinha(SENSOR_LINHA_ESQUERDO))/1023.0);} //retorna um valor de 0 a 100 
 	inline float lerSensorLinhaDir(){return (100 - 100.0 * (lerSensorDeLinha(SENSOR_LINHA_DIREITO) )/1023.0);} //retorna um valor de 0 a 100
-
+    inline float lerSensorLinhaDir2(){return (100 - 100.0 * (lerSensorDeLinha(SENSOR_LINHA_DIREITO2) )/1023.0);} //retorna um valor de 0 a 100
+	inline float lerSensorLinhaEsq2(){return (100 - 100.0 * (lerSensorDeLinha(SENSOR_LINHA_ESQUERDO2) )/1023.0);} //retorna um valor de 0 a 100
 	//A funcao para acionar os motores de locomocao do robo
 	//A funcao recebe um percentual de tensao do motor esquerdo e direito
 	//A funcao so recebe valores que variem de 100 ate -100
@@ -62,11 +68,11 @@ public:
   
   
 	//funcoes para trabalhar com os sensores de Cor
-  HSV getHSVEsquerdo(); //realiza a leitura do sensor de cor esquerdo e retorna uma estrutura HSV. Ver cor.h
-  RGB getRGBEsquerdo(); //realiza a leitura do sensor de cor esquerdo e retorna uma estrutura RGB. Ver cor.h
-  HSV getHSVDireito(); 	//realiza a leitura do sensor de cor direito e retorna uma estrutura HSV. Ver cor.h
-  RGB getRGBDireito(); 	//realiza a leitura do sensor de cor direito e retorna uma estrutura RGB. Ver cor.h
-
+  HSV getHSV_Esquerdo(); //realiza a leitura do sensor de cor esquerdo e retorna uma estrutura HSV. Ver cor.h
+  RGB getRGB_Esquerdo(); //realiza a leitura do sensor de cor esquerdo e retorna uma estrutura RGB. Ver cor.h
+  HSV getHSV_Direito(); 	//realiza a leitura do sensor de cor direito e retorna uma estrutura HSV. Ver cor.h
+  RGB getRGB_Direito(); 	//realiza a leitura do sensor de cor direito e retorna uma estrutura RGB. Ver cor.h
+	
 	void salvarCalibracao(calibracao_dados cal);  
 	void lerCalibracao(calibracao_dados &cal);
 
@@ -77,8 +83,7 @@ private:
   static Servo servoGarra2;
   void tensao(float valor_por_cento,int pino);
   //SensorCor cor_direita(s2,s3, out);  
-  SensorCor corDireita;
-  SensorCor corEsquerda;
+  SensorCor sensorCor;
 
 	Ultrasonic sonarFrontal;
 	Ultrasonic sonarLateral;  

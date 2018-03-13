@@ -2,6 +2,7 @@
 #define COR_H
 
 #include <Arduino.h>
+#include "Adafruit_TCS34725.h"
 
 struct RGB{
   int verde;
@@ -12,34 +13,59 @@ struct RGB{
 
 struct HSV{
   float h;
-  float s;
+  double s;
   float v;
 };
 
 class SensorCor{
 public:
   //construtor parametrizado -> s2 e s3 são os pinos de controle, e o out é o pino que recebera o valor
-  //s0 e s1 não inicializados, pois vão ficar com valores lógicos permanentes (s0 -> HIGH, s1 -> LOW)	
-  SensorCor(int s2_dado, int s3_dado, int out_dado);
-  //metodo para receber o valor atual do sensor RGB	
-  void atualizarRGB();
-	
-  int getVerde();
-  int getVermelho();
-  int getAzul();
-       
-  RGB getRGB();
-  HSV getHSV();
   
+  //s0 e s1 não inicializados, pois vão ficar com valores lógicos permanentes (s0 -> HIGH, s1 -> LOW)	
+  SensorCor(int pino_sensor_cor_esquerdo, int pino_sensor_cor_direito);
+  //metodo para receber o valor atual do sensor RGB	
+  void atualizarRGB_esquerdo();
+  void atualizarRGB_direito();
+	
+  int getVerde_esquerdo();
+  int getVermelho_esquerdo();
+  int getAzul_esquerdo();
+  
+  int getVerde_direito();
+  int getVermelho_direito();
+  int getAzul_direito();
+  
+  RGB getRGB_esquerdo();
+  HSV getHSV_esquerdo();
+  
+  RGB getRGB_direito();
+  HSV getHSV_direito();
+  
+  
+    
 private:
   int calculeMaximo(int vermelho, int verde, int azul);     
   int calculeMinimo(int vermelho, int verde, int azul);
+
+	//float saturar(float val);
   
-  RGB rgb;
-  HSV hsv;
-  int s2 = 0;
-  int s3 = 0; 
-  int out = 0;
+  RGB rgb_direito;
+  RGB rgb_esquerdo;
+ 
+  Adafruit_TCS34725 tcs;
+
+  uint16_t clear, red, green, blue; 
+  
+  void ligar_sensor1();
+  void ligar_sensor2();
+  void ler_sensor();
+  HSV getHSV(RGB rgb);
+  
+  const int PINO_SENSOR_COR_ESQUERDO;
+  const int PINO_SENSOR_COR_DIREITO;
+  
+  
+  
 };
 
 

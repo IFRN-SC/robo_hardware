@@ -5,8 +5,7 @@ Servo robo_hardware::servoGarra1;
 Servo robo_hardware::servoGarra2;
 
 
-robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,SENSOR_COR_DIR_OUT),
-																corEsquerda	(SENSOR_COR_ESQ_S2,SENSOR_COR_ESQ_S3,SENSOR_COR_ESQ_OUT),
+robo_hardware::robo_hardware():									sensorCor(SENSOR_COR_DIR_POWER, SENSOR_COR_ESQ_POWER),
 																sonarFrontal(SONAR_TRIGGER_FRONTAL, SONAR_ECHO_FRONTAL),
 																sonarLateral(SONAR_TRIGGER_LATERAL, SONAR_ECHO_LATERAL)
 {
@@ -16,9 +15,9 @@ robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,
 void robo_hardware::tensao(float valor_por_cento,int pino){
   float k = 255/100.0;
 
-  if(valor_por_cento < -100) 
+  if(valor_por_cento < -100)
     valor_por_cento = -100;	//se o valor passado em valor_por_cento for menor que -100 obriga-se o mmotor a ficar em -100
-  if(valor_por_cento >  100) 
+  if(valor_por_cento >  100)
     valor_por_cento =  100;	//se o valor passado em valor_por_cento for maior que 100 obriga-se o mmotor a ficar em 100
 
   float valor_ate_255 = valor_por_cento * k;
@@ -33,7 +32,7 @@ void robo_hardware::configurar(bool habilitar_garra){
 	//Com essas funcoes os sonares sao calibrados 
 	//Quanto maior o valor de CALIBRACAO_SONAR menor a inclinacao da curva de calibracao 
 	sonarFrontal.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);  
-	sonarLateral.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);
+	//sonarLateral.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);
   
 	if(habilitar_garra){
   	servoGarra1.attach(SERVO_GARRA_1);
@@ -80,6 +79,7 @@ void robo_hardware::acionarMotores(float motor1, float motor2){
 
 float robo_hardware::lerSensorSonarFrontal(){
 	long microsec = sonarFrontal.timing();
+	microsec = ((microsec<1) ? 100000 : microsec);
 	return sonarFrontal.convert(microsec, Ultrasonic::CM);  //retorna a distância do sensor ao obstáculo em cm.
 }
 
@@ -96,20 +96,20 @@ void robo_hardware::acionarServoGarra2(float angulo){
   servoGarra2.write(angulo);
 }
 
-HSV robo_hardware::getHSVEsquerdo(){
-  return corEsquerda.getHSV();
+HSV robo_hardware::getHSV_Esquerdo(){
+  return sensorCor.getHSV_esquerdo();
 }
 
-HSV robo_hardware::getHSVDireito(){
-  return corDireita.getHSV();
+HSV robo_hardware::getHSV_Direito(){
+  return sensorCor.getHSV_direito();
 }
 
-RGB robo_hardware::getRGBEsquerdo(){
-  return corEsquerda.getRGB();
+RGB robo_hardware::getRGB_Esquerdo(){
+  return sensorCor.getRGB_esquerdo();
 }
 
-RGB robo_hardware::getRGBDireito(){
-  return corDireita.getRGB();
+RGB robo_hardware::getRGB_Direito(){
+  return sensorCor.getRGB_direito();
 }
 
 void  robo_hardware::salvarCalibracao(calibracao_dados calibraca_val){
