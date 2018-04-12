@@ -5,7 +5,7 @@
 #include "Adafruit_TCS34725.h"
 #include "CorHardware.h"
 
-class CorTcs34{
+class CorTcs34 : public CorHardware{
 	private:
 	static Adafruit_TCS34725 tcsCorHardware;
 	static int pinosLigaDesliga[];
@@ -13,10 +13,11 @@ class CorTcs34{
 	int pinoLiga;
 
 	void ligarSensor();
-	void desligarOutrosSensores();
+	void desligaTodosSensores();
 
 	public:
 
+	void atualizarRGB();
 	void config();
 	CorTcs34(int pinLigaDesliga);
 

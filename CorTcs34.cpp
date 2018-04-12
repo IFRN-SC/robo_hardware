@@ -23,14 +23,21 @@ void CorTcs34::config(){
 	
 }
 
-void CorTcs34::desligarOutrosSensores(){
+void CorTcs34::desligaTodosSensores(){
 	for(int i=0; i<numPinos; i++){
 		digitalWrite(pinosLigaDesliga[i], LOW);
 	}
 }
 
 
-void CorTcs34::ligarSensor(){
-	desligarOutrosSensores();
-	digitalWrite(pinoLiga, HIGH);
+void CorTcs34::ligarSensor(){ // Função que liga o sensor1 e desliga e deliga os outros sensores
+	desligaTodosSensores();		
+	digitalWrite(pinoLiga, HIGH); //Liga o sensor
+
+  delay(4);    // Delay para pode inicializar o sensor (se diminuido ou retirado, o sensor não conseguira inicializar).
+  tcsCorHardware.begin(); // Método "begin" (começo) da classe do Adafruit. Inicializa o sensor. 
+}
+
+void CorTcs34::atualizarRGB(){
+	
 }
