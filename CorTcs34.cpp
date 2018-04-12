@@ -9,12 +9,17 @@ int CorTcs34::numPinos=0;
 CorTcs34::CorTcs34(int pino){
 
 	pinoLiga = pino;
-	
+
 	if(numPinos<NUM_MAX_SENSORES_COR){
 		pinosLigaDesliga[numPinos] = pino;
 		numPinos++;
 	}
 	
+}
+
+void CorTcs34::config(){
+
+	pinMode(pinoLiga, OUTPUT);
 	
 }
 

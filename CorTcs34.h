@@ -16,6 +16,8 @@ class CorTcs34{
 	void desligarOutrosSensores();
 
 	public:
+
+	void config();
 	CorTcs34(int pinLigaDesliga);
 
 };
