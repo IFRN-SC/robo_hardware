@@ -5,7 +5,7 @@ Servo robo_hardware::servoGarra1;
 Servo robo_hardware::servoGarra2;
 
 
-robo_hardware::robo_hardware():									sensorCor(SENSOR_COR_DIR_POWER, SENSOR_COR_ESQ_POWER),
+robo_hardware::robo_hardware():	sensorCor(SENSOR_COR_DIR_POWER, SENSOR_COR_ESQ_POWER),
 																sonarFrontal(SONAR_TRIGGER_FRONTAL, SONAR_ECHO_FRONTAL),
 																sonarLateral(SONAR_TRIGGER_LATERAL, SONAR_ECHO_LATERAL)
 {
