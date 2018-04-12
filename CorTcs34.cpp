@@ -38,6 +38,16 @@ void CorTcs34::ligarSensor(){ // Função que liga o sensor1 e desliga e deliga 
   tcsCorHardware.begin(); // Método "begin" (começo) da classe do Adafruit. Inicializa o sensor. 
 }
 
+
 void CorTcs34::atualizarRGB(){
+	uint16_t clear, red, green, blue; // Variáveis de leitura para a classe da Adafruit.
+
+	ligarSensor();
+  delay(60);  
+  tcsCorHardware.getRawData(&red, &green, &blue, &clear); // Método da classe Adafruit que lê os dados "brutos" do sensor.
+
+  rgb.vermelho 	= red; 		//
+  rgb.verde 		= green;  //
+  rgb.azul 			= blue;   // Coloca os valores lidos em sua respectivas variáveis da struct RGB
 	
 }

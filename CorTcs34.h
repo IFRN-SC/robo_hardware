@@ -8,13 +8,14 @@
 class CorTcs34 : public CorHardware{
 	private:
 	static Adafruit_TCS34725 tcsCorHardware;
+
 	static int pinosLigaDesliga[];
 	static int numPinos;
 	int pinoLiga;
 
 	void ligarSensor();
 	void desligaTodosSensores();
-
+	
 	public:
 
 	void atualizarRGB();
