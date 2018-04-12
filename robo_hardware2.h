@@ -12,6 +12,7 @@
 #include "Ultrasonic.h"
 
 #include "EEPROM2.h"
+#include "CorTcs34.h"
 
 struct calibracao_dados{
 	HSV branco;
