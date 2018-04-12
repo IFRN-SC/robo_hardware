@@ -16,6 +16,19 @@ struct HSV{ // Struct com valores do HSV.
 
 
 class CorHardware{
+	private:
+  RGB rgb;
+
+	public:
+	virtual void atualizarRGB();
+	
+	virtual int getVerde();
+	virtual int getVermelho();
+	virtual int getAzul();
+		     
+	virtual RGB getRGB();
+	HSV getHSV();
+
 	
 
 };
