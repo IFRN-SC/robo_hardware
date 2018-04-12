@@ -24,7 +24,7 @@ class CorHardware{
   RGB rgb;
 
 	public:
-	virtual void atualizarRGB();
+	virtual void atualizarRGB()=0;
 	
 	inline int getVerde(){return rgb.verde;}
 	inline int getVermelho(){return rgb.vermelho;}
