@@ -78,8 +78,12 @@ private:
   static Servo servoGarra2;
   void tensao(float valor_por_cento,int pino);
   //SensorCor cor_direita(s2,s3, out);  
-  SensorCor corDireita;
-  SensorCor corEsquerda;
+  
+  //SensorCor corDireita;
+  //SensorCor corEsquerda;
+
+  CorTcs23 corDireita;
+  CorTcs23 corEsquerda;
 
 	Ultrasonic sonarFrontal;
 	Ultrasonic sonarLateral;  
