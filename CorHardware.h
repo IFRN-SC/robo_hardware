@@ -17,11 +17,11 @@ struct HSV{ // Struct com valores do HSV.
 
 class CorHardware{
 	private:
-  int calculeMaximo(int vermelho, int verde, int azul);     
-  int calculeMinimo(int vermelho, int verde, int azul);
+  	int calculeMaximo(int vermelho, int verde, int azul);     
+  	int calculeMinimo(int vermelho, int verde, int azul);
 
 	protected:
-  RGB rgb;
+  	RGB rgb;
 
 	public:
 	virtual void atualizarRGB()=0;
