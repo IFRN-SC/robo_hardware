@@ -46,8 +46,8 @@ class pinagem{
 
 
 	//A presente biblioteca utiliza dois sensores de refletancia ou sensores de linha
-	#define SENSOR_LINHA_ESQUERDO	A0	//Define o pino do sensor de refletancia esquerdo 
-	#define SENSOR_LINHA_MAIS_ESQUERDO	A1	//Define o pino do sensor de refletancia esquerdo 
+	#define SENSOR_LINHA_MAIS_ESQUERDO	A0	//Define o pino do sensor de refletancia esquerdo 
+	#define SENSOR_LINHA_ESQUERDO	A1	//Define o pino do sensor de refletancia esquerdo 
   #define SENSOR_LINHA_DIREITO	A2	//Define o pino do sensor de refletancia direito
   #define SENSOR_LINHA_MAIS_DIREITO	A3	//Define o pino do sensor de refletancia direito
 
