@@ -52,8 +52,8 @@ void robo_hardware::configurar(bool habilitar_garra){
 //  return digitalRead(BOTAO); 
 //}
 
-int robo_hardware::lerSensorDeLinha(int sensor){
-  return analogRead(sensor);
+const float robo_hardware::lerSensorDeLinha(const int sensor){
+	return ( 100 - 100.0 * ( analogRead(sensor) )/1023.0);
 }
 
 void robo_hardware::acionarMotores(float motor1, float motor2){
