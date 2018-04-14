@@ -16,13 +16,13 @@ Arduino UNO pinout
 04-									SENTIDO_RODA_ESQUERDA
 03-	PWM	(Timer 2)		SENSOR_COR_DIR_S3
 02-									SENSOR_COR_DIR_S2
-01-	Tx
-00-	Rx
+01-	Tx							SONAR_TRIGGER_LATERAL
+00-	Rx							SONAR_ECHO_LATERAL
 
-A0- 								SENSOR_LINHA_ESQUERDO
-A1-									SENSOR_LINHA_DIREITO
-A2-									SONAR_TRIGGER_LATERAL
-A3-									SONAR_ECHO_LATERAL
+A0- 								SENSOR_LINHA_MAIS_ESQUERDO
+A1-									SENSOR_LINHA_ESQUERDO
+A2-									SENSOR_LINHA_DIREITO
+A3-									SENSOR_LINHA_MAIS_DIREITO
 A4-	SDA							SONAR_TRIGGER_FRONTAL
 A5-	SCL							SONAR_ECHO_FRONTAL
 
@@ -47,7 +47,9 @@ class pinagem{
 
 	//A presente biblioteca utiliza dois sensores de refletancia ou sensores de linha
 	#define SENSOR_LINHA_ESQUERDO	A0	//Define o pino do sensor de refletancia esquerdo 
-  #define SENSOR_LINHA_DIREITO	A1	//Define o pino do sensor de refletancia direito
+	#define SENSOR_LINHA_MAIS_ESQUERDO	A1	//Define o pino do sensor de refletancia esquerdo 
+  #define SENSOR_LINHA_DIREITO	A2	//Define o pino do sensor de refletancia direito
+  #define SENSOR_LINHA_MAIS_DIREITO	A3	//Define o pino do sensor de refletancia direito
 
 	//A biblioteca possui dois sensores de cor: um esquerdo e outro direito.
 	//cada sensor de cor precisa de 3 pinos para configuracao e leitura da cor
@@ -64,8 +66,8 @@ class pinagem{
 	#define SONAR_TRIGGER_FRONTAL	18 //Pino analogico A4
 	#define SONAR_ECHO_FRONTAL		19 //Pino analogico A5
 
-	#define SONAR_TRIGGER_LATERAL	16 //Pino analogico A2
-	#define SONAR_ECHO_LATERAL		17 //Pino analogico A3
+	#define SONAR_TRIGGER_LATERAL	0 
+	#define SONAR_ECHO_LATERAL		1 
 	
  
 
