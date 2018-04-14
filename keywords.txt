@@ -14,8 +14,10 @@
 
 lerSensorFimDeCurso	KEYWORD2
 lerSensorDeLinha	KEYWORD2
+lerSensorLinhaMaisEsq	KEYWORD2
 lerSensorLinhaEsq	KEYWORD2
 lerSensorLinhaDir	KEYWORD2
+lerSensorLinhaMaisDir	KEYWORD2
 acionarMotores	KEYWORD2
 acionarServoGarra1	KEYWORD2
 acionarServoGarra2	KEYWORD2
