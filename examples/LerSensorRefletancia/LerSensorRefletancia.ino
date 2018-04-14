@@ -3,13 +3,17 @@
 
 //********PINOS PARA SENSORES REFLETANCIA***********//
 //
-//SENSOR_LINHA_ESQUERDO			A0
-//SENSOR_LINHA_DIREITO			A1
+//SENSOR_LINHA_MAIS_ESQUERDO		A0
+//SENSOR_LINHA_ESQUERDO			A1
+//SENSOR_LINHA_DIREITO			A2
+//SENSOR_LINHA_MAIS_DIREITO			A3
 //
 //*********PINOS PARA SENSORES REFLETANCIA*********//
 
-float valor_sensor_dir;
-float valor_sensor_esq;
+float valorSensorMaisEsq;
+float valorSensorEsq;
+float valorSensorDir;
+float valorSensorMaisDir;
 
 void setup(){
 	Serial.begin(9600);
@@ -17,13 +21,20 @@ void setup(){
 }
 
 void loop(){
-	valor_sensor_esq = robo.lerSensorLinhaEsq(); //le um valor do sensor. O sensor retornar um valor de 0 100
-	valor_sensor_dir = robo.lerSensorLinhaDir(); //le um valor do sensor. O sensor retornar um valor de 0 100
+	valorSensorMaisEsq = robo.lerSensorLinhaMaisEsq(); //le um valor do sensor. O sensor retornar um valor de 0 100
+	valorSensorEsq = robo.lerSensorLinhaEsq(); //le um valor do sensor. O sensor retornar um valor de 0 100
+	valorSensorDir = robo.lerSensorLinhaDir(); //le um valor do sensor. O sensor retornar um valor de 0 100
+	valorSensorMaisDir = robo.lerSensorLinhaMaisDir(); //le um valor do sensor. O sensor retornar um valor de 0 100
 
+	//Impressão dos valores dos sensores
 	Serial.print("Sensores refletancia: +esq; esq; dir; +dir ");
-	Serial.print(valor_sensor_esq); //Imprime o valor do sensor pela porta serial
+	Serial.print(valorSensorMaisEsq); //Imprime o valor do sensor pela porta serial
 	Serial.print("; ");
-	Serial.println(valor_sensor_dir); //Imprime o valor do sensor pela porta serial
+	Serial.print(valorSensorEsq); //Imprime o valor do sensor pela porta serial
+	Serial.print("; ");
+	Serial.print(valorSensorDir); //Imprime o valor do sensor pela porta serial
+	Serial.print("; ");
+	Serial.println(valorSensorMaisDir); //Imprime o valor do sensor pela porta serial
 
 	delay(1000);
 
