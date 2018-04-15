@@ -15,6 +15,7 @@
 #include "CorTcs23.h"
 
 #include "Botao.h"
+#include "Led.h"
 
 struct calibracao_dados{
 	HSV branco;
@@ -94,6 +95,7 @@ private:
 	Ultrasonic sonarDir;
 	
 	Botao botao1, botao2, botao3;
+	Led	led1, led2, led3;
 };
 
 static robo_hardware robo;

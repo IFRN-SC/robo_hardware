@@ -78,7 +78,9 @@ class pinagem{
 	#define BOTAO_2	33
 	#define BOTAO_3	41
 
-
+	#define LED_1		53
+	#define LED_2		51
+	#define LED_3		49
 
 };
 
