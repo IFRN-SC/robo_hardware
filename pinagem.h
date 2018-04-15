@@ -72,7 +72,13 @@ class pinagem{
 	#define SONAR_TRIGGER_DIR	0 
 	#define SONAR_ECHO_DIR		1 
 	
- 
+//Pinos exclusivo para arduino mega
+
+	#define BOTAO_1	29
+	#define BOTAO_2	33
+	#define BOTAO_3	41
+
+
 
 };
 

@@ -9,7 +9,8 @@ robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,
 																corEsquerda	(SENSOR_COR_ESQ_S2,SENSOR_COR_ESQ_S3,SENSOR_COR_ESQ_OUT),
 																sonarFrontal(SONAR_TRIGGER_FRONTAL, SONAR_ECHO_FRONTAL),
 																sonarEsq(SONAR_TRIGGER_ESQ, SONAR_ECHO_ESQ),
-																sonarDir(SONAR_TRIGGER_DIR, SONAR_ECHO_DIR)
+																sonarDir(SONAR_TRIGGER_DIR, SONAR_ECHO_DIR),
+																botao1(BOTAO_1), botao2(BOTAO_2), botao3(BOTAO_3)
 {
 
 }
@@ -46,13 +47,11 @@ void robo_hardware::configurar(bool habilitar_garra){
   pinMode(PWM_RODA_DIREITA, OUTPUT); 
   pinMode(SENTIDO_RODA_ESQUERDA, OUTPUT); 
   pinMode(SENTIDO_RODA_DIREITA, OUTPUT);
-
-//  pinMode(BOTAO, INPUT_PULLUP);
+	
+	botao1.config();
+	botao2.config();
+	botao3.config();
 }
-
-//boolean robo_hardware::lerSensorFimDeCurso(){
-//  return digitalRead(BOTAO); 
-//}
 
 const float robo_hardware::lerSensorDeLinha(const int sensor){
 	return ( 100 - 100.0 * ( analogRead(sensor) )/1023.0);

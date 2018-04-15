@@ -14,6 +14,8 @@
 #include "EEPROM2.h"
 #include "CorTcs23.h"
 
+#include "Botao.h"
+
 struct calibracao_dados{
 	HSV branco;
 	HSV preto;
@@ -89,8 +91,9 @@ private:
 
 	Ultrasonic sonarFrontal;
 	Ultrasonic sonarEsq;
-	Ultrasonic sonarDir;  
-
+	Ultrasonic sonarDir;
+	
+	Botao botao1, botao2, botao3;
 };
 
 static robo_hardware robo;
