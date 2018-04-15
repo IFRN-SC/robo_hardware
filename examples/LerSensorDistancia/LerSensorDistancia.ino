@@ -18,7 +18,7 @@ void setup(){
 }
 
 void loop(){
-	valor_sensor_lateral = robo.lerSensorSonarLateral(); //FUNCAO PARA LER VALOR DO SENSOR LATERAL
+	valor_sensor_lateral = robo.lerSensorSonarEsq(); //FUNCAO PARA LER VALOR DO SENSOR LATERAL
 	valor_sensor_frontal = robo.lerSensorSonarFrontal(); //FUNCAO PARA LER VALOR DO SENSOR FRONTAL
 
         Serial.print("Valor do sensor frontal: ");

@@ -61,8 +61,8 @@ public:
   void acionarServoGarra2(float angulo);
 
 	float lerSensorSonarFrontal();
-	float lerSensorSonarLateral();
-  
+	float lerSensorSonarEsq();
+	float lerSensorSonarDir();  
   
 	//funcoes para trabalhar com os sensores de Cor
   HSV getHSVEsquerdo(); //realiza a leitura do sensor de cor esquerdo e retorna uma estrutura HSV. Ver cor.h
@@ -88,7 +88,8 @@ private:
   CorTcs23 corEsquerda;
 
 	Ultrasonic sonarFrontal;
-	Ultrasonic sonarLateral;  
+	Ultrasonic sonarEsq;
+	Ultrasonic sonarDir;  
 
 };
 

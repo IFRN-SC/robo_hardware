@@ -30,6 +30,8 @@ configurar	KEYWORD2
 lerCalibracao	KEYWORD2
 salvarCalibracao	KEYWORD2
 lerSensorSonarFrontal	KEYWORD2
+lerSensorSonarEsq	KEYWORD2
+lerSensorSonarDir	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
