@@ -9,8 +9,8 @@
 //  SONAR_ECHO_LATERAL		A3
 //*********PINOS PARA SENSORES DE DISTANCIA*********//
 
-float valor_sensor_frontal;
-float valor_sensor_lateral;
+float valorSensorFrontal;
+float valorSensorLateral;
 
 void setup(){
 	Serial.begin(9600);
@@ -18,14 +18,14 @@ void setup(){
 }
 
 void loop(){
-	valor_sensor_lateral = robo.lerSensorSonarEsq(); //FUNCAO PARA LER VALOR DO SENSOR LATERAL
-	valor_sensor_frontal = robo.lerSensorSonarFrontal(); //FUNCAO PARA LER VALOR DO SENSOR FRONTAL
+	valorSensorLateral = robo.lerSensorSonarEsq(); //FUNCAO PARA LER VALOR DO SENSOR LATERAL
+	valorSensorFrontal = robo.lerSensorSonarFrontal(); //FUNCAO PARA LER VALOR DO SENSOR FRONTAL
 
         Serial.print("Valor do sensor frontal: ");
-        Serial.print(valor_sensor_frontal);
+        Serial.print(valorSensorFrontal);
         
         Serial.print("  lateral: ");
-        Serial.println(valor_sensor_lateral);
+        Serial.println(valorSensorLateral);
         Serial.println();
         
         delay(500);
