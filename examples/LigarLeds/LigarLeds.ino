@@ -33,11 +33,13 @@ void loop(){
 		robo.desligarLed(led);
 		delay(DELAY_TIME);
 	}
-	
+
+	for(int i=0; i<2; i++){	
 	robo.ligarTodosLeds();
-	delay(DELAY_TIME);
+	delay(DELAY_TIME/2);
 
 	robo.desligarTodosLeds();
-	delay(DELAY_TIME);
+	delay(DELAY_TIME/2);
+	}
 }
 
