@@ -81,6 +81,10 @@ public:
 	void ligarTodosLeds()const;
 	void desligarTodosLeds()const;
 
+	inline const bool botao1Pressionado()const{return botao1.estaPressionado();}
+	inline const bool botao2Pressionado()const{return botao2.estaPressionado();}
+	inline const bool botao3Pressionado()const{return botao3.estaPressionado();}
+
 private:
 
 
