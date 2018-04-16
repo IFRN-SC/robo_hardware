@@ -63,14 +63,14 @@ class pinagem{
 	#define SENSOR_COR_DIR_OUT		8
 
 	//A biblioteca possui dois sensores de distancia (Sonares)
-	#define SONAR_TRIGGER_FRONTAL	18 //Pino analogico A4
-	#define SONAR_ECHO_FRONTAL		19 //Pino analogico A5
+	#define SONAR_TRIGGER_FRONTAL	16 //Pino analogico A4
+	#define SONAR_ECHO_FRONTAL		17 //Pino analogico A5
 
-	#define SONAR_TRIGGER_ESQ	0 
-	#define SONAR_ECHO_ESQ		1 
+	#define SONAR_TRIGGER_ESQ	22 
+	#define SONAR_ECHO_ESQ		24 
 
-	#define SONAR_TRIGGER_DIR	0 
-	#define SONAR_ECHO_DIR		1 
+	#define SONAR_TRIGGER_DIR	23 
+	#define SONAR_ECHO_DIR		25 
 	
 //Pinos exclusivo para arduino mega
 
