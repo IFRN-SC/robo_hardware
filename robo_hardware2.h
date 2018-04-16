@@ -14,8 +14,8 @@
 #include "EEPROM2.h"
 #include "CorTcs23.h"
 
-#include "Botao.h"
-#include "Led.h"
+#include "led_botoes/Botao.h"
+#include "led_botoes/Led.h"
 
 struct calibracao_dados{
 	HSV branco;
@@ -75,6 +75,11 @@ public:
 
 	void salvarCalibracao(calibracao_dados cal);  
 	void lerCalibracao(calibracao_dados &cal);
+
+	void ligarLed(const int led)const;
+	void desligarLed(const int led)const;
+	void ligarTodosLeds()const;
+	void desligarTodosLeds()const;
 
 private:
 

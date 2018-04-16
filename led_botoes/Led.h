@@ -8,8 +8,8 @@ class Led{
 	Led(const int pin):pinoLed(pin){}
 
 	void config(){pinMode(pinoLed, OUTPUT);}
-	void ligar(){ digitalWrite(pinoLed, HIGH);}
-	void desligar(){digitalWrite(pinoLed, LOW);}
+	void ligar()const{ digitalWrite(pinoLed, HIGH);}
+	void desligar()const{digitalWrite(pinoLed, LOW);}
 
 };
 
