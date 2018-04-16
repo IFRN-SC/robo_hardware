@@ -131,3 +131,47 @@ void  robo_hardware::salvarCalibracao(calibracao_dados calibraca_val){
 void robo_hardware::lerCalibracao(calibracao_dados &cal){
 	EEPROM.get(ENDERECO_EEPROM, cal);
 }
+
+void robo_hardware::ligarLed(const int led)const{
+	switch(led){
+		case 1:
+			led1.ligar();
+		break;
+		case 2:
+			led2.ligar();
+		break;
+		case 3:
+			led3.ligar();
+		break;
+		default:
+		break;	
+	}
+}
+
+void robo_hardware::desligarLed(const int led)const{
+	switch(led){
+		case 1:
+			led1.desligar();
+		break;
+		case 2:
+			led2.desligar();
+		break;
+		case 3:
+			led3.desligar();
+		break;
+		default:
+		break;	
+	}
+}
+
+void robo_hardware::ligarTodosLeds()const{
+	led1.ligar();
+	led2.ligar();
+	led3.ligar();
+}
+
+void robo_hardware::desligarTodosLeds()const{
+	led1.desligar();
+	led2.desligar();
+	led3.desligar();
+}
