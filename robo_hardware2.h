@@ -17,6 +17,11 @@
 #include "led_botoes/Botao.h"
 #include "led_botoes/Led.h"
 
+enum{
+	TCS23,
+	TCS34
+};
+
 struct calibracao_dados{
 	HSV branco;
 	HSV preto;
@@ -40,11 +45,14 @@ private:
 	#define CALIBRACAO_SONAR  40.4	//Valor para calibrar os sonares. Quanto maior esse valor menor a inclinação da reta de calibracao
 
 	#define ENDERECO_EEPROM 0
+
 public: 
 
 
   robo_hardware();
   void configurar(bool habilitar_garra=true);
+	void habilitaTCS34();
+	void habilitaTCS23();
 //  boolean lerSensorFimDeCurso();
 
 	//As funcoes retornam o valor lido do sensor refletancia
@@ -87,7 +95,7 @@ public:
 
 private:
 
-
+	int tipoSensorCor;
   static Servo servoGarra1;
   static Servo servoGarra2;
   void tensao(float valor_por_cento,int pino);

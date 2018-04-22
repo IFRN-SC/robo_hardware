@@ -13,7 +13,7 @@ robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,
 																botao1(BOTAO_1), botao2(BOTAO_2), botao3(BOTAO_3),
 																led1(LED_1), led2(LED_2), led3(LED_3)
 {
-
+	tipoSensorCor = TCS23;
 }
 
 void robo_hardware::tensao(float valor_por_cento,int pino){
@@ -29,9 +29,16 @@ void robo_hardware::tensao(float valor_por_cento,int pino){
   analogWrite(pino, abs(valor_ate_255)); 
 }
 
+void robo_hardware::habilitaTCS23(){
+	tipoSensorCor = TCS23;
+}
+
+void robo_hardware::habilitaTCS34(){
+	tipoSensorCor = TCS34;
+}
 
 void robo_hardware::configurar(bool habilitar_garra){
-  Serial.begin(9600);
+//  Serial.begin(9600);
 
 	//Com essas funcoes os sonares sao calibrados 
 	//Quanto maior o valor de CALIBRACAO_SONAR menor a inclinacao da curva de calibracao 
