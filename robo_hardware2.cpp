@@ -7,6 +7,8 @@ Servo robo_hardware::servoGarra2;
 
 robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,SENSOR_COR_DIR_OUT),
 																corEsquerda	(SENSOR_COR_ESQ_S2,SENSOR_COR_ESQ_S3,SENSOR_COR_ESQ_OUT),
+																corDireita34(SENSOR_COR_DIR_TCS34),
+																corEsquerda34(SENSOR_COR_ESQ_TCS34),
 																sonarFrontal(SONAR_TRIGGER_FRONTAL, SONAR_ECHO_FRONTAL),
 																sonarEsq(SONAR_TRIGGER_ESQ, SONAR_ECHO_ESQ),
 																sonarDir(SONAR_TRIGGER_DIR, SONAR_ECHO_DIR),
@@ -116,19 +118,39 @@ void robo_hardware::acionarServoGarra2(float angulo){
 }
 
 HSV robo_hardware::getHSVEsquerdo(){
-  return corEsquerda.getHSV();
+  switch(tipoSensorCor){
+    case TCS34:
+      return corEsquerda34.getHSV();
+    default:
+      return corEsquerda.getHSV();
+	}
 }
 
 HSV robo_hardware::getHSVDireito(){
-  return corDireita.getHSV();
+  switch(tipoSensorCor){
+    case TCS34:
+      return corDireita34.getHSV();
+    default:
+      return corDireita.getHSV();
+  }
 }
 
 RGB robo_hardware::getRGBEsquerdo(){
-  return corEsquerda.getRGB();
+  switch(tipoSensorCor){
+    case TCS34:
+      return corEsquerda34.getRGB();
+    default:
+      return corEsquerda.getRGB();
+  }
 }
 
 RGB robo_hardware::getRGBDireito(){
-  return corDireita.getRGB();
+  switch(tipoSensorCor){
+    case TCS34:
+      return corDireita34.getRGB();
+    default:
+      return corDireita.getRGB();
+  }
 }
 
 void  robo_hardware::salvarCalibracao(calibracao_dados calibraca_val){

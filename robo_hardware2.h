@@ -13,6 +13,7 @@
 
 #include "EEPROM2.h"
 #include "CorTcs23.h"
+#include "CorTcs34.h"
 
 #include "led_botoes/Botao.h"
 #include "led_botoes/Led.h"
@@ -106,6 +107,10 @@ private:
 
   CorTcs23 corDireita;
   CorTcs23 corEsquerda;
+
+  CorTcs34 corDireita34;
+  CorTcs34 corEsquerda34;
+
 
 	Ultrasonic sonarFrontal;
 	Ultrasonic sonarEsq;
