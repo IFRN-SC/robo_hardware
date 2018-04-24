@@ -65,6 +65,9 @@ void robo_hardware::configurar(bool habilitar_garra){
 	led1.config();
 	led2.config();
 	led3.config();
+
+	corDireita34.config();
+	corEsquerda34.config();
 }
 
 const float robo_hardware::lerSensorDeLinha(const int sensor){
