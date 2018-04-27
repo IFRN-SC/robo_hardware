@@ -6,7 +6,8 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-##robo	KEYWORD1
+RGB	KEYWORD1
+HSV	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -14,20 +15,23 @@
 
 lerSensorFimDeCurso	KEYWORD2
 lerSensorDeLinha	KEYWORD2
+lerSensorLinhaMaisEsq	KEYWORD2
 lerSensorLinhaEsq	KEYWORD2
 lerSensorLinhaDir	KEYWORD2
-lerSensorLinhaEsq2	KEYWORD2
-lerSensorLinhaDir2	KEYWORD2
-lerSensorSonarFrontal KEYWORD2
-lerSensorSonarLateral KEYWORD2
+lerSensorLinhaMaisDir	KEYWORD2
 acionarMotores	KEYWORD2
 acionarServoGarra1	KEYWORD2
 acionarServoGarra2	KEYWORD2
-getHSV_Esquerdo	KEYWORD2
-getRGB_Esquerdo	KEYWORD2
-getHSV_Direito	KEYWORD2
-getRGB_Direito	KEYWORD2
+getHSVEsquerdo	KEYWORD2
+getRGBEsquerdo	KEYWORD2
+getHSVDireito	KEYWORD2
+getRGBDireito	KEYWORD2
 configurar	KEYWORD2
+lerCalibracao	KEYWORD2
+salvarCalibracao	KEYWORD2
+lerSensorSonarFrontal	KEYWORD2
+lerSensorSonarEsq	KEYWORD2
+lerSensorSonarDir	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

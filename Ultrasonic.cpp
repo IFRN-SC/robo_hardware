@@ -37,6 +37,7 @@
 #include <string.h>
 #include <Ultrasonic.h>
 
+#define LIMITE_TEMPO_ECO 10000
 
 Ultrasonic::Ultrasonic(int tp, int ep)
     {
@@ -50,12 +51,18 @@ Ultrasonic::Ultrasonic(int tp, int ep)
 
 long Ultrasonic::timing()
     {
+		long microsec=0;
     digitalWrite(_trigPin, LOW);
     delayMicroseconds(2);
     digitalWrite(_trigPin, HIGH);
     delayMicroseconds(10);
     digitalWrite(_trigPin, LOW);
-    return pulseIn(_echoPin, HIGH, 10000);
+
+		microsec = pulseIn(_echoPin, HIGH, LIMITE_TEMPO_ECO);
+		if (microsec<1){ 
+			microsec= LIMITE_TEMPO_ECO;
+		}
+    return microsec;
     }
 
 float Ultrasonic::convert(long microsec, int metric)
