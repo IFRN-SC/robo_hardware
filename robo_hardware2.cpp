@@ -120,7 +120,7 @@ void robo_hardware::acionarServoGarra2(float angulo){
   servoGarra2.write(angulo);
 }
 
-HSV robo_hardware::getHSVEsquerdo(){
+HSV robo_hardware::getHsvEsquerdo(){
   switch(tipoSensorCor){
     case TCS34:
       return corEsquerda34.getHSV();
@@ -129,7 +129,7 @@ HSV robo_hardware::getHSVEsquerdo(){
 	}
 }
 
-HSV robo_hardware::getHSVDireito(){
+HSV robo_hardware::getHsvDireito(){
   switch(tipoSensorCor){
     case TCS34:
       return corDireita34.getHSV();
@@ -138,7 +138,7 @@ HSV robo_hardware::getHSVDireito(){
   }
 }
 
-RGB robo_hardware::getRGBEsquerdo(){
+RGB robo_hardware::getRgbEsquerdo(){
   switch(tipoSensorCor){
     case TCS34:
       return corEsquerda34.getRGB();
@@ -147,7 +147,7 @@ RGB robo_hardware::getRGBEsquerdo(){
   }
 }
 
-RGB robo_hardware::getRGBDireito(){
+RGB robo_hardware::getRgbDireito(){
   switch(tipoSensorCor){
     case TCS34:
       return corDireita34.getRGB();

@@ -7,7 +7,7 @@
 #include <Arduino.h>
 #include <Servo.h>
 
-#include "cor.h"
+#include "CorHardware.h"
 #include "pinagem.h"
 #include "Ultrasonic.h"
 
@@ -24,10 +24,14 @@ enum{
 };
 
 struct calibracao_dados{
-	HSV branco;
-	HSV preto;
-	HSV verde;
-	HSV cinza;
+	HSV brancoDir;
+	HSV brancoEsq;
+	HSV pretoDir;
+	HSV pretoEsq;
+	HSV verdeDir;
+	HSV verdeEsq;
+	HSV cinzaDir;
+	HSV cinzaEsq;
 
 	int refletancia_dir;
 	int refletancia_mais_dir;
@@ -77,10 +81,10 @@ public:
 	float lerSensorSonarDir();  
   
 	//funcoes para trabalhar com os sensores de Cor
-  HSV getHSVEsquerdo(); //realiza a leitura do sensor de cor esquerdo e retorna uma estrutura HSV. Ver cor.h
-  RGB getRGBEsquerdo(); //realiza a leitura do sensor de cor esquerdo e retorna uma estrutura RGB. Ver cor.h
-  HSV getHSVDireito(); 	//realiza a leitura do sensor de cor direito e retorna uma estrutura HSV. Ver cor.h
-  RGB getRGBDireito(); 	//realiza a leitura do sensor de cor direito e retorna uma estrutura RGB. Ver cor.h
+  HSV getHsvEsquerdo(); //realiza a leitura do sensor de cor esquerdo e retorna uma estrutura HSV. Ver cor.h
+  RGB getRgbEsquerdo(); //realiza a leitura do sensor de cor esquerdo e retorna uma estrutura RGB. Ver cor.h
+  HSV getHsvDireito(); 	//realiza a leitura do sensor de cor direito e retorna uma estrutura HSV. Ver cor.h
+  RGB getRgbDireito(); 	//realiza a leitura do sensor de cor direito e retorna uma estrutura RGB. Ver cor.h
 
 	void salvarCalibracao(calibracao_dados cal);  
 	void lerCalibracao(calibracao_dados &cal);
