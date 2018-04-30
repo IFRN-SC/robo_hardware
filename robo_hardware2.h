@@ -91,6 +91,8 @@ private:
 	Ultrasonic sonarEsq;
 	Ultrasonic sonarDir;  
 
+	MPU6050 mpu;
+
 };
 
 static robo_hardware robo;
