@@ -2,15 +2,18 @@
 #include <Servo.h>
 
 //********PINOS PARA SENSORES DE DISTANCIA***********//
-//  SONAR_TRIGGER_FRONTAL	A4
-//  SONAR_ECHO_FRONTAL		A5
+//  SONAR_TRIGGER_FRONTAL	uno-A4; mega-16
+//  SONAR_ECHO_FRONTAL		uno-A5; mega-17
 
-//  SONAR_TRIGGER_LATERAL	A2
-//  SONAR_ECHO_LATERAL		A3
+//  SONAR_TRIGGER_ESQ	uno-0; mega-22
+//  SONAR_ECHO_ESQ		uno-1; mega-24
+
+//  SONAR_TRIGGER_DIR	uno-0; mega-23
+//  SONAR_ECHO_DIR		uno-1; mega-25
 //*********PINOS PARA SENSORES DE DISTANCIA*********//
 
-float valor_sensor_frontal;
-float valor_sensor_lateral;
+float valorSensorFrontal;
+float valorSensorLateral;
 
 void setup(){
 	Serial.begin(9600);
@@ -18,14 +21,14 @@ void setup(){
 }
 
 void loop(){
-	valor_sensor_lateral = robo.lerSensorSonarLateral(); //FUNCAO PARA LER VALOR DO SENSOR LATERAL
-	valor_sensor_frontal = robo.lerSensorSonarFrontal(); //FUNCAO PARA LER VALOR DO SENSOR FRONTAL
+	valorSensorLateral = robo.lerSensorSonarEsq(); //FUNCAO PARA LER VALOR DO SENSOR LATERAL
+	valorSensorFrontal = robo.lerSensorSonarFrontal(); //FUNCAO PARA LER VALOR DO SENSOR FRONTAL
 
         Serial.print("Valor do sensor frontal: ");
-        Serial.print(valor_sensor_frontal);
+        Serial.print(valorSensorFrontal);
         
         Serial.print("  lateral: ");
-        Serial.println(valor_sensor_lateral);
+        Serial.println(valorSensorLateral);
         Serial.println();
         
         delay(500);

@@ -12,6 +12,7 @@
 #include "Ultrasonic.h"
 
 #include "EEPROM2.h"
+#include "CorTcs23.h"
 
 struct calibracao_dados{
 	HSV branco;
@@ -44,9 +45,11 @@ public:
   boolean lerSensorFimDeCurso();
 
 	//As funcoes retornam o valor lido do sensor refletancia
-  int lerSensorDeLinha(int sensor); //recebe um pino analogico (A0, A1, A2 e etc) e retorna um valor de 0 a 1023 
-	inline float lerSensorLinhaEsq(){return (100 - 100.0 * (lerSensorDeLinha(SENSOR_LINHA_ESQUERDO))/1023.0);} //retorna um valor de 0 a 100 
-	inline float lerSensorLinhaDir(){return (100 - 100.0 * (lerSensorDeLinha(SENSOR_LINHA_DIREITO) )/1023.0);} //retorna um valor de 0 a 100
+  const float lerSensorDeLinha(const int sensor); //recebe um pino analogico (A0, A1, A2 e etc) e retorna um valor de 0 a 100 
+	inline const float lerSensorLinhaEsq(){			return lerSensorDeLinha(SENSOR_LINHA_ESQUERDO);} //retorna um valor de 0 a 100 
+	inline const float lerSensorLinhaMaisEsq(){	return lerSensorDeLinha(SENSOR_LINHA_MAIS_ESQUERDO);} //retorna um valor de 0 a 100 
+	inline const float lerSensorLinhaDir(){			return lerSensorDeLinha(SENSOR_LINHA_DIREITO);} //retorna um valor de 0 a 100
+	inline const float lerSensorLinhaMaisDir(){	return lerSensorDeLinha(SENSOR_LINHA_MAIS_DIREITO);} //retorna um valor de 0 a 100
 
 	//A funcao para acionar os motores de locomocao do robo
 	//A funcao recebe um percentual de tensao do motor esquerdo e direito
@@ -58,8 +61,8 @@ public:
   void acionarServoGarra2(float angulo);
 
 	float lerSensorSonarFrontal();
-	float lerSensorSonarLateral();
-  
+	float lerSensorSonarEsq();
+	float lerSensorSonarDir();  
   
 	//funcoes para trabalhar com os sensores de Cor
   HSV getHSVEsquerdo(); //realiza a leitura do sensor de cor esquerdo e retorna uma estrutura HSV. Ver cor.h
@@ -77,11 +80,16 @@ private:
   static Servo servoGarra2;
   void tensao(float valor_por_cento,int pino);
   //SensorCor cor_direita(s2,s3, out);  
-  SensorCor corDireita;
-  SensorCor corEsquerda;
+  
+  //SensorCor corDireita;
+  //SensorCor corEsquerda;
+
+  CorTcs23 corDireita;
+  CorTcs23 corEsquerda;
 
 	Ultrasonic sonarFrontal;
-	Ultrasonic sonarLateral;  
+	Ultrasonic sonarEsq;
+	Ultrasonic sonarDir;  
 
 };
 

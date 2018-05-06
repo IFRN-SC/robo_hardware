@@ -8,7 +8,8 @@ Servo robo_hardware::servoGarra2;
 robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,SENSOR_COR_DIR_OUT),
 																corEsquerda	(SENSOR_COR_ESQ_S2,SENSOR_COR_ESQ_S3,SENSOR_COR_ESQ_OUT),
 																sonarFrontal(SONAR_TRIGGER_FRONTAL, SONAR_ECHO_FRONTAL),
-																sonarLateral(SONAR_TRIGGER_LATERAL, SONAR_ECHO_LATERAL)
+																sonarEsq(SONAR_TRIGGER_ESQ, SONAR_ECHO_ESQ),
+																sonarDir(SONAR_TRIGGER_DIR, SONAR_ECHO_DIR)
 {
 
 }
@@ -33,7 +34,8 @@ void robo_hardware::configurar(bool habilitar_garra){
 	//Com essas funcoes os sonares sao calibrados 
 	//Quanto maior o valor de CALIBRACAO_SONAR menor a inclinacao da curva de calibracao 
 	sonarFrontal.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);  
-	sonarLateral.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);
+	sonarEsq.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);
+	sonarDir.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);
   
 	if(habilitar_garra){
   	servoGarra1.attach(SERVO_GARRA_1);
@@ -52,8 +54,8 @@ boolean robo_hardware::lerSensorFimDeCurso(){
   return digitalRead(BOTAO); 
 }
 
-int robo_hardware::lerSensorDeLinha(int sensor){
-  return analogRead(sensor);
+const float robo_hardware::lerSensorDeLinha(const int sensor){
+	return ( 100 - 100.0 * ( analogRead(sensor) )/1023.0);
 }
 
 void robo_hardware::acionarMotores(float motor1, float motor2){
@@ -83,10 +85,16 @@ float robo_hardware::lerSensorSonarFrontal(){
 	return sonarFrontal.convert(microsec, Ultrasonic::CM);  //retorna a distância do sensor ao obstáculo em cm.
 }
 
-float robo_hardware::lerSensorSonarLateral(){
-	long microsec = sonarLateral.timing();
-	return sonarLateral.convert(microsec, Ultrasonic::CM);  //retorna a distância do sensor ao obstáculo em cm.
+float robo_hardware::lerSensorSonarEsq(){
+	long microsec = sonarEsq.timing();
+	return sonarEsq.convert(microsec, Ultrasonic::CM);  //retorna a distância do sensor ao obstáculo em cm.
 }
+
+float robo_hardware::lerSensorSonarDir(){
+	long microsec = sonarDir.timing();
+	return sonarDir.convert(microsec, Ultrasonic::CM);  //retorna a distância do sensor ao obstáculo em cm.
+}
+
 
 void robo_hardware::acionarServoGarra1(float angulo){
   servoGarra1.write(angulo);
