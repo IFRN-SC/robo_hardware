@@ -47,11 +47,6 @@ void robo_hardware::configurar(bool habilitar_garra){
   pinMode(SENTIDO_RODA_ESQUERDA, OUTPUT); 
   pinMode(SENTIDO_RODA_DIREITA, OUTPUT);
 
-  pinMode(BOTAO, INPUT_PULLUP);
-}
-
-boolean robo_hardware::lerSensorFimDeCurso(){
-  return digitalRead(BOTAO); 
 }
 
 const float robo_hardware::lerSensorDeLinha(const int sensor){

@@ -42,7 +42,6 @@ public:
 
   robo_hardware();
   void configurar(bool habilitar_garra=true);
-  boolean lerSensorFimDeCurso();
 
 	//As funcoes retornam o valor lido do sensor refletancia
   const float lerSensorDeLinha(const int sensor); //recebe um pino analogico (A0, A1, A2 e etc) e retorna um valor de 0 a 100 
