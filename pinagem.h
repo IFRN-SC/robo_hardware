@@ -66,11 +66,11 @@ class pinagem{
 	#define SONAR_TRIGGER_FRONTAL	18 //Pino analogico A4
 	#define SONAR_ECHO_FRONTAL		19 //Pino analogico A5
 
-	#define SONAR_TRIGGER_ESQ	0 
-	#define SONAR_ECHO_ESQ		1 
+	#define SONAR_TRIGGER_ESQ	1 
+	#define SONAR_ECHO_ESQ		0
 
-	#define SONAR_TRIGGER_DIR	0 
-	#define SONAR_ECHO_DIR		1 
+	#define SONAR_TRIGGER_DIR	1 
+	#define SONAR_ECHO_DIR		0 
 	
  
 
