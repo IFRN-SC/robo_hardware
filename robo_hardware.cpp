@@ -44,7 +44,7 @@ void robo_hardware::configurar(bool habilitar_garra){
   pinMode(SENTIDO_RODA_ESQUERDA, OUTPUT); 
   pinMode(SENTIDO_RODA_DIREITA, OUTPUT);
 
-  pinMode(BOTAO, INPUT_PULLUP);
+  //pinMode(BOTAO, INPUT_PULLUP);
 }
 
 boolean robo_hardware::lerSensorFimDeCurso(){
@@ -85,6 +85,7 @@ float robo_hardware::lerSensorSonarFrontal(){
 
 float robo_hardware::lerSensorSonarLateral(){
 	long microsec = sonarLateral.timing();
+  microsec = ((microsec<1) ? 100000 : microsec);
 	return sonarLateral.convert(microsec, Ultrasonic::CM);  //retorna a distância do sensor ao obstáculo em cm.
 }
 
