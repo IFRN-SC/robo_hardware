@@ -46,8 +46,8 @@ class pinagem{
 
 
 	//A presente biblioteca utiliza dois sensores de refletancia ou sensores de linha
-	#define SENSOR_LINHA_MAIS_ESQUERDO	A0	//Define o pino do sensor de refletancia esquerdo 
-	#define SENSOR_LINHA_ESQUERDO	A1	//Define o pino do sensor de refletancia esquerdo 
+	#define SENSOR_LINHA_MAIS_ESQUERDO	A4	//Define o pino do sensor de refletancia esquerdo 
+	#define SENSOR_LINHA_ESQUERDO	A5	//Define o pino do sensor de refletancia esquerdo 
   #define SENSOR_LINHA_DIREITO	A2	//Define o pino do sensor de refletancia direito
   #define SENSOR_LINHA_MAIS_DIREITO	A3	//Define o pino do sensor de refletancia direito
 
@@ -63,8 +63,8 @@ class pinagem{
 	#define SENSOR_COR_DIR_OUT		8
 
 	//A biblioteca possui dois sensores de distancia (Sonares)
-	#define SONAR_TRIGGER_FRONTAL	18 //Pino analogico A4
-	#define SONAR_ECHO_FRONTAL		19 //Pino analogico A5
+	#define SONAR_TRIGGER_FRONTAL	A1 //Pino analogico A4
+	#define SONAR_ECHO_FRONTAL		A0 //Pino analogico A5
 
 	#define SONAR_TRIGGER_ESQ	1 
 	#define SONAR_ECHO_ESQ		0
