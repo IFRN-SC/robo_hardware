@@ -2,19 +2,7 @@
 #define COR_H
 
 #include <Arduino.h>
-
-struct RGB{
-  int verde;
-  int vermelho;
-  int azul;
-
-};
-
-struct HSV{
-  float h;
-  float s;
-  float v;
-};
+#include "CorHardware.h"
 
 class SensorCor{
 public:

@@ -4,13 +4,18 @@
 Servo robo_hardware::servoGarra1;
 Servo robo_hardware::servoGarra2;
 
-robo_hardware::robo_hardware():	
-  corDireita(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,SENSOR_COR_DIR_OUT),
-  corEsquerda(SENSOR_COR_ESQ_S2,SENSOR_COR_ESQ_S3,SENSOR_COR_ESQ_OUT),
-  sonarFrontal(SONAR_TRIGGER_FRONTAL, SONAR_ECHO_FRONTAL),
-  sonarLateralEsquerdo(SONAR_TRIGGER_LADO_ESQUERDO, SONAR_ECHO_LADO_ESQUERDO), 
-  sonarLateralDireito(SONAR_TRIGGER_LADO_DIREITO,SONAR_ECHO_LADO_DIREITO)
+
+robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,SENSOR_COR_DIR_OUT),
+																corEsquerda	(SENSOR_COR_ESQ_S2,SENSOR_COR_ESQ_S3,SENSOR_COR_ESQ_OUT),
+																corDireita34(SENSOR_COR_DIR_TCS34),
+																corEsquerda34(SENSOR_COR_ESQ_TCS34),
+																sonarFrontal(SONAR_TRIGGER_FRONTAL, SONAR_ECHO_FRONTAL),
+																sonarEsq(SONAR_TRIGGER_ESQ, SONAR_ECHO_ESQ),
+																sonarDir(SONAR_TRIGGER_DIR, SONAR_ECHO_DIR),
+																botao1(BOTAO_1), botao2(BOTAO_2), botao3(BOTAO_3),
+																led1(LED_1), led2(LED_2), led3(LED_3)
 {
+	tipoSensorCor = TCS23;
 }
 
 void robo_hardware::tensao(float valor_por_cento,int pino){
@@ -24,15 +29,22 @@ void robo_hardware::tensao(float valor_por_cento,int pino){
   analogWrite(pino, abs(valor_ate_255)); 
 }
 
+void robo_hardware::habilitaTCS23(){
+	tipoSensorCor = TCS23;
+}
+
+void robo_hardware::habilitaTCS34(){
+	tipoSensorCor = TCS34;
+}
 
 void robo_hardware::configurar(bool habilitar_garra){
-  Serial.begin(9600);
+//  Serial.begin(9600);
 
-  //Com essas funcoes os sonares sao calibrados 
-  //Quanto maior o valor de CALIBRACAO_SONAR menor a inclinacao da curva de calibracao 
-  sonarFrontal.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);  
-  sonarLateralDireito.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);
-  sonarLateralEsquerdo.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);
+	//Com essas funcoes os sonares sao calibrados 
+	//Quanto maior o valor de CALIBRACAO_SONAR menor a inclinacao da curva de calibracao 
+	sonarFrontal.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);  
+	sonarEsq.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);
+	sonarDir.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);
   
   if(habilitar_garra){
 	servoGarra1.attach(SERVO_GARRA_1);
@@ -44,14 +56,21 @@ void robo_hardware::configurar(bool habilitar_garra){
   pinMode(PWM_RODA_DIREITA, OUTPUT); 
   pinMode(SENTIDO_RODA_ESQUERDA, OUTPUT); 
   pinMode(SENTIDO_RODA_DIREITA, OUTPUT);
+	
+	botao1.config();
+	botao2.config();
+	botao3.config();
+
+	led1.config();
+	led2.config();
+	led3.config();
+
+	corDireita34.config();
+	corEsquerda34.config();
 }
 
-//boolean robo_hardware::lerSensorFimDeCurso(){
-//  return digitalRead(BOTAO); 
-//}
-
-float robo_hardware::lerSensorDeLinha(int sensor){
-  return (100 - 100.0 * (analogRead(sensor))/1023.0);;
+const float robo_hardware::lerSensorDeLinha(const int sensor){
+	return ( 100 - 100.0 * ( analogRead(sensor) )/1023.0);
 }
 
 void robo_hardware::acionarMotores(float motor1, float motor2){
@@ -79,15 +98,16 @@ float robo_hardware::lerSensorSonarFrontal(){
   return sonarFrontal.convert(microsec, Ultrasonic::CM);  //retorna a distância do sensor ao obstáculo em cm.
 }
 
-float robo_hardware::lerSensorSonarLateralEsquerdo(){
-  long microsec = sonarLateralEsquerdo.timing();
-  return sonarLateralEsquerdo.convert(microsec, Ultrasonic::CM);  //retorna a distância do sensor ao obstáculo em cm.
+float robo_hardware::lerSensorSonarEsq(){
+	long microsec = sonarEsq.timing();
+	return sonarEsq.convert(microsec, Ultrasonic::CM);  //retorna a distância do sensor ao obstáculo em cm.
 }
 
-float robo_hardware::lerSensorSonarLateralDireito(){
-  long microsec = sonarLateralDireito.timing();
-  return sonarLateralDireito.convert(microsec, Ultrasonic::CM);  //retorna a distância do sensor ao obstáculo em cm.
+float robo_hardware::lerSensorSonarDir(){
+	long microsec = sonarDir.timing();
+	return sonarDir.convert(microsec, Ultrasonic::CM);  //retorna a distância do sensor ao obstáculo em cm.
 }
+
 
 void robo_hardware::acionarServoGarra1(float angulo){
   servoGarra1.write(angulo);
@@ -98,19 +118,39 @@ void robo_hardware::acionarServoGarra2(float angulo){
 }
 
 HSV robo_hardware::getHSVEsquerdo(){
-  return corEsquerda.getHSV();
+  switch(tipoSensorCor){
+    case TCS34:
+      return corEsquerda34.getHSV();
+    default:
+      return corEsquerda.getHSV();
+	}
 }
 
 HSV robo_hardware::getHSVDireito(){
-  return corDireita.getHSV();
+  switch(tipoSensorCor){
+    case TCS34:
+      return corDireita34.getHSV();
+    default:
+      return corDireita.getHSV();
+  }
 }
 
 RGB robo_hardware::getRGBEsquerdo(){
-  return corEsquerda.getRGB();
+  switch(tipoSensorCor){
+    case TCS34:
+      return corEsquerda34.getRGB();
+    default:
+      return corEsquerda.getRGB();
+  }
 }
 
 RGB robo_hardware::getRGBDireito(){
-  return corDireita.getRGB();
+  switch(tipoSensorCor){
+    case TCS34:
+      return corDireita34.getRGB();
+    default:
+      return corDireita.getRGB();
+  }
 }
 
 void  robo_hardware::salvarCalibracao(calibracao_dados calibraca_val){
@@ -119,4 +159,48 @@ void  robo_hardware::salvarCalibracao(calibracao_dados calibraca_val){
 
 void robo_hardware::lerCalibracao(calibracao_dados &cal){
   EEPROM.get(ENDERECO_EEPROM, cal);
+}
+
+void robo_hardware::ligarLed(const int led)const{
+	switch(led){
+		case 1:
+			led1.ligar();
+		break;
+		case 2:
+			led2.ligar();
+		break;
+		case 3:
+			led3.ligar();
+		break;
+		default:
+		break;	
+	}
+}
+
+void robo_hardware::desligarLed(const int led)const{
+	switch(led){
+		case 1:
+			led1.desligar();
+		break;
+		case 2:
+			led2.desligar();
+		break;
+		case 3:
+			led3.desligar();
+		break;
+		default:
+		break;	
+	}
+}
+
+void robo_hardware::ligarTodosLeds()const{
+	led1.ligar();
+	led2.ligar();
+	led3.ligar();
+}
+
+void robo_hardware::desligarTodosLeds()const{
+	led1.desligar();
+	led2.desligar();
+	led3.desligar();
 }
