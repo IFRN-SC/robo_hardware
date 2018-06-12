@@ -46,10 +46,10 @@ class pinagem{
 
 
   //*********PINOS PARA SENSORES DE REFLETANCIA*********//
-  #define SENSOR_LINHA_ESQUERDO		A5		//Define o pino do sensor de refletancia esquerdo 
-  #define SENSOR_LINHA_DIREITO		A4		//Define o pino do sensor de refletancia direito
-  #define SENSOR_LINHA_MAIS_ESQUERDO	A0		//Define o pino do sensor de refletancia mais esquerdo
-  #define SENSOR_LINHA_MAIS_DIREITO	A1		//Define o pino do sensor de refletancia mais direito
+  #define SENSOR_LINHA_ESQUERDO		A1		//Define o pino do sensor de refletancia esquerdo 
+  #define SENSOR_LINHA_DIREITO		A0		//Define o pino do sensor de refletancia direito
+  #define SENSOR_LINHA_MAIS_ESQUERDO	A3		//Define o pino do sensor de refletancia mais esquerdo
+  #define SENSOR_LINHA_MAIS_DIREITO	A2		//Define o pino do sensor de refletancia mais direito
 
 	//A biblioteca possui dois sensores de cor: um esquerdo e outro direito.
 	//cada sensor de cor precisa de 3 pinos para configuracao e leitura da cor
