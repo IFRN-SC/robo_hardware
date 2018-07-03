@@ -2,6 +2,8 @@
 
 #define INTERRUPT_PIN 2  // use pin 2 on Arduino Uno & most boards
 
+volatile bool MpuRoboHardware::mpuInterrupt=false;
+
 void MpuRoboHardware::configurar(){
 	dmpReady = false;
 //	teapotPacket[14] = { '$', 0x02, 0,0, 0,0, 0,0, 0,0, 0x00, 0x00, '\r', '\n' };
