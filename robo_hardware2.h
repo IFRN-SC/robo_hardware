@@ -13,6 +13,7 @@
 
 #include "EEPROM2.h"
 #include "CorTcs23.h"
+#include "MpuRoboHardware.h"
 
 struct calibracao_dados{
 	HSV branco;
@@ -91,7 +92,7 @@ private:
 	Ultrasonic sonarEsq;
 	Ultrasonic sonarDir;  
 
-	MPU6050 mpu;
+	MpuRoboHardware mpu;
 
 };
 

@@ -47,6 +47,8 @@ void robo_hardware::configurar(bool habilitar_garra){
   pinMode(SENTIDO_RODA_ESQUERDA, OUTPUT); 
   pinMode(SENTIDO_RODA_DIREITA, OUTPUT);
 
+	mpu.configurar();
+
 //  pinMode(BOTAO, INPUT_PULLUP);
 }
 
