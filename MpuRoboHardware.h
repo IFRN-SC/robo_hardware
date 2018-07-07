@@ -36,6 +36,7 @@ class MpuRoboHardware{
 
 	public:
 	void configurar();
+	void getData();
 
 	private:
 
