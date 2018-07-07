@@ -101,7 +101,6 @@ Ypr MpuRoboHardware::getData(){
 
 			readData();
 			dataToYPR();
-	 		printData();
 		}
 	}
 	y.y = ypr[0];
@@ -134,13 +133,3 @@ void MpuRoboHardware::dataToYPR(){
   mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
 }
 
-void MpuRoboHardware::printData(){
-	/*
-  Serial.print("ypr\t");
-  Serial.print(ypr[0] * 180/M_PI);
-  Serial.print("\t");
-  Serial.print(ypr[1] * 180/M_PI);
-  Serial.print("\t");
-  Serial.println(ypr[2] * 180/M_PI);
-	*/
-}

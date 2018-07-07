@@ -43,7 +43,6 @@ class MpuRoboHardware{
 
 	void readData();
 	void dataToYPR();	
-	void printData();
 
 };
 
