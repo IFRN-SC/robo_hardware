@@ -7,6 +7,10 @@
     #include "Wire.h"
 #endif
 
+struct Ypr{
+	float y,p,r;
+};
+
 
 class MpuRoboHardware{
 
@@ -36,7 +40,7 @@ class MpuRoboHardware{
 
 	public:
 	void configurar();
-	void getData();
+	Ypr getData();
 
 	private:
 	
