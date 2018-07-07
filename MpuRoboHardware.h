@@ -39,9 +39,12 @@ class MpuRoboHardware{
 	void getData();
 
 	private:
-
+	
 	static void dmpDataReady();
 
+	void readData();
+	void dataToYPR();	
+	void printData();
 
 };
 

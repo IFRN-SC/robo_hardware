@@ -109,29 +109,39 @@ void MpuRoboHardware::getData(){
   } 
 	else if (mpuIntStatus & 0x02) {
 
-		// wait for correct available data length, should be a VERY short wait
-		while (fifoCount < packetSize) fifoCount = mpu.getFIFOCount();
-
-		// read a packet from FIFO
-		mpu.getFIFOBytes(fifoBuffer, packetSize);
-		
-		// track FIFO count here in case there is > 1 packet available
-		// (this lets us immediately read more without waiting for an interrupt)
-		fifoCount -= packetSize;
-
-    // display Euler angles in degrees
-    mpu.dmpGetQuaternion(&q, fifoBuffer);
-    mpu.dmpGetGravity(&gravity, &q);
-    mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
-    Serial.print("ypr\t");
-    Serial.print(ypr[0] * 180/M_PI);
-    Serial.print("\t");
-    Serial.print(ypr[1] * 180/M_PI);
-    Serial.print("\t");
-    Serial.println(ypr[2] * 180/M_PI);
+		readData();
+		dataToYPR();
+ 		printData();
 	}
 }
 
 void MpuRoboHardware::dmpDataReady() {
   mpuInterrupt = true;
+}
+
+void MpuRoboHardware::readData(){
+	// wait for correct available data length, should be a VERY short wait
+	while (fifoCount < packetSize) fifoCount = mpu.getFIFOCount();
+
+	// read a packet from FIFO
+	mpu.getFIFOBytes(fifoBuffer, packetSize);
+	
+	// track FIFO count here in case there is > 1 packet available
+	// (this lets us immediately read more without waiting for an interrupt)
+	fifoCount -= packetSize;
+}
+
+void MpuRoboHardware::dataToYPR(){
+  mpu.dmpGetQuaternion(&q, fifoBuffer);
+  mpu.dmpGetGravity(&gravity, &q);
+  mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
+}
+
+void MpuRoboHardware::printData(){
+  Serial.print("ypr\t");
+  Serial.print(ypr[0] * 180/M_PI);
+  Serial.print("\t");
+  Serial.print(ypr[1] * 180/M_PI);
+  Serial.print("\t");
+  Serial.println(ypr[2] * 180/M_PI);
 }
