@@ -2,6 +2,7 @@
 #define MPU_ROBO_HARDWARE
 
 #include <MPU6050_hardware.h>
+#include "pinagem.h"
 
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
     #include "Wire.h"
@@ -24,15 +25,8 @@ class MpuRoboHardware{
 
 	// orientation/motion vars
 	Quaternion q;           // [w, x, y, z]         quaternion container
-	VectorInt16 aa;         // [x, y, z]            accel sensor measurements
-	VectorInt16 aaReal;     // [x, y, z]            gravity-free accel sensor measurements
-	VectorInt16 aaWorld;    // [x, y, z]            world-frame accel sensor measurements
 	VectorFloat gravity;    // [x, y, z]            gravity vector
-	float euler[3];         // [psi, theta, phi]    Euler angle container
 	float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
-
-	// packet structure for InvenSense teapot demo
-	//uint8_t teapotPacket[14];
 
 	static volatile bool mpuInterrupt;     // indicates whether MPU interrupt pin has gone high
 
@@ -40,9 +34,10 @@ class MpuRoboHardware{
 
 	public:
 	void configurar();
-	Ypr getData();
+	Ypr getYawPitchRoll(){return getData();}
 
 	private:
+	Ypr getData();
 	
 	static void dmpDataReady();
 
