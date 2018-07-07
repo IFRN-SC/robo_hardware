@@ -74,45 +74,40 @@ void MpuRoboHardware::configurar(){
 
 }
 
-void MpuRoboHardware::getData(){
+Ypr MpuRoboHardware::getData(){
+	Ypr y;
   // if programming failed, don't try to do anything
-  if (!dmpReady) return;
+  if (!dmpReady) return y;
 
   // wait for MPU interrupt or extra packet(s) available
-  while (!mpuInterrupt && fifoCount < packetSize) {
-      // other program behavior stuff here
-      // .
-      // .
-      // .
-      // if you are really paranoid you can frequently test in between other
-      // stuff to see if mpuInterrupt is true, and if so, "break;" from the
-      // while() loop to immediately process the MPU data
-      // .
-      // .
-      // .
-  }
+  if (mpuInterrupt || fifoCount >= packetSize) {
 
-  // reset interrupt flag and get INT_STATUS byte
-  mpuInterrupt = false;
-  mpuIntStatus = mpu.getIntStatus();
+		// reset interrupt flag and get INT_STATUS byte
+		mpuInterrupt = false;
+		mpuIntStatus = mpu.getIntStatus();
 
-  // get current FIFO count
-  fifoCount = mpu.getFIFOCount();
+		// get current FIFO count
+		fifoCount = mpu.getFIFOCount();
 
-  // check for overflow (this should never happen unless our code is too inefficient)
-  if ((mpuIntStatus & 0x10) || fifoCount == 1024) {
-      // reset so we can continue cleanly
-      mpu.resetFIFO();
-      Serial.println(F("FIFO overflow!"));
+		// check for overflow (this should never happen unless our code is too inefficient)
+		if ((mpuIntStatus & 0x10) || fifoCount == 1024) {
+		    // reset so we can continue cleanly
+		    mpu.resetFIFO();
+//		    Serial.println(F("FIFO overflow!  "));
 
-  // otherwise, check for DMP data ready interrupt (this should happen frequently)
-  } 
-	else if (mpuIntStatus & 0x02) {
+		// otherwise, check for DMP data ready interrupt (this should happen frequently)
+		} 
+		else if (mpuIntStatus & 0x02) {
 
-		readData();
-		dataToYPR();
- 		printData();
+			readData();
+			dataToYPR();
+	 		printData();
+		}
 	}
+	y.y = ypr[0];
+	y.p = ypr[1];
+	y.r = ypr[2];
+	return y;
 }
 
 void MpuRoboHardware::dmpDataReady() {
@@ -121,14 +116,16 @@ void MpuRoboHardware::dmpDataReady() {
 
 void MpuRoboHardware::readData(){
 	// wait for correct available data length, should be a VERY short wait
-	while (fifoCount < packetSize) fifoCount = mpu.getFIFOCount();
-
-	// read a packet from FIFO
-	mpu.getFIFOBytes(fifoBuffer, packetSize);
+//	while (fifoCount < packetSize) fifoCount = mpu.getFIFOCount();
+	fifoCount = mpu.getFIFOCount();
+	if(fifoCount >= packetSize){
+		// read a packet from FIFO
+		mpu.getFIFOBytes(fifoBuffer, packetSize);
 	
-	// track FIFO count here in case there is > 1 packet available
-	// (this lets us immediately read more without waiting for an interrupt)
-	fifoCount -= packetSize;
+		// track FIFO count here in case there is > 1 packet available
+		// (this lets us immediately read more without waiting for an interrupt)
+		fifoCount -= packetSize;
+	}
 }
 
 void MpuRoboHardware::dataToYPR(){
@@ -138,10 +135,12 @@ void MpuRoboHardware::dataToYPR(){
 }
 
 void MpuRoboHardware::printData(){
+	/*
   Serial.print("ypr\t");
   Serial.print(ypr[0] * 180/M_PI);
   Serial.print("\t");
   Serial.print(ypr[1] * 180/M_PI);
   Serial.print("\t");
   Serial.println(ypr[2] * 180/M_PI);
+	*/
 }
