@@ -52,6 +52,8 @@ public:
 	inline const float lerSensorLinhaDir(){			return lerSensorDeLinha(SENSOR_LINHA_DIREITO);} //retorna um valor de 0 a 100
 	inline const float lerSensorLinhaMaisDir(){	return lerSensorDeLinha(SENSOR_LINHA_MAIS_DIREITO);} //retorna um valor de 0 a 100
 
+	inline const Ypr lerSensorImu(){return mpu.getYawPitchRoll();}
+
 	//A funcao para acionar os motores de locomocao do robo
 	//A funcao recebe um percentual de tensao do motor esquerdo e direito
 	//A funcao so recebe valores que variem de 100 ate -100
