@@ -1,7 +1,5 @@
 #include "MpuRoboHardware.h"
 
-#define INTERRUPT_PIN 2  // use pin 2 on Arduino Uno & most boards
-
 volatile bool MpuRoboHardware::mpuInterrupt=false;
 
 void MpuRoboHardware::configurar(){
@@ -21,7 +19,7 @@ void MpuRoboHardware::configurar(){
   //Serial.println(F("Initializing I2C devices..."));
 
   mpu.initialize();
-  pinMode(INTERRUPT_PIN, INPUT);
+  pinMode(IMU_INTERRUPT_PIN, INPUT);
 
   // verify connection
   //Serial.println(F("Testing device connections..."));
@@ -52,7 +50,7 @@ void MpuRoboHardware::configurar(){
 
       // enable Arduino interrupt detection
 //      Serial.println(F("Enabling interrupt detection (Arduino external interrupt 0)..."));
-      attachInterrupt(digitalPinToInterrupt(INTERRUPT_PIN), dmpDataReady, RISING);
+      attachInterrupt(digitalPinToInterrupt(IMU_INTERRUPT_PIN), dmpDataReady, RISING);
       mpuIntStatus = mpu.getIntStatus();
 
       // set our DMP Ready flag so the main loop() function knows it's okay to use it

@@ -85,6 +85,8 @@ class pinagem{
 	#define LED_2		51
 	#define LED_3		49
 
+	#define IMU_INTERRUPT_PIN 2
+
 };
 
 #endif
