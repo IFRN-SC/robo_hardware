@@ -54,13 +54,13 @@ class pinagem{
 	//A biblioteca possui dois sensores de cor: um esquerdo e outro direito.
 	//cada sensor de cor precisa de 3 pinos para configuracao e leitura da cor
 	//Os pinos dos sensores de cor são específicos para o arduino UNO e podem ser modificados para o arduino mega
-	#define SENSOR_COR_ESQ_S2			11	
-	#define SENSOR_COR_ESQ_S3			12	
-	#define SENSOR_COR_ESQ_OUT		13	
+	#define SENSOR_COR_ESQ_S2			48	
+	#define SENSOR_COR_ESQ_S3			50	
+	#define SENSOR_COR_ESQ_OUT		52	
 
-	#define SENSOR_COR_DIR_S2			2
-	#define SENSOR_COR_DIR_S3			3
-	#define SENSOR_COR_DIR_OUT		8
+	#define SENSOR_COR_DIR_S2			28
+	#define SENSOR_COR_DIR_S3			30
+	#define SENSOR_COR_DIR_OUT		32
 
 	#define SENSOR_COR_DIR_TCS34	38
 	#define SENSOR_COR_ESQ_TCS34	50
