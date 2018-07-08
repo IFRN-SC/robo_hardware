@@ -12,8 +12,18 @@
 #include "Ultrasonic.h"
 
 #include "EEPROM2.h"
-#include "CorTcs23.h"
+
 #include "MpuRoboHardware.h"
+
+#include "CorTcs23.h"
+#include "CorTcs34.h"
+#include "led_botoes/Botao.h"
+#include "led_botoes/Led.h"
+
+enum{
+	TCS23,
+	TCS34
+};
 
 struct calibracao_dados{
 	HSV branco;
@@ -38,11 +48,14 @@ private:
 	#define CALIBRACAO_SONAR  40.4	//Valor para calibrar os sonares. Quanto maior esse valor menor a inclinação da reta de calibracao
 
 	#define ENDERECO_EEPROM 0
+
 public: 
 
 
   robo_hardware();
   void configurar(bool habilitar_garra=true);
+	void habilitaTCS34();
+	void habilitaTCS23();
 //  boolean lerSensorFimDeCurso();
 
 	//As funcoes retornam o valor lido do sensor refletancia
@@ -76,9 +89,18 @@ public:
 	void salvarCalibracao(calibracao_dados cal);  
 	void lerCalibracao(calibracao_dados &cal);
 
+	void ligarLed(const int led)const;
+	void desligarLed(const int led)const;
+	void ligarTodosLeds()const;
+	void desligarTodosLeds()const;
+
+	inline const bool botao1Pressionado()const{return botao1.estaPressionado();}
+	inline const bool botao2Pressionado()const{return botao2.estaPressionado();}
+	inline const bool botao3Pressionado()const{return botao3.estaPressionado();}
+
 private:
 
-
+	int tipoSensorCor;
   static Servo servoGarra1;
   static Servo servoGarra2;
   void tensao(float valor_por_cento,int pino);
@@ -90,12 +112,18 @@ private:
   CorTcs23 corDireita;
   CorTcs23 corEsquerda;
 
+  CorTcs34 corDireita34;
+  CorTcs34 corEsquerda34;
+
+
 	Ultrasonic sonarFrontal;
 	Ultrasonic sonarEsq;
-	Ultrasonic sonarDir;  
+	Ultrasonic sonarDir;
 
 	MpuRoboHardware mpu;
 
+	Botao botao1, botao2, botao3;
+	Led	led1, led2, led3;
 };
 
 static robo_hardware robo;
