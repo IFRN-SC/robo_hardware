@@ -19,7 +19,7 @@ void MpuRoboHardware::configurar(){
   //Serial.println(F("Initializing I2C devices..."));
 
   mpu.initialize();
-  pinMode(IMU_INTERRUPT_PIN, INPUT);
+  pinMode(PINO_INTERRUPCAO_IMU, INPUT);
 
   // verify connection
   //Serial.println(F("Testing device connections..."));
@@ -50,7 +50,7 @@ void MpuRoboHardware::configurar(){
 
       // enable Arduino interrupt detection
 //      Serial.println(F("Enabling interrupt detection (Arduino external interrupt 0)..."));
-      attachInterrupt(digitalPinToInterrupt(IMU_INTERRUPT_PIN), dmpDataReady, RISING);
+      attachInterrupt(digitalPinToInterrupt(PINO_INTERRUPCAO_IMU), dmpDataReady, RISING);
       mpuIntStatus = mpu.getIntStatus();
 
       // set our DMP Ready flag so the main loop() function knows it's okay to use it
