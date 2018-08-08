@@ -7,15 +7,22 @@ calibracao_dados val; //dados de calibracao para sensores de cor e sensores de r
 
 /*****  Dados existentes na Struct calibracao_dados  *******************
 
-HSV branco;
-HSV preto;
-HSV verde;
-HSV cinza;
+  HSV brancoDir;
+  HSV brancoEsq;
+  HSV pretoDir;
+  HSV pretoEsq;
+  HSV verdeDir;
+  HSV verdeEsq;
+  HSV cinzaDir;
+  HSV cinzaEsq;
 
-int refletancia_dir;
-int refletancia_mais_dir;
-int refletancia_esq;
-int refletancia_mais_esq;
+  int refletanciaDir;
+  int refletanciaMaisDir;
+  int refletanciaEsq;
+  int refletanciaMaisEsq;
+  
+
+
 
 ************************/
 
@@ -32,15 +39,15 @@ void loop() {
   // Le os dados da EEPROM
   robo.lerCalibracao(val);
 
-  Serial.print(val.branco.h);
+  Serial.print(val.brancoEsq.h);
   Serial.print("; ");
-  Serial.print(val.branco.s);
+  Serial.print(val.brancoDir.s);
   Serial.print("; ");
-  Serial.print(val.branco.v);  
+  Serial.print(val.brancoDir.v);  
   Serial.print("; ");
-  Serial.print(val.refletancia_dir);  
+  Serial.print(val.refletanciaDir);  
   Serial.print("; ");
-  Serial.print(val.refletancia_esq);    
+  Serial.print(val.refletanciaEsq);    
   Serial.println();
 
   delay(500);

@@ -24,19 +24,22 @@ enum{
 };
 
 struct calibracao_dados{
-	HSV branco;
-	HSV preto;
-	HSV verde;
-	HSV cinza;
+	HSV brancoDir;
+	HSV brancoEsq;
+	HSV pretoDir;
+	HSV pretoEsq;
+	HSV verdeDir;
+	HSV verdeEsq;
+	HSV cinzaDir;
+	HSV cinzaEsq;
 
-	int refletancia_dir;
-	int refletancia_mais_dir;
-	int refletancia_esq;
-	int refletancia_mais_esq;
+	int refletanciaDir;
+	int refletanciaMaisDir;
+	int refletanciaEsq;
+	int refletanciaMaisEsq;
 	
 
 };
-
 class robo_hardware:private pinagem{
 private:
 
