@@ -33,10 +33,10 @@ struct calibracao_dados{
 	HSV cinzaDir;
 	HSV cinzaEsq;
 
-	int refletancia_dir;
-	int refletancia_mais_dir;
-	int refletancia_esq;
-	int refletancia_mais_esq;
+	int refletanciaDir;
+	int refletanciaMaisDir;
+	int refletanciaEsq;
+	int refletanciaMaisEsq;
 	
 
 };
@@ -81,10 +81,10 @@ public:
 	float lerSensorSonarDir();  
   
 	//funcoes para trabalhar com os sensores de Cor
-  HSV getHsvEsquerdo(); //realiza a leitura do sensor de cor esquerdo e retorna uma estrutura HSV. Ver cor.h
-  RGB getRgbEsquerdo(); //realiza a leitura do sensor de cor esquerdo e retorna uma estrutura RGB. Ver cor.h
-  HSV getHsvDireito(); 	//realiza a leitura do sensor de cor direito e retorna uma estrutura HSV. Ver cor.h
-  RGB getRgbDireito(); 	//realiza a leitura do sensor de cor direito e retorna uma estrutura RGB. Ver cor.h
+  HSV getHSVEsquerdo(); //realiza a leitura do sensor de cor esquerdo e retorna uma estrutura HSV. Ver cor.h
+  RGB getRGBEsquerdo(); //realiza a leitura do sensor de cor esquerdo e retorna uma estrutura RGB. Ver cor.h
+  HSV getHSVDireito(); 	//realiza a leitura do sensor de cor direito e retorna uma estrutura HSV. Ver cor.h
+  RGB getRGBDireito(); 	//realiza a leitura do sensor de cor direito e retorna uma estrutura RGB. Ver cor.h
 
 	void salvarCalibracao(calibracao_dados cal);  
 	void lerCalibracao(calibracao_dados &cal);
