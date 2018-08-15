@@ -3,6 +3,7 @@
 
 Servo robo_hardware::servoGarra1;
 Servo robo_hardware::servoGarra2;
+int robo_hardware::tipoSensorCor;
 
 
 robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,SENSOR_COR_DIR_OUT),

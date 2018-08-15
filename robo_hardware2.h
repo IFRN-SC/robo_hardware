@@ -66,7 +66,7 @@ public:
 	inline const float lerSensorLinhaMaisEsq(){	return lerSensorDeLinha(SENSOR_LINHA_MAIS_ESQUERDO);} //retorna um valor de 0 a 100 
 	inline const float lerSensorLinhaDir(){			return lerSensorDeLinha(SENSOR_LINHA_DIREITO);} //retorna um valor de 0 a 100
 	inline const float lerSensorLinhaMaisDir(){	return lerSensorDeLinha(SENSOR_LINHA_MAIS_DIREITO);} //retorna um valor de 0 a 100
-
+	inline const int getSensor(){return tipoSensorCor;}
 	//A funcao para acionar os motores de locomocao do robo
 	//A funcao recebe um percentual de tensao do motor esquerdo e direito
 	//A funcao so recebe valores que variem de 100 ate -100
@@ -100,7 +100,7 @@ public:
 
 private:
 
-	int tipoSensorCor;
+  static int tipoSensorCor;
   static Servo servoGarra1;
   static Servo servoGarra2;
   void tensao(float valor_por_cento,int pino);
