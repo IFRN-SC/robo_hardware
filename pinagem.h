@@ -46,21 +46,21 @@ class pinagem{
 
 
   //*********PINOS PARA SENSORES DE REFLETANCIA*********//
-  #define SENSOR_LINHA_ESQUERDO		A1		//Define o pino do sensor de refletancia esquerdo 
-  #define SENSOR_LINHA_DIREITO		A0		//Define o pino do sensor de refletancia direito
-  #define SENSOR_LINHA_MAIS_ESQUERDO	A3		//Define o pino do sensor de refletancia mais esquerdo
-  #define SENSOR_LINHA_MAIS_DIREITO	A2		//Define o pino do sensor de refletancia mais direito
+#define SENSOR_LINHA_MAIS_ESQUERDO	A3	//Define o pino do sensor de refletancia esquerdo 
+	#define SENSOR_LINHA_ESQUERDO	A1	//Define o pino do sensor de refletancia esquerdo 
+  #define SENSOR_LINHA_DIREITO	A0	//Define o pino do sensor de refletancia direito
+  #define SENSOR_LINHA_MAIS_DIREITO	A2	//Define o pino do sensor de refletancia direito
 
 	//A biblioteca possui dois sensores de cor: um esquerdo e outro direito.
 	//cada sensor de cor precisa de 3 pinos para configuracao e leitura da cor
 	//Os pinos dos sensores de cor são específicos para o arduino UNO e podem ser modificados para o arduino mega
-	#define SENSOR_COR_ESQ_S2			11	
-	#define SENSOR_COR_ESQ_S3			12	
-	#define SENSOR_COR_ESQ_OUT		13	
+	#define SENSOR_COR_ESQ_S2		  40	
+	#define SENSOR_COR_ESQ_S3			42 	
+	#define SENSOR_COR_ESQ_OUT		44	
 
-	#define SENSOR_COR_DIR_S2			2
-	#define SENSOR_COR_DIR_S3			3
-	#define SENSOR_COR_DIR_OUT		8
+	#define SENSOR_COR_DIR_S2			28
+	#define SENSOR_COR_DIR_S3			30
+	#define SENSOR_COR_DIR_OUT		32
 
 	#define SENSOR_COR_DIR_TCS34	38
 	#define SENSOR_COR_ESQ_TCS34	50
