@@ -10,6 +10,7 @@
 #include "cor.h"
 #include "pinagem.h"
 #include "Ultrasonic.h"
+#include "MotorPasso.h"
 
 #include "EEPROM2.h"
 #include "CorTcs23.h"
@@ -58,6 +59,11 @@ public:
 	void habilitaTCS34();
 	void habilitaTCS23();
 //  boolean lerSensorFimDeCurso();
+
+	inline void acionarMotoresPasso(int velEsq, int velDir){motoresDePasso.acionarMotorPasso(velEsq, velDir);}
+	inline void acionarMotoresPassoEmGraus(int vel, double grau){motoresDePasso.acionarMotoresEmGraus(vel, grau);}
+	inline void acionarPassoAngEsq(int ang, int vel){motoresDePasso.acionarAngEsq(ang, vel);}
+	inline void acionarPassoAngDir(int ang, int vel){motoresDePasso.acionarAngDir(ang, vel);}
 
 	//As funcoes retornam o valor lido do sensor refletancia
   const float lerSensorDeLinha(const int sensor); //recebe um pino analogico (A0, A1, A2 e etc) e retorna um valor de 0 a 100 
@@ -121,6 +127,9 @@ private:
 	
 	Botao botao1, botao2, botao3;
 	Led	led1, led2, led3;
+
+	MotorPasso motoresDePasso;
+
 };
 
 static robo_hardware robo;
