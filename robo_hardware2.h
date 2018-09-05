@@ -38,6 +38,8 @@ struct calibracao_dados{
 	int refletanciaEsq;
 	int refletanciaMaisEsq;
 	
+	float sala3_limiteLateral;
+	float sala3_limiteFrontal
 
 };
 
