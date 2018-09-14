@@ -38,6 +38,8 @@ struct calibracao_dados{
 	int refletanciaEsq;
 	int refletanciaMaisEsq;
 	
+	int sala3_limiteLateral;
+	int sala3_limiteFrontal;
 
 };
 class robo_hardware:private pinagem{
