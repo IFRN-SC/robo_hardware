@@ -38,11 +38,8 @@ struct calibracao_dados{
 	int refletanciaEsq;
 	int refletanciaMaisEsq;
 	
-	float sala3_limiteLateral;
-	float sala3_limiteFrontal;
 
 };
-
 class robo_hardware:private pinagem{
 private:
 
@@ -68,15 +65,17 @@ public:
 	inline const float lerSensorLinhaMaisEsq(){	return lerSensorDeLinha(SENSOR_LINHA_MAIS_ESQUERDO);} //retorna um valor de 0 a 100 
 	inline const float lerSensorLinhaDir(){			return lerSensorDeLinha(SENSOR_LINHA_DIREITO);} //retorna um valor de 0 a 100
 	inline const float lerSensorLinhaMaisDir(){	return lerSensorDeLinha(SENSOR_LINHA_MAIS_DIREITO);} //retorna um valor de 0 a 100
-	inline const int getSensor(){return tipoSensorCor;}
+
 	//A funcao para acionar os motores de locomocao do robo
 	//A funcao recebe um percentual de tensao do motor esquerdo e direito
 	//A funcao so recebe valores que variem de 100 ate -100
   void acionarMotores(float percetualMotorEsquerdo, float percetualMotorDireito);
 
 	//funcao para acionar os servomotores
-  void acionarServoGarra1(float angulo);
-  void acionarServoGarra2(float angulo);
+  void acionarServoGarra1(int angFinal, int tempo);
+  void acionarServoGarra2(int angFinal, int tempo);
+  void acionarServoGarra1(int angFinal);
+  void acionarServoGarra2(int angFinal);
 
 	float lerSensorSonarFrontal();
 	float lerSensorSonarEsq();
@@ -102,7 +101,7 @@ public:
 
 private:
 
-  static int tipoSensorCor;
+	int tipoSensorCor;
   static Servo servoGarra1;
   static Servo servoGarra2;
   void tensao(float valor_por_cento,int pino);

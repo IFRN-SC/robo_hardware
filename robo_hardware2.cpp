@@ -3,7 +3,6 @@
 
 Servo robo_hardware::servoGarra1;
 Servo robo_hardware::servoGarra2;
-int robo_hardware::tipoSensorCor;
 
 
 robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,SENSOR_COR_DIR_OUT),
@@ -112,15 +111,52 @@ float robo_hardware::lerSensorSonarDir(){
 	return sonarDir.convert(microsec, Ultrasonic::CM);  //retorna a distância do sensor ao obstáculo em cm.
 }
 
+void robo_hardware::acionarServoGarra1(int angFinal, int tempo){
+  
+  	int angInicial = servoGarra1.read();
+  
+  	if (angFinal > angInicial) {
+		for(int angulo = angInicial; angulo < angFinal; angulo++){	
+			servoGarra1.write(angulo);
+			delay(tempo);
+		}
+	}
+	else {
+		for(int angulo = angInicial; angulo > angFinal; angulo--){
+			servoGarra1.write(angulo);
+			delay(tempo);
+		}
+	}
 
-void robo_hardware::acionarServoGarra1(float angulo){
-  servoGarra1.write(angulo);
 }
 
-void robo_hardware::acionarServoGarra2(float angulo){
-  servoGarra2.write(angulo);
+
+void robo_hardware::acionarServoGarra2(int angFinal, int tempo){
+
+	int angInicial = servoGarra1.read();
+  
+  	if(angFinal > angInicial){
+		for(int angulo = angInicial; angulo < angFinal; angulo++){
+			servoGarra2.write(angulo);
+			delay(tempo);
+		}
+	}
+	else {
+		for(int angulo = angInicial; angulo > angFinal; angulo--){
+			servoGarra2.write(angulo);
+			delay(tempo);
+		}
+	}
+
 }
 
+void robo_hardware::acionarServoGarra1(int angulo){
+	servoGarra1.write(angulo);
+}
+
+void robo_hardware::acionarServoGarra2(int angulo){
+	servoGarra2.write(angulo);
+}
 HSV robo_hardware::getHSVEsquerdo(){
   switch(tipoSensorCor){
     case TCS34:
