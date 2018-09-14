@@ -72,8 +72,10 @@ public:
   void acionarMotores(float percetualMotorEsquerdo, float percetualMotorDireito);
 
 	//funcao para acionar os servomotores
-  void acionarServoGarra1(float angulo);
-  void acionarServoGarra2(float angulo);
+  void acionarServoGarra1(int angFinal, int tempo);
+  void acionarServoGarra2(int angFinal, int tempo);
+  void acionarServoGarra1(int angFinal);
+  void acionarServoGarra2(int angFinal);
 
 	float lerSensorSonarFrontal();
 	float lerSensorSonarEsq();
