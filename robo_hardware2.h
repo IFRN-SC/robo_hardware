@@ -102,8 +102,8 @@ public:
 	inline const bool botao3Pressionado()const{return botao3.estaPressionado();}
 
 private:
-
-	int tipoSensorCor;
+	
+  static int tipoSensorCor;
   static Servo servoGarra1;
   static Servo servoGarra2;
   void tensao(float valor_por_cento,int pino);
