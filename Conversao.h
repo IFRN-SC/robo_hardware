@@ -1,1 +1,0 @@
-/home/lennedy/software/LeitorEncoder/Conversao.h
