@@ -10,6 +10,7 @@
 #include "cor.h"
 #include "pinagem.h"
 #include "Ultrasonic.h"
+#include "EncoderI2C.h"
 
 #include "EEPROM2.h"
 #include "CorTcs23.h"
@@ -99,6 +100,9 @@ public:
 	inline const bool botao2Pressionado()const{return botao2.estaPressionado();}
 	inline const bool botao3Pressionado()const{return botao3.estaPressionado();}
 
+	inline float getAngEncoderEsq(){return encoderEsq.getAngulo();}
+	inline float getAngEncoderDir(){return encoderDir.getAngulo();}
+
 private:
 
   static int tipoSensorCor;
@@ -123,6 +127,8 @@ private:
 	
 	Botao botao1, botao2, botao3;
 	Led	led1, led2, led3;
+
+	EncoderI2C encoderDir, encoderEsq;
 };
 
 static robo_hardware robo;
