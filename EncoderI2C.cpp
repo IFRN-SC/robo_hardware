@@ -44,5 +44,5 @@ float EncoderI2C::getVel(){
 	float tempo = tempoVel.timePassed();
 	float ang = getAnguloRelativo();
 
-	return ang/tempo;
+	return ang/(tempo/1000.0);
 }
