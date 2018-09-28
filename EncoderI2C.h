@@ -9,6 +9,8 @@
 //#include <Conversao.h>
 //#endif
 
+#include <math.h>
+
 #define DATA_SIZE 4
 #define ENDERECO_ENCODER_DIR 0X26
 #define ENDERECO_ENCODER_ESQ 0X27
@@ -79,7 +81,9 @@ class EncoderI2C{
 
 		long getData();
 
-		float pulsosParaAngulo(long pulsos){return 360*(pulsos/pulsosPorRevolucao);}
+		inline float pulsosParaAngulo(long pulsos){return 360*(pulsos/pulsosPorRevolucao);}
+		inline float radianoToGraus(float r){return 360*r/(2*M_PI);}
+		inline float grausToRadiano(float g){return 2*M_PI*g/(360);}
 };
 
 #endif
