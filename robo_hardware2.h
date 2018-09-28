@@ -103,6 +103,9 @@ public:
 	inline float getAngEncoderEsq(){return encoderEsq.getAngulo();}
 	inline float getAngEncoderDir(){return encoderDir.getAngulo();}
 
+	inline float getVelEsq(){return encoderEsq.getVel();}
+	inline float getVelDir(){return encoderDir.getVel();}
+
 private:
 
   static int tipoSensorCor;
