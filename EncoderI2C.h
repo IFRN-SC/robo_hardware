@@ -40,7 +40,7 @@ class Conversao{
 
 };
 
-Class Time{
+class Time{
 
 	public:
 
@@ -48,11 +48,13 @@ Class Time{
 		time = micros();
 	}
 
-	unsigned long timePassed(){
-		return ( micros() - time );
+	long timePassed(){
+		diferencaTempo = (micros() - time );
+		return diferencaTempo;
 	}
 	private:
 		unsigned long time;
+		int diferencaTempo;
 
 };
 
@@ -64,6 +66,7 @@ class EncoderI2C{
 		long getPulsos();
 		float getAngulo();
 		float getAnguloRelativo();
+		float getVel();
 
 		inline void setPulsosPorRevolucao(float ppr){pulsosPorRevolucao=ppr;}
 
@@ -71,7 +74,7 @@ class EncoderI2C{
 		int ATtinyAddress;
 		float pulsosPorRevolucao;
 		Conversao conv;
-		Timme tempoVel;
+		Time tempoVel;
 		long ultimosPulsos;
 
 		long getData();

@@ -21,7 +21,6 @@ long EncoderI2C::getData(){
 				byteArray[i] = Wire.read(); 
 		}
 	}
-
 	return conv.arrayToLong(byteArray);
 }
 
@@ -37,5 +36,13 @@ long EncoderI2C::getPulsos(){
 
 float EncoderI2C::getAnguloRelativo(){
 	long pulsos=ultimosPulsos;
-	return (getPulsos() - pulsos);
+	tempoVel.initTime();
+	return pulsosParaAngulo(getPulsos() - pulsos);
+}
+
+float EncoderI2C::getVel(){
+	float tempo = tempoVel.timePassed();
+	float ang = getAnguloRelativo();
+
+	return ang/tempo;
 }
