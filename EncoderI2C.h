@@ -38,6 +38,12 @@ class Conversao{
     c[1] = t & 0xff;
   }
 
+};
+
+Class Time{
+
+	public:
+
 	void initTime(){
 		time = micros();
 	}
@@ -65,6 +71,7 @@ class EncoderI2C{
 		int ATtinyAddress;
 		float pulsosPorRevolucao;
 		Conversao conv;
+		Timme tempoVel;
 		long ultimosPulsos;
 
 		long getData();
