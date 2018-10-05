@@ -51,8 +51,8 @@ void robo_hardware::configurar(bool habilitar_garra){
 	if(habilitar_garra){
   	servoGarra1.attach(SERVO_GARRA_1);
   	servoGarra2.attach(SERVO_GARRA_2);
-  	servoGarra2.write(195);
-  	servoGarra1.write(80);
+  	servoGarra2.write(130);
+  	servoGarra1.write(100);
 	}
 
   pinMode(PWM_RODA_ESQUERDA, OUTPUT); 
@@ -113,19 +113,16 @@ float robo_hardware::lerSensorSonarDir(){
 	return sonarDir.convert(microsec, Ultrasonic::CM);  //retorna a distância do sensor ao obstáculo em cm.
 }
 
-void robo_hardware::acionarServoGarra1(int angFinal, int tempo){
-  
-  	int angInicial = servoGarra1.read();
-  
+void robo_hardware::acionarServoGarra1(int angInicial, int angFinal, int tempo){
   	if (angFinal > angInicial) {
 		for(int angulo = angInicial; angulo < angFinal; angulo++){	
-			servoGarra1.write(angulo);
+			acionarServoGarra1(angulo);
 			delay(tempo);
 		}
 	}
 	else {
 		for(int angulo = angInicial; angulo > angFinal; angulo--){
-			servoGarra1.write(angulo);
+			acionarServoGarra1(angulo);
 			delay(tempo);
 		}
 	}
@@ -133,19 +130,16 @@ void robo_hardware::acionarServoGarra1(int angFinal, int tempo){
 }
 
 
-void robo_hardware::acionarServoGarra2(int angFinal, int tempo){
-
-	int angInicial = servoGarra1.read();
-  
+void robo_hardware::acionarServoGarra2(int angInicial, int angFinal, int tempo){
   	if(angFinal > angInicial){
 		for(int angulo = angInicial; angulo < angFinal; angulo++){
-			servoGarra2.write(angulo);
+			acionarServoGarra2(angulo);
 			delay(tempo);
 		}
 	}
 	else {
 		for(int angulo = angInicial; angulo > angFinal; angulo--){
-			servoGarra2.write(angulo);
+			acionarServoGarra2(angulo);
 			delay(tempo);
 		}
 	}
