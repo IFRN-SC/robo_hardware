@@ -88,6 +88,8 @@ public:
 	inline const bool botao1Pressionado()const{return botao1.estaPressionado();}
 	inline const bool botao2Pressionado()const{return botao2.estaPressionado();}
 	inline const bool botao3Pressionado()const{return botao3.estaPressionado();}
+  inline const bool fimDeCurso1Pressionado()const{return fimDeCurso1.estaPressionado();}
+  inline const bool fimDeCurso2Pressionado()const{return fimDeCurso2.estaPressionado();}
 
 private:
 
@@ -112,7 +114,7 @@ private:
 	Ultrasonic sonarEsq;
 	Ultrasonic sonarDir;
 	
-	Botao botao1, botao2, botao3;
+	Botao botao1, botao2, botao3, fimDeCurso1, fimDeCurso2;
 	Led	led1, led2, led3;
 };
 

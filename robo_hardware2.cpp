@@ -12,7 +12,7 @@ robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,
 																sonarFrontal(SONAR_TRIGGER_FRONTAL, SONAR_ECHO_FRONTAL),
 																sonarEsq(SONAR_TRIGGER_ESQ, SONAR_ECHO_ESQ),
 																sonarDir(SONAR_TRIGGER_DIR, SONAR_ECHO_DIR),
-																botao1(BOTAO_1), botao2(BOTAO_2), botao3(BOTAO_3),
+																botao1(BOTAO_1), botao2(BOTAO_2), botao3(BOTAO_3), fimDeCurso1(BOTAO_FDC1), fimDeCurso2(BOTAO_FDC2),
 																led1(LED_1), led2(LED_2), led3(LED_3)
 {
 	tipoSensorCor = TCS23;
