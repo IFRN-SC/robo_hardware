@@ -1,5 +1,5 @@
 #include "cor.h"
-
+   
 SensorCor::SensorCor(int s2_dado, int s3_dado, int out_dado){
   s2 = s2_dado;
   s3 = s3_dado;
