@@ -36,8 +36,8 @@ class pinagem{
   #define PWM_RODA_ESQUERDA 		   6		//Define o pino que ligara o motor esquerdo para mudar a velocidade de rotacao/amarelo 
   #define SENTIDO_RODA_ESQUERDA 	 7
 	//***PARA ARDUINO UNO E PRO MINI DEVE-SE UTILIZAR PARA MOTORES DC O PWM SOMENTE NAS PORTAS 5 E 6 ***///
-  #define PWM_RODA_DIREITA 		    5	//Define o pino que ligara o motor direito para mudar a velocidade de rotacao/amarelo 
-  #define SENTIDO_RODA_DIREITA 		4		//Define o pino que ligara o motor direito para mudar o sentido de rotacao/azul
+  #define PWM_RODA_DIREITA 		    4	//Define o pino que ligara o motor direito para mudar a velocidade de rotacao/amarelo 
+  #define SENTIDO_RODA_DIREITA 		5		//Define o pino que ligara o motor direito para mudar o sentido de rotacao/azul
 
   //A presente biblioteca pode controlar dois servomotores  
   #define SERVO_GARRA_1 		10		//Define o pino para "controlar" o servo motor 1
