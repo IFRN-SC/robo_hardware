@@ -20,18 +20,22 @@ enum{
 };
 
 struct calibracao_dados{
-   HSV branco;
-   HSV preto;
-   HSV verde;
-   HSV cinza;
+	HSV brancoDir;
+	HSV brancoEsq;
+	HSV pretoDir;
+	HSV pretoEsq;
+	HSV verdeDir;
+	HSV verdeEsq;
+	HSV cinzaDir;
+	HSV cinzaEsq;
 
-   int refletancia_dir;
-   int refletancia_mais_dir;
-   int refletancia_esq;
-   int refletancia_mais_esq;
+	int refletanciaDir;
+	int refletanciaMaisDir;
+	int refletanciaEsq;
+	int refletanciaMaisEsq;
+	
 
 };
-
 class robo_hardware:private pinagem{
 private:
 
@@ -63,9 +67,11 @@ public:
 	//A funcao so recebe valores que variem de 100 ate -100
   void acionarMotores(float percetualMotorEsquerdo, float percetualMotorDireito);
 
-  //funcao para acionar os servomotores
-  void acionarServoGarra1(float angulo);
-  void acionarServoGarra2(float angulo);
+	//funcao para acionar os servomotores
+  void acionarServoGarra1(int angFinal, int tempo);
+  void acionarServoGarra2(int angFinal, int tempo);
+  void acionarServoGarra1(int angFinal);
+  void acionarServoGarra2(int angFinal);
 
 	float lerSensorSonarFrontal();
 	float lerSensorSonarEsq();
@@ -93,7 +99,7 @@ public:
 
 private:
 
-	int tipoSensorCor;
+  static int tipoSensorCor;
   static Servo servoGarra1;
   static Servo servoGarra2;
   void tensao(float valor_por_cento,int pino);

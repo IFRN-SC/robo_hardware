@@ -8,15 +8,22 @@
 calibracao_dados val; //dados de calibracao para sensores de cor e sensores de refletancia
 /*****  Dados existentes na Struct calibracao_dados  *******************
 
-HSV branco;
-HSV preto;
-HSV verde;
-HSV cinza;
+	HSV brancoDir;
+	HSV brancoEsq;
+	HSV pretoDir;
+	HSV pretoEsq;
+	HSV verdeDir;
+	HSV verdeEsq;
+	HSV cinzaDir;
+	HSV cinzaEsq;
 
-int refletancia_dir;
-int refletancia_mais_dir;
-int refletancia_esq;
-int refletancia_mais_esq;
+	int refletanciaDir;
+	int refletanciaMaisDir;
+	int refletanciaEsq;
+	int refletanciaMaisEsq;
+	
+
+
 
 ************************/
 
@@ -24,11 +31,11 @@ int refletancia_mais_esq;
 void setup(){
   
   //Modificando os valores de calibracao
-  val.refletancia_dir=1;
-  val.branco.s=2.2;
-  val.branco.v=3;  
-  val.refletancia_esq=2;
-  val.refletancia_mais_dir=5;
+  val.refletanciaDir=1;
+  val.brancoEsq.s=2.2;
+  val.brancoDir.v=3;  
+  val.refletanciaEsq=2;
+  val.refletanciaMaisDir=5;
 }
 
 void loop(){
