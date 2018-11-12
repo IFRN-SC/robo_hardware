@@ -18,13 +18,13 @@
 
 //********PINOS PARA SENSORES DE COR I2C***********//
 //********SENSOR DIREITO***********************//
-//  SCL	uno-A4;	mega-21
-//  SDA	uno-A5;	mega-20  
-//  VIN	uno-3;	mega-38
+//  SDA	        uno-A4;	mega-21
+//  SCL	        uno-A5;	mega-20  
+//  VIN	OU 3V3  uno-3;	mega-38
 //********SENSOR ESQUERDO**********************//
-//  SCL	uno-A4;	mega-21
-//  SDA	uno-A5;	mega-20
-//  VIN	uno-2;	mega-50
+//  SDA	        uno-A4;	mega-21
+//  SCL	        uno-A5;	mega-20
+//  VIN	OU 3V3  uno-2;	mega-50
 //*********PINOS PARA SENSORES DE COR I2C*********//
 
 
@@ -37,10 +37,12 @@ HSV leituraSensorCor; //Declaração de uma variável do tipo RGB
 void setup(){
   Serial.begin(9600);
   robo.configurar(false);
+  //robo.habilitaTCS34();
+  // ********* DESCOMENTE A LINHA ACIMA SE ESTIVER USANDO O SENSOR DE COR DIGITAL (TCS 34725) ***********
 }
 
 void loop(){
-  leituraSensorCor = robo.getHSVEsquerdo(); //FUNCAO PARA LER VALOR DO SENSOR LATERAL
+  leituraSensorCor = robo.getHSVEsquerdo(); //FUNCAO PARA LER VALOR DO SENSOR DE COR ESQUERDO
 
 
   //imprime os 3 valores retornardos pelo sensor cor
