@@ -70,7 +70,9 @@ void robo_hardware::configurar(bool habilitar_garra){
 	corEsquerda34.config();
 }
 
-const float robo_hardware::lerSensorDeLinha(const int sensor){
+const float robo_hardware::lerSensorDeLinha(const int sensor, bool ledLigado=true){
+	digitalWrite(sensor - 36, ledLigado);
+	
 	return ( 100 - 100.0 * ( analogRead(sensor) )/1023.0);
 }
 
@@ -244,3 +246,15 @@ void robo_hardware::desligarTodosLeds()const{
 	led2.desligar();
 	led3.desligar();
 }
+
+const refletancia_dados robo_hardware::lerDadosSensorDeLinha(const int sensor){
+	refletancia_dados rd;
+
+	rd.valorLedLigado = lerSensorDeLinha(sensor);
+	rd.valorLedDesligado = lerSensorDeLinha(sensor, OFF);
+
+	rd.valorDiferenca = rd.valorLedLigado -  rd.valorLedDesligado;
+
+	return rd;
+}
+

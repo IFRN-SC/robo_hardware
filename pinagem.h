@@ -51,6 +51,11 @@ class pinagem{
   #define SENSOR_LINHA_DIREITO	A2	//Define o pino do sensor de refletancia direito
   #define SENSOR_LINHA_MAIS_DIREITO	A3	//Define o pino do sensor de refletancia direito
 
+	#define LED_SENSOR_LINHA_MAIS_ESQUERDO 18
+	#define LED_SENSOR_LINHA_ESQUERDO 19
+	#define LED_SENSOR_LINHA_DIREITO 20
+	#define LED_SENSOR_LINHA_MAIS_DIREITO 21
+
 	//A biblioteca possui dois sensores de cor: um esquerdo e outro direito.
 	//cada sensor de cor precisa de 3 pinos para configuracao e leitura da cor
 	//Os pinos dos sensores de cor são específicos para o arduino UNO e podem ser modificados para o arduino mega
