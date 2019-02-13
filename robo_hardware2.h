@@ -50,6 +50,7 @@ struct refletancia_dados{
 class robo_hardware:private pinagem{
 private:
 
+	#define AJUSTE_PINO_SENSOR 36
 	#define OFF 0
   #define AJUSTE_MOTOR 0.65
 	#define MAX_10_BITS 1023.0				//Maior valor que um numero de 10 bits pode obter
