@@ -77,6 +77,8 @@ void robo_hardware::configurar(bool habilitar_garra){
 
 const float robo_hardware::lerSensorDeLinha(const int sensor, bool ledLigado=true){
 	digitalWrite(sensor - AJUSTE_PINO_SENSOR, ledLigado);
+
+	delay(1);
 	
 	return ( 100 - 100.0 * ( analogRead(sensor) )/1023.0);
 }
