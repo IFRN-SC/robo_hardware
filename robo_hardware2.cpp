@@ -257,8 +257,9 @@ void robo_hardware::desligarTodosLeds()const{
 const refletancia_dados robo_hardware::lerDadosSensorDeLinha(const int sensor){
 	refletancia_dados rd;
 
-	rd.valorLedLigado = lerSensorDeLinha(sensor);
 	rd.valorLedDesligado = lerSensorDeLinha(sensor, OFF);
+	rd.valorLedLigado = lerSensorDeLinha(sensor);
+	
 
 	rd.valorDiferenca = rd.valorLedLigado -  rd.valorLedDesligado;
 
