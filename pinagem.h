@@ -51,10 +51,10 @@ class pinagem{
   #define SENSOR_LINHA_DIREITO	A2	//Define o pino do sensor de refletancia direito
   #define SENSOR_LINHA_MAIS_DIREITO	A3	//Define o pino do sensor de refletancia direito
 
-	#define LED_SENSOR_LINHA_MAIS_ESQUERDO 18
-	#define LED_SENSOR_LINHA_ESQUERDO 19
-	#define LED_SENSOR_LINHA_DIREITO 20
-	#define LED_SENSOR_LINHA_MAIS_DIREITO 21
+	#define LED_SENSOR_LINHA_MAIS_ESQUERDO 38
+	#define LED_SENSOR_LINHA_ESQUERDO 50
+	#define LED_SENSOR_LINHA_DIREITO 21
+	#define LED_SENSOR_LINHA_MAIS_DIREITO 20
 
 	//A biblioteca possui dois sensores de cor: um esquerdo e outro direito.
 	//cada sensor de cor precisa de 3 pinos para configuracao e leitura da cor
@@ -67,8 +67,8 @@ class pinagem{
 	#define SENSOR_COR_DIR_S3			30
 	#define SENSOR_COR_DIR_OUT		32
 
-	#define SENSOR_COR_DIR_TCS34	38
-	#define SENSOR_COR_ESQ_TCS34	50
+	#define SENSOR_COR_DIR_TCS34	99
+	#define SENSOR_COR_ESQ_TCS34	99
 
 	//A biblioteca possui dois sensores de distancia (Sonares)
 	#define SONAR_TRIGGER_FRONTAL	16 //Pino analogico A4

@@ -76,7 +76,26 @@ void robo_hardware::configurar(bool habilitar_garra){
 }
 
 const float robo_hardware::lerSensorDeLinha(const int sensor, bool ledLigado=true){
-	digitalWrite(sensor - AJUSTE_PINO_SENSOR, ledLigado);
+	int pino;
+	switch(sensor){
+		case SENSOR_LINHA_MAIS_ESQUERDO:
+			pino = LED_SENSOR_LINHA_MAIS_DIREITO;
+		break;
+			
+		case SENSOR_LINHA_ESQUERDO:
+			pino = LED_SENSOR_LINHA_ESQUERDO;
+		break;
+
+		case SENSOR_LINHA_DIREITO:
+			pino = LED_SENSOR_LINHA_DIREITO;
+		break;
+
+		case SENSOR_LINHA_MAIS_DIREITO:
+			pino = LED_SENSOR_LINHA_MAIS_DIREITO;
+		break;
+	}
+
+	digitalWrite(pino, ledLigado);
 
 	delay(1);
 	
