@@ -79,7 +79,7 @@ const float robo_hardware::lerSensorDeLinha(const int sensor, bool ledLigado=tru
 	int pino;
 	switch(sensor){
 		case SENSOR_LINHA_MAIS_ESQUERDO:
-			pino = LED_SENSOR_LINHA_MAIS_DIREITO;
+			pino = LED_SENSOR_LINHA_MAIS_ESQUERDO;
 		break;
 			
 		case SENSOR_LINHA_ESQUERDO:
