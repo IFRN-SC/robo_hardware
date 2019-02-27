@@ -19,6 +19,11 @@ lerSensorLinhaMaisEsq	KEYWORD2
 lerSensorLinhaEsq	KEYWORD2
 lerSensorLinhaDir	KEYWORD2
 lerSensorLinhaMaisDir	KEYWORD2
+lerSensorDeLinhaSemRuido	KEYWORD2
+lerSensorLinhaMaisEsqSemRuido	KEYWORD2
+lerSensorLinhaEsqSemRuido	KEYWORD2
+lerSensorLinhaDirSemRuido	KEYWORD2
+lerSensorLinhaMaisDirSemRuido KEYWORD2
 acionarMotores	KEYWORD2
 acionarServoGarra1	KEYWORD2
 acionarServoGarra2	KEYWORD2
