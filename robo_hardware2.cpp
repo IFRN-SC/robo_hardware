@@ -139,19 +139,16 @@ float robo_hardware::lerSensorSonarDir(){
 	return sonarDir.convert(microsec, Ultrasonic::CM);  //retorna a distância do sensor ao obstáculo em cm.
 }
 
-void robo_hardware::acionarServoGarra1(int angFinal, int tempo){
-  
-  	int angInicial = servoGarra1.read();
-  
+void robo_hardware::acionarServoGarra1(int angInicial, int angFinal, int tempo){
   	if (angFinal > angInicial) {
 		for(int angulo = angInicial; angulo < angFinal; angulo++){	
-			servoGarra1.write(angulo);
+			acionarServoGarra1(angulo);
 			delay(tempo);
 		}
 	}
 	else {
 		for(int angulo = angInicial; angulo > angFinal; angulo--){
-			servoGarra1.write(angulo);
+			acionarServoGarra1(angulo);
 			delay(tempo);
 		}
 	}
@@ -159,19 +156,16 @@ void robo_hardware::acionarServoGarra1(int angFinal, int tempo){
 }
 
 
-void robo_hardware::acionarServoGarra2(int angFinal, int tempo){
-
-	int angInicial = servoGarra1.read();
-  
+void robo_hardware::acionarServoGarra2(int angInicial, int angFinal, int tempo){
   	if(angFinal > angInicial){
 		for(int angulo = angInicial; angulo < angFinal; angulo++){
-			servoGarra2.write(angulo);
+			acionarServoGarra2(angulo);
 			delay(tempo);
 		}
 	}
 	else {
 		for(int angulo = angInicial; angulo > angFinal; angulo--){
-			servoGarra2.write(angulo);
+			acionarServoGarra2(angulo);
 			delay(tempo);
 		}
 	}
