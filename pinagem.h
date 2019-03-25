@@ -41,7 +41,7 @@ class pinagem{
   #define SENTIDO_RODA_DIREITA 	7		//Define o pino que ligara o motor direito para mudar o sentido de rotacao
 
 	//A presente biblioteca pode controlar dois servomotores  
-  #define SERVO_GARRA_1 				10	//Define o pino para "controlar" o servo motor 1
+  #define SERVO_GARRA_1 				8	//Define o pino para "controlar" o servo motor 1
   #define SERVO_GARRA_2 				9		//Define o pino para "controlar" o servo motor 2
 
 
