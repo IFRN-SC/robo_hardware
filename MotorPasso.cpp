@@ -45,7 +45,7 @@ void MotorPasso::acionarMotoresEmGraus(int vel, double graus){
 }
 
 
-void MotorPasso::acionarAngEsq(int ang, int vel=50){
+void MotorPasso::acionarAngEsq(int ang, int vel=60){
 	this->velEsq = converteRPM(vel);
 	passoEsq.setSpeed(this->velEsq);
 
@@ -55,7 +55,7 @@ void MotorPasso::acionarAngEsq(int ang, int vel=50){
 	passoEsq.step(nPassos);
 }
 
-void MotorPasso::acionarAngDir(int ang, int vel=50){
+void MotorPasso::acionarAngDir(int ang, int vel=60){
 	this->velDir = converteRPM(vel);
 	passoDir.setSpeed(this->velDir);
 

@@ -196,8 +196,8 @@ void Stepper::step(int steps_to_move)
 
 
   // decrement the number of steps, moving one step each time:
-//  while (steps_left > 0)
-//  {
+   while (steps_left > 0)
+ {
     unsigned long now = micros();
     // move only if the appropriate delay has passed:
     if (now - this->last_step_time >= this->step_delay)
@@ -237,7 +237,7 @@ void Stepper::step(int steps_to_move)
       else
         stepMotor(this->step_number % 4);
     }
-//  }
+    }
 }
 
 /*

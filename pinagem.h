@@ -76,7 +76,7 @@ class pinagem{
 
 	//A biblioteca possui dois sensores de distancia (Sonares)
 	#define SONAR_TRIGGER_FRONTAL	16 //Pino analogico A4
-	#define SONAR_ECHO_FRONTAL		17 //Pino analogico A5
+	#define SONAR_ECHO_FRONTAL	15	 //Pino analogico A5
 
 	#define SONAR_TRIGGER_ESQ	22 
 	#define SONAR_ECHO_ESQ		24 
