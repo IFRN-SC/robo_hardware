@@ -13,6 +13,7 @@ HSV	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
+lerSensorLinhaMeio	KEYWORD2
 lerSensorFimDeCurso	KEYWORD2
 lerSensorDeLinha	KEYWORD2
 lerSensorLinhaMaisEsq	KEYWORD2
