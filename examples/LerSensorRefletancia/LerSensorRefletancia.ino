@@ -7,6 +7,7 @@
 //SENSOR_LINHA_ESQUERDO			uno-A1;	mega-A1
 //SENSOR_LINHA_DIREITO			uno-A2;	mega-A2
 //SENSOR_LINHA_MAIS_DIREITO			uno-A3;	mega-A3
+//SENSOR_LINHA_MEIO             mega-A14
 //
 //*********PINOS PARA SENSORES REFLETANCIA*********//
 
@@ -14,6 +15,7 @@ float valorSensorMaisEsq;
 float valorSensorEsq;
 float valorSensorDir;
 float valorSensorMaisDir;
+float valorSensorMeio;
 
 void setup(){
 	Serial.begin(9600);
@@ -25,6 +27,7 @@ void loop(){
 	valorSensorEsq = robo.lerSensorLinhaEsq(); //le um valor do sensor. O sensor retornar um valor de 0 100
 	valorSensorDir = robo.lerSensorLinhaDir(); //le um valor do sensor. O sensor retornar um valor de 0 100
 	valorSensorMaisDir = robo.lerSensorLinhaMaisDir(); //le um valor do sensor. O sensor retornar um valor de 0 100
+  valorSensorMeio = robo.lerSensorLinhaMeio(); //le um valor do sensor. O sensor retornar um valor de 0 100
 
 	//Impressão dos valores dos sensores
 	Serial.print("Sensores refletancia: +esq; esq; dir; +dir ");
@@ -35,8 +38,9 @@ void loop(){
 	Serial.print(valorSensorDir); //Imprime o valor do sensor pela porta serial
 	Serial.print("; ");
 	Serial.println(valorSensorMaisDir); //Imprime o valor do sensor pela porta serial
+  Serial.print("; ");
+  Serial.println(valorSensorMeio); //Imprime o valor do sensor pela porta serial
 
-	delay(1000);
+	delay(500);
 
 }
-
