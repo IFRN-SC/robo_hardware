@@ -49,8 +49,8 @@ void robo_hardware::configurar(bool habilitar_garra){
 	sonarDir.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);
   
 	if(habilitar_garra){
-  	servoGarra1.attach(SERVO_GARRA_1);
-  	servoGarra2.attach(SERVO_GARRA_2);
+	  	servoGarra1.attach(SERVO_GARRA_1);
+	  	servoGarra2.attach(SERVO_GARRA_2);
 	}
 
   pinMode(PWM_RODA_ESQUERDA, OUTPUT); 
