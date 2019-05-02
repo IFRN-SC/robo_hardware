@@ -92,7 +92,7 @@ public:
 	inline const refletancia_dados lerDadosSensorLinhaMaisEsq(){return lerDadosSensorDeLinha(SENSOR_LINHA_MAIS_ESQUERDO);}
 	inline const refletancia_dados lerDadosSensorLinhaDir(){return lerDadosSensorDeLinha(SENSOR_LINHA_DIREITO);}
 	inline const refletancia_dados lerDadosSensorLinhaMaisDir(){return lerDadosSensorDeLinha(SENSOR_LINHA_MAIS_DIREITO);}
-    inline const refletancia_dados lerDadosSensorGarra (){ return lerDadosSensorGarra(SENSOR_GARRA);}   
+    inline const refletancia_dados lerDadosSensorGarra (){ return lerDadosSensorDeLinha(SENSOR_GARRA);}   
 
 	//A funcao para acionar os motores de locomocao do robo
 	//A funcao recebe um percentual de tensao do motor esquerdo e direito
