@@ -14,6 +14,7 @@ HSV	KEYWORD1
 #######################################
 
 lerSensorFimDeCurso	KEYWORD2
+lerSensorGarra KEYWORD2
 lerSensorDeLinha	KEYWORD2
 lerSensorLinhaMaisEsq	KEYWORD2
 lerSensorLinhaEsq	KEYWORD2
