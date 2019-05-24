@@ -64,7 +64,7 @@ class pinagem{
 	//cada sensor de cor precisa de 3 pinos para configuracao e leitura da cor
 	//Os pinos dos sensores de cor são específicos para o arduino UNO e podem ser modificados para o arduino mega
 	#define SENSOR_COR_ESQ_S2			48	
-	#define SENSOR_COR_ESQ_S3			50	
+	#define SENSOR_COR_ESQ_S3			99	
 	#define SENSOR_COR_ESQ_OUT		52	
 
 	#define SENSOR_COR_DIR_S2			28
