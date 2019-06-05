@@ -71,8 +71,8 @@ class pinagem{
 	#define SENSOR_COR_DIR_S3			30
 	#define SENSOR_COR_DIR_OUT		32
 
-	#define SENSOR_COR_DIR_TCS34	99
-	#define SENSOR_COR_ESQ_TCS34	99
+	#define SENSOR_COR_DIR_TCS34	38
+	#define SENSOR_COR_ESQ_TCS34	50
 
 	//A biblioteca possui dois sensores de distancia (Sonares)
 	#define SONAR_TRIGGER_FRONTAL	16 //Pino analogico A4
