@@ -16,6 +16,7 @@ robo_hardware::robo_hardware():	corDireita	(SENSOR_COR_DIR_S2,SENSOR_COR_DIR_S3,
 																led1(LED_1), led2(LED_2), led3(LED_3)
 {
 	tipoSensorCor = TCS23;
+	pinMode(FIM_DE_CURSO, INPUT_PULLUP);
 }
 
 void robo_hardware::tensao(float valor_por_cento,int pino){
