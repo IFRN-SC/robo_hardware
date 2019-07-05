@@ -37,6 +37,7 @@ salvarCalibracao	KEYWORD2
 lerSensorSonarFrontal	KEYWORD2
 lerSensorSonarEsq	KEYWORD2
 lerSensorSonarDir	KEYWORD2
+fimDeCursoPressionado        KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
