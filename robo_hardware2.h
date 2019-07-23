@@ -123,7 +123,8 @@ public:
 	inline const bool botao1Pressionado()const{return botao1.estaPressionado();}
 	inline const bool botao2Pressionado()const{return botao2.estaPressionado();}
 	inline const bool botao3Pressionado()const{return botao3.estaPressionado();}
-	inline const bool fimDeCursoPressionado(){return digitalRead(FIM_DE_CURSO) == LOW;}
+	inline const bool fimDeCursoPressionado1(){return digitalRead(FIM_DE_CURSO1) == LOW;}
+       inline const bool fimDeCursoPressionado2(){return digitalRead(FIM_DE_CURSO2) == LOW;}
 
 private:
 
