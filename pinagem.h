@@ -65,7 +65,7 @@ class pinagem{
 	#define SENSOR_COR_ESQ_OUT		52
 
 	#define SENSOR_COR_DIR_S2		47 //Era 28 foi alterado para 47 para permitir o uso do fim de curso	
-	#define SENSOR_COR_DIR_S3		30
+	#define SENSOR_COR_DIR_S3		46 //Era 30 foi alterado para 46 para permitir o uso do fim de curso
 	#define SENSOR_COR_DIR_OUT		32
 
 	#define SENSOR_COR_DIR_TCS34	38
@@ -91,7 +91,8 @@ class pinagem{
 	#define LED_2		51
 	#define LED_3		49
 	
-	#define FIM_DE_CURSO 28
+	#define FIM_DE_CURSO1 28
+       #define FIM_DE_CURSO2 30
 
 };
 
