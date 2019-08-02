@@ -67,10 +67,14 @@ public:
   void configurar(bool habilitar_garra=true);
 	void habilitaTCS34();
 	void habilitaTCS23();
-//  boolean lerSensorFimDeCurso();
 
+  //lerSensorFimDeCurso(By Minnael); HAHAHAH
+	inline const bool fimdocurso1Pressionado()const{return fimdocurso1.estaPressionado();}
+  inline const bool fimdocurso2Pressionado()const{return fimdocurso2.estaPressionado();}
+  inline const bool fimdocurso3Pressionado()const{return fimdocurso3.estaPressionado();}
+	
 	//As funcoes retornam o valor lido do sensor refletancia
-  const float lerSensorDeLinha(const int sensor, bool ledLigado=true); //recebe um pino analogico (A0, A1, A2 e etc) e retorna um valor de 0 a 100 
+    const float lerSensorDeLinha(const int sensor, bool ledLigado=true); //recebe um pino analogico (A0, A1, A2 e etc) e retorna um valor de 0 a 100 
 	inline const float lerSensorLinhaEsq(){			return lerSensorDeLinha(SENSOR_LINHA_ESQUERDO);} //retorna um valor de 0 a 100 
 	inline const float lerSensorLinhaMaisEsq(){	return lerSensorDeLinha(SENSOR_LINHA_MAIS_ESQUERDO);} //retorna um valor de 0 a 100 
 	inline const float lerSensorLinhaDir(){			return lerSensorDeLinha(SENSOR_LINHA_DIREITO);} //retorna um valor de 0 a 100
@@ -152,7 +156,7 @@ private:
 	Ultrasonic sonarEsq;
 	Ultrasonic sonarDir;
 	
-	Botao botao1, botao2, botao3;
+	Botao botao1, botao2, botao3, fimdocurso1, fimdocurso2, fimdocurso3;
 	Led	led1, led2, led3;
 };
 
