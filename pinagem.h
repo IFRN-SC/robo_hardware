@@ -54,25 +54,36 @@ class pinagem{
 	//A biblioteca possui dois sensores de cor: um esquerdo e outro direito.
 	//cada sensor de cor precisa de 3 pinos para configuracao e leitura da cor
 	//Os pinos dos sensores de cor são específicos para o arduino UNO e podem ser modificados para o arduino mega
-	#define SENSOR_COR_ESQ_S2			11	
-	#define SENSOR_COR_ESQ_S3			12	
-	#define SENSOR_COR_ESQ_OUT		13	
+	#define SENSOR_COR_ESQ_S2			48	
+	#define SENSOR_COR_ESQ_S3			50	
+	#define SENSOR_COR_ESQ_OUT		52	
 
-	#define SENSOR_COR_DIR_S2			2
-	#define SENSOR_COR_DIR_S3			3
-	#define SENSOR_COR_DIR_OUT		8
+	#define SENSOR_COR_DIR_S2			28
+	#define SENSOR_COR_DIR_S3			30
+	#define SENSOR_COR_DIR_OUT		32
+
+	#define SENSOR_COR_DIR_TCS34	38
+	#define SENSOR_COR_ESQ_TCS34	50
 
 	//A biblioteca possui dois sensores de distancia (Sonares)
-	#define SONAR_TRIGGER_FRONTAL	18 //Pino analogico A4
-	#define SONAR_ECHO_FRONTAL		19 //Pino analogico A5
+	#define SONAR_TRIGGER_FRONTAL	16 //Pino analogico A4
+	#define SONAR_ECHO_FRONTAL		17 //Pino analogico A5
 
-	#define SONAR_TRIGGER_ESQ	1 
-	#define SONAR_ECHO_ESQ		0
+	#define SONAR_TRIGGER_ESQ	22 
+	#define SONAR_ECHO_ESQ		24 
 
-	#define SONAR_TRIGGER_DIR	1 
-	#define SONAR_ECHO_DIR		0 
+	#define SONAR_TRIGGER_DIR	23 
+	#define SONAR_ECHO_DIR		25 
 	
- 
+//Pinos exclusivo para arduino mega
+
+	#define BOTAO_1	29
+	#define BOTAO_2	33
+	#define BOTAO_3	41
+
+	#define LED_1		53
+	#define LED_2		51
+	#define LED_3		49
 
 };
 
