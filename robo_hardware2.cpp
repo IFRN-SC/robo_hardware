@@ -57,6 +57,11 @@ void robo_hardware::configurar(bool habilitar_garra){
   pinMode(PWM_RODA_DIREITA, OUTPUT); 
   pinMode(SENTIDO_RODA_ESQUERDA, OUTPUT); 
   pinMode(SENTIDO_RODA_DIREITA, OUTPUT);
+
+  pinMode(LED_SENSOR_LINHA_MAIS_ESQUERDO, OUTPUT);
+  pinMode(LED_SENSOR_LINHA_ESQUERDO, OUTPUT);
+  pinMode(LED_SENSOR_LINHA_DIREITO, OUTPUT);
+  pinMode(LED_SENSOR_LINHA_MAIS_DIREITO, OUTPUT);
 	
 	botao1.config();
 	botao2.config();
@@ -70,7 +75,30 @@ void robo_hardware::configurar(bool habilitar_garra){
 	corEsquerda34.config();
 }
 
-const float robo_hardware::lerSensorDeLinha(const int sensor){
+const float robo_hardware::lerSensorDeLinha(const int sensor, bool ledLigado=true){
+	int pino;
+	switch(sensor){
+		case SENSOR_LINHA_MAIS_ESQUERDO:
+			pino = LED_SENSOR_LINHA_MAIS_ESQUERDO;
+		break;
+			
+		case SENSOR_LINHA_ESQUERDO:
+			pino = LED_SENSOR_LINHA_ESQUERDO;
+		break;
+
+		case SENSOR_LINHA_DIREITO:
+			pino = LED_SENSOR_LINHA_DIREITO;
+		break;
+
+		case SENSOR_LINHA_MAIS_DIREITO:
+			pino = LED_SENSOR_LINHA_MAIS_DIREITO;
+		break;
+	}
+
+	digitalWrite(pino, ledLigado);
+
+	delay(1);
+	
 	return ( 100 - 100.0 * ( analogRead(sensor) )/1023.0);
 }
 
@@ -111,19 +139,16 @@ float robo_hardware::lerSensorSonarDir(){
 	return sonarDir.convert(microsec, Ultrasonic::CM);  //retorna a distância do sensor ao obstáculo em cm.
 }
 
-void robo_hardware::acionarServoGarra1(int angFinal, int tempo){
-  
-  	int angInicial = servoGarra1.read();
-  
+void robo_hardware::acionarServoGarra1(int angInicial, int angFinal, int tempo){
   	if (angFinal > angInicial) {
 		for(int angulo = angInicial; angulo < angFinal; angulo++){	
-			servoGarra1.write(angulo);
+			acionarServoGarra1(angulo);
 			delay(tempo);
 		}
 	}
 	else {
 		for(int angulo = angInicial; angulo > angFinal; angulo--){
-			servoGarra1.write(angulo);
+			acionarServoGarra1(angulo);
 			delay(tempo);
 		}
 	}
@@ -131,19 +156,16 @@ void robo_hardware::acionarServoGarra1(int angFinal, int tempo){
 }
 
 
-void robo_hardware::acionarServoGarra2(int angFinal, int tempo){
-
-	int angInicial = servoGarra1.read();
-  
+void robo_hardware::acionarServoGarra2(int angInicial, int angFinal, int tempo){
   	if(angFinal > angInicial){
 		for(int angulo = angInicial; angulo < angFinal; angulo++){
-			servoGarra2.write(angulo);
+			acionarServoGarra2(angulo);
 			delay(tempo);
 		}
 	}
 	else {
 		for(int angulo = angInicial; angulo > angFinal; angulo--){
-			servoGarra2.write(angulo);
+			acionarServoGarra2(angulo);
 			delay(tempo);
 		}
 	}
@@ -244,3 +266,16 @@ void robo_hardware::desligarTodosLeds()const{
 	led2.desligar();
 	led3.desligar();
 }
+
+const refletancia_dados robo_hardware::lerDadosSensorDeLinha(const int sensor){
+	refletancia_dados rd;
+
+	rd.valorLedDesligado = lerSensorDeLinha(sensor, OFF);
+	rd.valorLedLigado = lerSensorDeLinha(sensor);
+	
+
+	rd.valorDiferenca = rd.valorLedLigado -  rd.valorLedDesligado;
+
+	return rd;
+}
+

@@ -37,7 +37,7 @@
 #include <string.h>
 #include <Ultrasonic.h>
 
-#define LIMITE_TEMPO_ECO 10000
+#define LIMITE_TEMPO_ECO 2500
 
 Ultrasonic::Ultrasonic(int tp, int ep)
     {

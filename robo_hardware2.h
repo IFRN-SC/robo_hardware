@@ -40,9 +40,18 @@ struct calibracao_dados{
 	
 
 };
+
+struct refletancia_dados{
+	float valorLedLigado;
+	float valorLedDesligado;
+	float valorDiferenca;
+};
+
 class robo_hardware:private pinagem{
 private:
 
+	#define AJUSTE_PINO_SENSOR 36
+	#define OFF 0
   #define AJUSTE_MOTOR 0.65
 	#define MAX_10_BITS 1023.0				//Maior valor que um numero de 10 bits pode obter
 	
@@ -60,11 +69,27 @@ public:
 //  boolean lerSensorFimDeCurso();
 
 	//As funcoes retornam o valor lido do sensor refletancia
-  const float lerSensorDeLinha(const int sensor); //recebe um pino analogico (A0, A1, A2 e etc) e retorna um valor de 0 a 100 
+  const float lerSensorDeLinha(const int sensor, bool ledLigado=true); //recebe um pino analogico (A0, A1, A2 e etc) e retorna um valor de 0 a 100 
 	inline const float lerSensorLinhaEsq(){			return lerSensorDeLinha(SENSOR_LINHA_ESQUERDO);} //retorna um valor de 0 a 100 
 	inline const float lerSensorLinhaMaisEsq(){	return lerSensorDeLinha(SENSOR_LINHA_MAIS_ESQUERDO);} //retorna um valor de 0 a 100 
 	inline const float lerSensorLinhaDir(){			return lerSensorDeLinha(SENSOR_LINHA_DIREITO);} //retorna um valor de 0 a 100
 	inline const float lerSensorLinhaMaisDir(){	return lerSensorDeLinha(SENSOR_LINHA_MAIS_DIREITO);} //retorna um valor de 0 a 100
+
+
+  inline const float lerSensorLinhaEsqSemRuido(){			return lerDadosSensorLinhaEsq().valorDiferenca;} //retorna um valor de 0 a 100  
+	inline const float lerSensorLinhaMaisEsqSemRuido(){	return lerDadosSensorLinhaMaisEsq().valorDiferenca;} //retorna um valor de 0 a 100 
+	inline const float lerSensorLinhaDirSemRuido(){			return lerDadosSensorLinhaDir().valorDiferenca;} //retorna um valor de 0 a 100
+	inline const float lerSensorLinhaMaisDirSemRuido(){	return lerDadosSensorLinhaMaisDir().valorDiferenca;} //retorna um valor de 0 a 100
+
+
+	const refletancia_dados lerDadosSensorDeLinha(const int sensor);
+	
+	inline const refletancia_dados lerDadosSensorLinhaEsq(){ return lerDadosSensorDeLinha(SENSOR_LINHA_ESQUERDO);}
+	inline const refletancia_dados lerDadosSensorLinhaMaisEsq(){return lerDadosSensorDeLinha(SENSOR_LINHA_MAIS_ESQUERDO);}
+	inline const refletancia_dados lerDadosSensorLinhaDir(){return lerDadosSensorDeLinha(SENSOR_LINHA_DIREITO);}
+	inline const refletancia_dados lerDadosSensorLinhaMaisDir(){return lerDadosSensorDeLinha(SENSOR_LINHA_MAIS_DIREITO);}
+
+
 
 	//A funcao para acionar os motores de locomocao do robo
 	//A funcao recebe um percentual de tensao do motor esquerdo e direito
@@ -72,8 +97,8 @@ public:
   void acionarMotores(float percetualMotorEsquerdo, float percetualMotorDireito);
 
 	//funcao para acionar os servomotores
-  void acionarServoGarra1(int angFinal, int tempo);
-  void acionarServoGarra2(int angFinal, int tempo);
+  void acionarServoGarra1(int angInicial, int angFinal, int tempo);
+  void acionarServoGarra2(int angInicial, int angFinal, int tempo);
   void acionarServoGarra1(int angFinal);
   void acionarServoGarra2(int angFinal);
 
