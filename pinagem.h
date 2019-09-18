@@ -32,6 +32,16 @@ A5-	SCL				    SONAR_ECHO_FRONTAL
 
 class pinagem{
 
+	#define PINO_PASSO_DIR_1 28
+	#define PINO_PASSO_DIR_2 30
+	#define PINO_PASSO_DIR_3 32
+	#define PINO_PASSO_DIR_4 21
+
+	#define PINO_PASSO_ESQ_1 13
+	#define PINO_PASSO_ESQ_2 12
+	#define PINO_PASSO_ESQ_3 11
+	#define PINO_PASSO_ESQ_4 10
+
   //***PARA ARDUINO UNO E PRO MINI DEVE-SE UTILIZAR PARA MOTORES DC O PWM SOMENTE NAS PORTAS 5 E 6 ***/// 
   #define PWM_RODA_ESQUERDA 		4		//Define o pino que ligara o motor esquerdo para mudar a velocidade de rotacao 
   #define SENTIDO_RODA_ESQUERDA 5		//Define o pino que ligara o motor esquerdo para mudar o sentido de rotacao
