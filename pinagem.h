@@ -51,8 +51,8 @@ class pinagem{
   #define SENTIDO_RODA_DIREITA 	7		//Define o pino que ligara o motor direito para mudar o sentido de rotacao
 
 	//A presente biblioteca pode controlar dois servomotores  
-  #define SERVO_GARRA_1 				10	//Define o pino para "controlar" o servo motor 1
-  #define SERVO_GARRA_2 				9		//Define o pino para "controlar" o servo motor 2
+  #define SERVO_GARRA_1 				9	//Define o pino para "controlar" o servo motor 1
+  #define SERVO_GARRA_2 				8		//Define o pino para "controlar" o servo motor 2
   
     //A presenta biblioteca para utilizar fim de cursos para diversas funções (gambiarras HAHA)
   #define FIM_DO_CURSO_1                50
@@ -62,8 +62,8 @@ class pinagem{
 	//A presente biblioteca utiliza 5 sensores de refletancia ou sensores de linha
   #define SENSOR_LINHA_MAIS_ESQUERDO	A0	//Define o pino do sensor de refletancia esquerdo 
   #define SENSOR_LINHA_ESQUERDO	A1	//Define o pino do sensor de refletancia esquerdo 
-  #define SENSOR_LINHA_DIREITO	A2	//Define o pino do sensor de refletancia direito
-  #define SENSOR_LINHA_MAIS_DIREITO	A3	//Define o pino do sensor de refletancia direito
+  #define SENSOR_LINHA_DIREITO	A3	//Define o pino do sensor de refletancia direito
+  #define SENSOR_LINHA_MAIS_DIREITO	A2	//Define o pino do sensor de refletancia direito
   #define SENSOR_LINHA_MEIO A14 //Define o pino do sensor de refletancia do centro (MEIO)
    
   #define LED_SENSOR_LINHA_MAIS_ESQUERDO 38
