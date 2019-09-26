@@ -44,7 +44,7 @@ class pinagem{
 
   //***PARA ARDUINO UNO E PRO MINI DEVE-SE UTILIZAR PARA MOTORES DC O PWM SOMENTE NAS PORTAS 5 E 6 ***/// 
   #define PWM_RODA_ESQUERDA 		4		//Define o pino que ligara o motor esquerdo para mudar a velocidade de rotacao 
-  #define SENTIDO_RODA_ESQUERDA 5		//Define o pino que ligara o motor esquerdo para mudar o sentido de rotacao
+  #define SENTIDO_RODA_ESQUERDA 5	//Define o pino que ligara o motor esquerdo para mudar o sentido de rotacao
   
 	//***PARA ARDUINO UNO E PRO MINI DEVE-SE UTILIZAR PARA MOTORES DC O PWM SOMENTE NAS PORTAS 5 E 6 ***///
   #define PWM_RODA_DIREITA 			6		//Define o pino que ligara o motor direito para mudar a velocidade de rotacao 
