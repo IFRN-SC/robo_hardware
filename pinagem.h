@@ -90,6 +90,8 @@ class pinagem{
 	#define LED_1		53
 	#define LED_2		51
 	#define LED_3		49
+	#define FIM_DE_CURSO1 	38
+	#define FIM_DE_CURSO2 	40
 
 };
 
