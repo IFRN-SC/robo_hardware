@@ -32,24 +32,24 @@ A5-	SCL							SONAR_ECHO_FRONTAL
 
 class pinagem{
 
-  //***PARA ARDUINO UNO E PRO MINI DEVE-SE UTILIZAR PARA MOTORES DC O PWM SOMENTE NAS PORTAS 5 E 6 ***///
-  #define PWM_RODA_ESQUERDA 		5		//Define o pino que ligara o motor esquerdo para mudar a velocidade de rotacao
-  #define SENTIDO_RODA_ESQUERDA 4		//Define o pino que ligara o motor esquerdo para mudar o sentido de rotacao
+	//***PARA ARDUINO UNO E PRO MINI DEVE-SE UTILIZAR PARA MOTORES DC O PWM SOMENTE NAS PORTAS 5 E 6 ***///
+	#define PWM_RODA_ESQUERDA 		5		//Define o pino que ligara o motor esquerdo para mudar a velocidade de rotacao
+	#define SENTIDO_RODA_ESQUERDA 4		//Define o pino que ligara o motor esquerdo para mudar o sentido de rotacao
 
 	//***PARA ARDUINO UNO E PRO MINI DEVE-SE UTILIZAR PARA MOTORES DC O PWM SOMENTE NAS PORTAS 5 E 6 ***///
-  #define PWM_RODA_DIREITA 			6		//Define o pino que ligara o motor direito para mudar a velocidade de rotacao
-  #define SENTIDO_RODA_DIREITA 	7		//Define o pino que ligara o motor direito para mudar o sentido de rotacao
+	#define PWM_RODA_DIREITA 			6		//Define o pino que ligara o motor direito para mudar a velocidade de rotacao
+	#define SENTIDO_RODA_DIREITA 	7		//Define o pino que ligara o motor direito para mudar o sentido de rotacao
 
 	//A presente biblioteca pode controlar dois servomotores
-  #define SERVO_GARRA_1 				8	//Define o pino para "controlar" o servo motor 1
-  #define SERVO_GARRA_2 				9		//Define o pino para "controlar" o servo motor 2
+	#define SERVO_GARRA_1 				8	//Define o pino para "controlar" o servo motor 1
+	#define SERVO_GARRA_2 				9		//Define o pino para "controlar" o servo motor 2
 
 
 	//A presente biblioteca utiliza dois sensores de refletancia ou sensores de linha
 	#define SENSOR_LINHA_MAIS_ESQUERDO	A0	//Define o pino do sensor de refletancia esquerdo
 	#define SENSOR_LINHA_ESQUERDO	A1	//Define o pino do sensor de refletancia esquerdo
-  #define SENSOR_LINHA_DIREITO	A2	//Define o pino do sensor de refletancia direito
-  #define SENSOR_LINHA_MAIS_DIREITO	A3	//Define o pino do sensor de refletancia direito
+	#define SENSOR_LINHA_DIREITO	A2	//Define o pino do sensor de refletancia direito
+	#define SENSOR_LINHA_MAIS_DIREITO	A3	//Define o pino do sensor de refletancia direito
 
 
 	#define LED_SENSOR_LINHA_MAIS_ESQUERDO 32
