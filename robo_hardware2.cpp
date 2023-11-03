@@ -267,9 +267,7 @@ void robo_hardware::desligarTodosLeds()const{
 	led3.desligar();
 }
 
-const float robo_hardware::lerDadosSensorDeLinha(const int sensor){
 	float valorLedDesligado = 0;
-	float valorLedLigado    = 0;
 
 	valorLedDesligado = lerSensorDeLinha(sensor, OFF);
 	valorLedLigado    = lerSensorDeLinha(sensor);
