@@ -76,18 +76,18 @@ public:
 	inline const float lerSensorLinhaMaisDir(){	return lerSensorDeLinha(SENSOR_LINHA_MAIS_DIREITO);} //retorna um valor de 0 a 100
 
 
-  inline const float lerSensorLinhaEsqSemRuido(){			return lerDadosSensorLinhaEsq().valorDiferenca;} //retorna um valor de 0 a 100  
-	inline const float lerSensorLinhaMaisEsqSemRuido(){	return lerDadosSensorLinhaMaisEsq().valorDiferenca;} //retorna um valor de 0 a 100 
-	inline const float lerSensorLinhaDirSemRuido(){			return lerDadosSensorLinhaDir().valorDiferenca;} //retorna um valor de 0 a 100
-	inline const float lerSensorLinhaMaisDirSemRuido(){	return lerDadosSensorLinhaMaisDir().valorDiferenca;} //retorna um valor de 0 a 100
+  inline const float lerSensorLinhaEsqSemRuido(){			return lerDadosSensorLinhaEsq();} //retorna um valor de 0 a 100  
+	inline const float lerSensorLinhaMaisEsqSemRuido(){	return lerDadosSensorLinhaMaisEsq();} //retorna um valor de 0 a 100 
+	inline const float lerSensorLinhaDirSemRuido(){			return lerDadosSensorLinhaDir();} //retorna um valor de 0 a 100
+	inline const float lerSensorLinhaMaisDirSemRuido(){	return lerDadosSensorLinhaMaisDir();} //retorna um valor de 0 a 100
 
 
-	const refletancia_dados lerDadosSensorDeLinha(const int sensor);
+	const float lerDadosSensorDeLinha(const int sensor);
 	
-	inline const refletancia_dados lerDadosSensorLinhaEsq(){ return lerDadosSensorDeLinha(SENSOR_LINHA_ESQUERDO);}
-	inline const refletancia_dados lerDadosSensorLinhaMaisEsq(){return lerDadosSensorDeLinha(SENSOR_LINHA_MAIS_ESQUERDO);}
-	inline const refletancia_dados lerDadosSensorLinhaDir(){return lerDadosSensorDeLinha(SENSOR_LINHA_DIREITO);}
-	inline const refletancia_dados lerDadosSensorLinhaMaisDir(){return lerDadosSensorDeLinha(SENSOR_LINHA_MAIS_DIREITO);}
+	inline const float lerDadosSensorLinhaEsq(){ return lerDadosSensorDeLinha(SENSOR_LINHA_ESQUERDO);}
+	inline const float lerDadosSensorLinhaMaisEsq(){return lerDadosSensorDeLinha(SENSOR_LINHA_MAIS_ESQUERDO);}
+	inline const float lerDadosSensorLinhaDir(){return lerDadosSensorDeLinha(SENSOR_LINHA_DIREITO);}
+	inline const float lerDadosSensorLinhaMaisDir(){return lerDadosSensorDeLinha(SENSOR_LINHA_MAIS_DIREITO);}
 
 
 

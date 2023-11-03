@@ -267,15 +267,15 @@ void robo_hardware::desligarTodosLeds()const{
 	led3.desligar();
 }
 
-const refletancia_dados robo_hardware::lerDadosSensorDeLinha(const int sensor){
+const float robo_hardware::lerDadosSensorDeLinha(const int sensor){
 	refletancia_dados rd;
 
 	rd.valorLedDesligado = lerSensorDeLinha(sensor, OFF);
 	rd.valorLedLigado = lerSensorDeLinha(sensor);
 	
 
-	rd.valorDiferenca = rd.valorLedLigado -  rd.valorLedDesligado;
+	//rd.valorDiferenca = rd.valorLedLigado -  rd.valorLedDesligado;
 
-	return rd;
+	return rd.valorLedLigado -  rd.valorLedDesligado;
 }
 
