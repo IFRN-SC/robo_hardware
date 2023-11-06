@@ -77,6 +77,7 @@ void robo_hardware::configurar(bool habilitar_garra){
 
 const float robo_hardware::lerSensorDeLinha(const int sensor, bool ledLigado=true){
 	int pino;
+	float val=0;
 	switch(sensor){
 		case SENSOR_LINHA_MAIS_ESQUERDO:
 			pino = LED_SENSOR_LINHA_MAIS_ESQUERDO;
@@ -99,7 +100,11 @@ const float robo_hardware::lerSensorDeLinha(const int sensor, bool ledLigado=tru
 
 	delay(1);
 	
-	return ( 100 - 100.0 * ( analogRead(sensor) )/1023.0);
+	val = ( 100 - 100.0 * ( analogRead(sensor) )/1023.0);
+	
+	digitalWrite(pino, LOW);
+	
+	return val;
 }
 
 void robo_hardware::acionarMotores(float motor1, float motor2){
