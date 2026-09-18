@@ -51,7 +51,7 @@ public:
 	//construtor 
 	robo_hardware();
 
-  	void configurar();
+  	void configurar(bool corHabilitada=false);
 
 	//A função para acionar os motores de locomoção do robô
   	void acionarMotores(float percetualMotorEsquerdo, float percetualMotorDireito);

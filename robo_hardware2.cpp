@@ -49,13 +49,13 @@ void robo_hardware::acionarMotores(float motor1, float motor2){
 }
 
 //----- função de inicialização -----//
-void robo_hardware::configurar(){
+void robo_hardware::configurar(bool corHabilitada){
 	//Com essas funcoes os sonares sao calibrados 
 	sonarFrontal.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);  
 
 	//Configura pinos da ponte H
-  	pinMode(PWM_RODA_ESQUERDA, OUTPUT); 
-  	pinMode(PWM_RODA_DIREITA, OUTPUT); 
+  pinMode(PWM_RODA_ESQUERDA, OUTPUT); 
+  pinMode(PWM_RODA_DIREITA, OUTPUT); 
 	pinMode(SENTIDO_RODA_ESQUERDA, OUTPUT); 
 	pinMode(SENTIDO_RODA_DIREITA, OUTPUT);
 
@@ -84,10 +84,12 @@ void robo_hardware::configurar(){
 	pinMode(LED_VERMELHO, OUTPUT);
 	pinMode(LED_VERDE, OUTPUT);
 
-	//Configura o sensor de cor
-	Wire.begin();
-	tcsD.begin();
-	tcsE.begin();
+  if (corHabilitada) {
+    //Configura o sensor de cor
+    Wire.begin();
+    tcsD.begin();
+    tcsE.begin();
+  }
 
 	pinMode(SEL_A, OUTPUT);
 	pinMode(SEL_B, OUTPUT);
@@ -101,10 +103,10 @@ void robo_hardware::configurar(){
 
 	//configurar o servo do braço
 	servoBraco.attach(SERVO_BRACO); // pino do braço
-  	servoGarra.attach(SERVO_GARRA); // pino da garra
+  servoGarra.attach(SERVO_GARRA); // pino da garra
 
 	servoGarra.write(0);  // fecha a garra
-  	servoBraco.write(0);
+  servoBraco.write(0);
 }
 
 //----- função para ler o sensor de linha com ruido -----//
