@@ -19,10 +19,12 @@ RGBC leituraSensorCorEsq;
  void setup(){
   Serial.begin(9600);
   robo.configurar();
+  delay(200);
+  robo.carregarCalibracao();
 }
 
 void loop(){
-  leituraSensorCorDir = robo.lerSensorDeCorDir(); //FUNCAO PARA LER VALOR DO SENSOR DE COR DIREITO
+  leituraSensorCorDir = robo.lerSensorDeCorDirNormatizado(); //FUNCAO PARA LER VALOR DO SENSOR DE COR DIREITO
 
   //imprime os 3 valores retornardos pelo sensor cor
   Serial.print("Valor do sensor de cor DIR: ");
@@ -34,9 +36,9 @@ void loop(){
    Serial.print(", ");
   Serial.print(leituraSensorCorDir.clear);
   
-  Serial.println();
+  Serial.print( " " );
   
-  leituraSensorCorEsq = robo.lerSensorDeCorEsq(); //FUNCAO PARA LER VALOR DO SENSOR DE COR ESQUERDO
+  leituraSensorCorEsq = robo.lerSensorDeCorEsqNormatizado(); //FUNCAO PARA LER VALOR DO SENSOR DE COR ESQUERDO
 
   //imprime os 3 valores retornardos pelo sensor cor
   Serial.print("Valor do sensor de cor ESQ: ");

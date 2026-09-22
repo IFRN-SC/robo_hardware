@@ -6,6 +6,11 @@
 //SENSOR_LINHA_ESQUERDO			    A2
 //SENSOR_LINHA_DIREITO			    A1	
 //SENSOR_LINHA_MAIS_DIREITO			A0	
+//
+//LED_SENSOR_LINHA_MAIS_DIREITO     11
+//LED_SENSOR_DIREITO                10
+//LED_SENSOR_ESQUERDO                9
+//LED_SENSOR_LINHA_MAIS_ESQUERDO     8
 //-----PINOS PARA SENSORES REFLETANCIA-----//
 
 float valorSensorMaisEsq;
@@ -21,15 +26,15 @@ void setup(){
 }
 
 void loop(){
-	valorSensorFrontal = robo.lerSensorLinhaFrontal(); //le um valor do sensor. O sensor retornar um valor de 0 100
-	valorSensorCentral = robo.lerSensorLinhaCentral(); //le um valor do sensor. O sensor retornar um valor de 0 100
-	valorSensorMaisEsq = robo.lerSensorLinhaMaisEsq(); //le um valor do sensor. O sensor retornar um valor de 0 100
-	valorSensorEsq = robo.lerSensorLinhaEsq();         //le um valor do sensor. O sensor retornar um valor de 0 100
-	valorSensorDir = robo.lerSensorLinhaDir();         //le um valor do sensor. O sensor retornar um valor de 0 100
-	valorSensorMaisDir = robo.lerSensorLinhaMaisDir(); //le um valor do sensor. O sensor retornar um valor de 0 100
+	valorSensorFrontal = robo.lerSensorLinhaFrontalSemRuido(); //le um valor do sensor. O sensor retornar um valor de 0 100
+	valorSensorCentral = robo.lerSensorLinhaCentralSemRuido(); //le um valor do sensor. O sensor retornar um valor de 0 100
+	valorSensorMaisEsq = robo.lerSensorLinhaMaisEsqSemRuido(); //le um valor do sensor. O sensor retornar um valor de 0 100
+	valorSensorEsq = robo.lerSensorLinhaEsqSemRuido();         //le um valor do sensor. O sensor retornar um valor de 0 100
+	valorSensorDir = robo.lerSensorLinhaDirSemRuido();         //le um valor do sensor. O sensor retornar um valor de 0 100
+	valorSensorMaisDir = robo.lerSensorLinhaMaisDirSemRuido(); //le um valor do sensor. O sensor retornar um valor de 0 100
 
 	//Impressão dos valores dos sensores
-	Serial.print("Sensores refletancia: +esq: ");
+	Serial.print("Sensores refletancia sem ruido: +esq: ");
 	Serial.print(valorSensorMaisEsq);   //Imprime o valor do sensor pela porta serial
 	Serial.print("; esq: ");
 	Serial.print(valorSensorEsq);       //Imprime o valor do sensor pela porta serial
@@ -45,4 +50,5 @@ void loop(){
 	delay(1000);
 
 }
+
 

@@ -1,153 +1,150 @@
-
-//nesse arquivo as funcoes devem ser somente declaradas
 #ifndef ROBO_HARDWARE_H
 #define ROBO_HARDWARE_H
 
 
 #include <Arduino.h>
 #include <Servo.h>
+#include <EEPROM.h>
 
-#include "cor.h"
 #include "pinagem.h"
 #include "Ultrasonic.h"
-
-#include "EEPROM2.h"
-#include "CorTcs23.h"
-#include "CorTcs34.h"
-
-#include "led_botoes/Botao.h"
-#include "led_botoes/Led.h"
-
-enum{
-	TCS23,
-	TCS34
-};
-
-struct calibracao_dados{
-	HSV brancoDir;
-	HSV brancoEsq;
-	HSV pretoDir;
-	HSV pretoEsq;
-	HSV verdeDir;
-	HSV verdeEsq;
-	HSV cinzaDir;
-	HSV cinzaEsq;
-
-	int refletanciaDir;
-	int refletanciaMaisDir;
-	int refletanciaEsq;
-	int refletanciaMaisEsq;
-	
-
-};
+#include "Adafruit_TCS34725.h"
+#include <VL53L0X.h>
 
 struct refletancia_dados{
 	float valorLedLigado;
 	float valorLedDesligado;
 	float valorDiferenca;
 };
-
+struct RGBC{
+	float red;
+	float green;
+	float blue;
+	float clear;
+};
+struct SensorCal {
+  uint16_t rBlack;
+  uint16_t gBlack;
+  uint16_t bBlack;
+  uint16_t rWhite;
+  uint16_t gWhite;
+  uint16_t bWhite;
+  bool valido;
+};
+struct CalibracaoCor {
+  SensorCal esquerda;
+  SensorCal direita;
+};
 class robo_hardware:private pinagem{
 private:
 
 	#define AJUSTE_PINO_SENSOR 36
 	#define OFF 0
-  #define AJUSTE_MOTOR 0.65
+	#define AJUSTE_MOTOR 0.65
 	#define MAX_10_BITS 1023.0				//Maior valor que um numero de 10 bits pode obter
 	
-	#define CALIBRACAO_SONAR  40.4	//Valor para calibrar os sonares. Quanto maior esse valor menor a inclinação da reta de calibracao
+	#define CALIBRACAO_SONAR  40.4	       //Valor para calibrar os sonares. Quanto maior esse valor menor a inclinação da reta de calibracao
 
 	#define ENDERECO_EEPROM 0
 
 public: 
+	//construtor 
+	robo_hardware();
 
+  	void configurar(bool distanciaHabilitada=false, bool corHabilitada=false);
 
-  robo_hardware();
-  void configurar(bool habilitar_garra=true);
-	void habilitaTCS34();
-	void habilitaTCS23();
-//  boolean lerSensorFimDeCurso();
+	//A função para acionar os motores de locomoção do robô
+  	void acionarMotores(float percetualMotorEsquerdo, float percetualMotorDireito);
 
-	//As funcoes retornam o valor lido do sensor refletancia
-  const float lerSensorDeLinha(const int sensor, bool ledLigado=true); //recebe um pino analogico (A0, A1, A2 e etc) e retorna um valor de 0 a 100 
-	inline const float lerSensorLinhaEsq(){			return lerSensorDeLinha(SENSOR_LINHA_ESQUERDO);} //retorna um valor de 0 a 100 
-	inline const float lerSensorLinhaMaisEsq(){	return lerSensorDeLinha(SENSOR_LINHA_MAIS_ESQUERDO);} //retorna um valor de 0 a 100 
-	inline const float lerSensorLinhaDir(){			return lerSensorDeLinha(SENSOR_LINHA_DIREITO);} //retorna um valor de 0 a 100
-	inline const float lerSensorLinhaMaisDir(){	return lerSensorDeLinha(SENSOR_LINHA_MAIS_DIREITO);} //retorna um valor de 0 a 100
-
-
-  inline const float lerSensorLinhaEsqSemRuido(){			return lerDadosSensorLinhaEsq().valorDiferenca;} //retorna um valor de 0 a 100  
-	inline const float lerSensorLinhaMaisEsqSemRuido(){	return lerDadosSensorLinhaMaisEsq().valorDiferenca;} //retorna um valor de 0 a 100 
-	inline const float lerSensorLinhaDirSemRuido(){			return lerDadosSensorLinhaDir().valorDiferenca;} //retorna um valor de 0 a 100
-	inline const float lerSensorLinhaMaisDirSemRuido(){	return lerDadosSensorLinhaMaisDir().valorDiferenca;} //retorna um valor de 0 a 100
-
-
-	const refletancia_dados lerDadosSensorDeLinha(const int sensor);
+	//As funções retornam o valor lido do sensor refletância
+    const float lerSensorDeLinha(const int sensor, bool ledLigado=true); //recebe um pino analogico (A0, A1, A2 e etc) e retorna um valor de 0 a 100 
 	
-	inline const refletancia_dados lerDadosSensorLinhaEsq(){ return lerDadosSensorDeLinha(SENSOR_LINHA_ESQUERDO);}
-	inline const refletancia_dados lerDadosSensorLinhaMaisEsq(){return lerDadosSensorDeLinha(SENSOR_LINHA_MAIS_ESQUERDO);}
-	inline const refletancia_dados lerDadosSensorLinhaDir(){return lerDadosSensorDeLinha(SENSOR_LINHA_DIREITO);}
-	inline const refletancia_dados lerDadosSensorLinhaMaisDir(){return lerDadosSensorDeLinha(SENSOR_LINHA_MAIS_DIREITO);}
+	inline const float lerSensorLinhaEsq(){			return lerSensorDeLinha(SENSOR_LINHA_ESQUERDO);}      //retorna um valor de 0 a 100 
+	inline const float lerSensorLinhaMaisEsq(){	    return lerSensorDeLinha(SENSOR_LINHA_MAIS_ESQUERDO);} //retorna um valor de 0 a 100 
+	inline const float lerSensorLinhaDir(){			return lerSensorDeLinha(SENSOR_LINHA_DIREITO);}       //retorna um valor de 0 a 100
+	inline const float lerSensorLinhaMaisDir(){	    return lerSensorDeLinha(SENSOR_LINHA_MAIS_DIREITO);}  //retorna um valor de 0 a 100
+	inline const float lerSensorLinhaCentral(){	    return lerSensorDeLinha(SENSOR_LINHA_CENTRAL);}       //retorna um valor de 0 a 100
+	inline const float lerSensorLinhaFrontal(){	    return lerSensorDeLinha(SENSOR_LINHA_FRONTAL);}       //retorna um valor de 0 a 100
 
+	const float lerDadosSensorDeLinha(const int sensor);
 
+  	inline const float lerSensorLinhaEsqSemRuido(){			return lerDadosSensorDeLinha(SENSOR_LINHA_ESQUERDO);}      //retorna um valor de 0 a 100  
+	inline const float lerSensorLinhaMaisEsqSemRuido(){     return lerDadosSensorDeLinha(SENSOR_LINHA_MAIS_ESQUERDO);} //retorna um valor de 0 a 100 
+	inline const float lerSensorLinhaDirSemRuido(){			return lerDadosSensorDeLinha(SENSOR_LINHA_DIREITO);}       //retorna um valor de 0 a 100
+	inline const float lerSensorLinhaMaisDirSemRuido(){	    return lerDadosSensorDeLinha(SENSOR_LINHA_MAIS_DIREITO);}  //retorna um valor de 0 a 100
+	inline const float lerSensorLinhaCentralSemRuido(){	    return lerDadosSensorDeLinha(SENSOR_LINHA_CENTRAL);}       //retorna um valor de 0 a 100
+	inline const float lerSensorLinhaFrontalSemRuido(){	    return lerDadosSensorDeLinha(SENSOR_LINHA_FRONTAL);}       //retorna um valor de 0 a 100
 
-	//A funcao para acionar os motores de locomocao do robo
-	//A funcao recebe um percentual de tensao do motor esquerdo e direito
-	//A funcao so recebe valores que variem de 100 ate -100
-  void acionarMotores(float percetualMotorEsquerdo, float percetualMotorDireito);
-
-	//funcao para acionar os servomotores
-  void acionarServoGarra1(int angInicial, int angFinal, int tempo);
-  void acionarServoGarra2(int angInicial, int angFinal, int tempo);
-  void acionarServoGarra1(int angFinal);
-  void acionarServoGarra2(int angFinal);
-
+	//A função retorna o valor lido do sensor sonar
 	float lerSensorSonarFrontal();
-	float lerSensorSonarEsq();
-	float lerSensorSonarDir();  
+
+	// A função que retorna valor do sensor Laiser
+	int lerSensorLaserFrontal()const;
   
 	//funcoes para trabalhar com os sensores de Cor
-  HSV getHSVEsquerdo(); //realiza a leitura do sensor de cor esquerdo e retorna uma estrutura HSV. Ver cor.h
-  RGB getRGBEsquerdo(); //realiza a leitura do sensor de cor esquerdo e retorna uma estrutura RGB. Ver cor.h
-  HSV getHSVDireito(); 	//realiza a leitura do sensor de cor direito e retorna uma estrutura HSV. Ver cor.h
-  RGB getRGBDireito(); 	//realiza a leitura do sensor de cor direito e retorna uma estrutura RGB. Ver cor.h
+	RGBC getRGBSensorDir() const;
+    RGBC getRGBSensorEsq() const;
 
-	void salvarCalibracao(calibracao_dados cal);  
-	void lerCalibracao(calibracao_dados &cal);
+	void canal00() const;
+	void canal01() const;
+	void canal10() const;
 
+	RGBC lerSensorDeCorDir();
+	RGBC lerSensorDeCorEsq();
+
+	RGBC lerSensorDeCorDirNormatizado();
+	RGBC lerSensorDeCorEsqNormatizado();
+
+  	//funcoes para o controle dos leds
 	void ligarLed(const int led)const;
 	void desligarLed(const int led)const;
+
+    inline void ligarLedSmdVerde()    {ligarLed(LED_SMD_VERDE);}const;
+    inline void ligarLedSmdVermelho() {ligarLed(LED_SMD_VERMELHO);}const;
+
+	inline void desligarLedSmdVerde()    {desligarLed(LED_SMD_VERDE);}const;
+    inline void desligarLedSmdVermelho() {desligarLed(LED_SMD_VERMELHO);}const;
+
+    inline void ligarLedAmarelo()  {ligarLed(LED_AMARELO);}const;
+	inline void ligarLedAzul()     {ligarLed(LED_AZUL);}const;
+ 	inline void ligarLedVermelho() {ligarLed(LED_VERMELHO);}const;
+	inline void ligarLedVerde()    {ligarLed(LED_VERDE);}const;
+
+	inline void desligarLedAmarelo()  {desligarLed(LED_AMARELO);}const;
+	inline void desligarLedAzul()     {desligarLed(LED_AZUL);}const;
+ 	inline void desligarLedVermelho() {desligarLed(LED_VERMELHO);}const;
+	inline void desligarLedVerde()    {desligarLed(LED_VERDE);}const;
+
 	void ligarTodosLeds()const;
 	void desligarTodosLeds()const;
 
-	inline const bool botao1Pressionado()const{return botao1.estaPressionado();}
-	inline const bool botao2Pressionado()const{return botao2.estaPressionado();}
-	inline const bool botao3Pressionado()const{return botao3.estaPressionado();}
+	// --- funções de calibração e EEPROM ---
+  void calibrarCoresConjunta();   
+  void salvarCalibracao();        
+  void carregarCalibracao();      
+  String lerNomeCorEsq();         
+  String lerNomeCorDir();         
 
 private:
+  	static int tipoSensorCor;
 
-  static int tipoSensorCor;
-  static Servo servoGarra1;
-  static Servo servoGarra2;
-  void tensao(float valor_por_cento,int pino);
-  //SensorCor cor_direita(s2,s3, out);  
-  
-  //SensorCor corDireita;
-  //SensorCor corEsquerda;
-
-  CorTcs23 corDireita;
-  CorTcs23 corEsquerda;
-
-  CorTcs34 corDireita34;
-  CorTcs34 corEsquerda34;
+  	void tensao(float valor_por_cento,int pino);
 
 
 	Ultrasonic sonarFrontal;
-	Ultrasonic sonarEsq;
-	Ultrasonic sonarDir;
+
+	Adafruit_TCS34725 tcsD;// = Adafruit_TCS34725softi2c(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_4X, SDA_SENSOR_COR_ESQUERDO, SCL_SENSOR_COR_ESQUERDO);
+	Adafruit_TCS34725 tcsE;
+    
+	Servo servoBraco;
+	Servo servoGarra;
+
+	static VL53L0X sensor;// = Adafruit_VL53L0X();
 	
-	Botao botao1, botao2, botao3;
-	Led	led1, led2, led3;
+	static CalibracaoCor calib;
+	void lerMediaRGBdoSensor(bool esquerda, RGBC &out, uint8_t amostras = 10);
+  	void normalizarRGBComCal(const RGBC &raw, const SensorCal &sc, int &rNorm, int &gNorm, int &bNorm);
+  	String identificarCorPorRGB(int r, int g, int b);
 };
 
 static robo_hardware robo;
