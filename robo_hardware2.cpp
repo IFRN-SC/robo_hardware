@@ -49,7 +49,7 @@ void robo_hardware::acionarMotores(float motor1, float motor2){
 }
 
 //----- função de inicialização -----//
-void robo_hardware::configurar(bool corHabilitada){
+void robo_hardware::configurar(bool distanciaHabilitada, bool corHabilitada){
 	//Com essas funcoes os sonares sao calibrados 
 	sonarFrontal.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);  
 
@@ -97,9 +97,11 @@ void robo_hardware::configurar(bool corHabilitada){
 	digitalWrite(SEL_A, LOW);
 	digitalWrite(SEL_B, HIGH);
 	
-	//configura sensor frontal de distância a laiser
-	sensor.init();
-	sensor.setTimeout(500);
+  if(distanciaHabilitada){
+    //configura sensor frontal de distância a laiser
+    sensor.init();
+    sensor.setTimeout(500);
+  }
 
 	//configurar o servo do braço
 	servoBraco.attach(SERVO_BRACO); // pino do braço
