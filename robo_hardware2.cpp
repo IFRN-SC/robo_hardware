@@ -51,7 +51,7 @@ void robo_hardware::acionarMotores(float motor1, float motor2){
 //----- função de inicialização -----//
 void robo_hardware::configurar(bool distanciaHabilitada, bool corHabilitada){
 	//Com essas funcoes os sonares sao calibrados 
-	sonarFrontal.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);  
+	sonarFrontal.setDivisor(CALIBRACAO_SONAR, Ultrasonic::CM);
 
 	//Configura pinos da ponte H
   pinMode(PWM_RODA_ESQUERDA, OUTPUT); 
@@ -75,14 +75,8 @@ void robo_hardware::configurar(bool distanciaHabilitada, bool corHabilitada){
 	pinMode(SENSOR_LINHA_CENTRAL, INPUT);
 	pinMode(SENSOR_LINHA_FRONTAL, INPUT);
 
-	//Configura pinos para ligar os LEDS
-	pinMode(LED_SMD_VERDE, OUTPUT);
-	pinMode(LED_SMD_VERMELHO, OUTPUT);
-
-	pinMode(LED_AMARELO, OUTPUT);
-	pinMode(LED_AZUL, OUTPUT);
-	pinMode(LED_VERMELHO, OUTPUT);
-	pinMode(LED_VERDE, OUTPUT);
+  //Configura os LEDs do robô
+  sinalizacao.config();
 
   if (corHabilitada) {
     //Configura o sensor de cor

@@ -10,6 +10,7 @@
 #include "Ultrasonic.h"
 #include "Adafruit_TCS34725.h"
 #include <VL53L0X.h>
+#include "Sinalizacao.h"
 
 struct refletancia_dados{
 	float valorLedLigado;
@@ -46,6 +47,8 @@ private:
 	#define CALIBRACAO_SONAR  40.4	       //Valor para calibrar os sonares. Quanto maior esse valor menor a inclinação da reta de calibracao
 
 	#define ENDERECO_EEPROM 0
+
+	Sinalizacao sinalizacao;
 
 public: 
 	//construtor 
